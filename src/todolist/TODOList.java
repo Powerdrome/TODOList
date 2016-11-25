@@ -16,8 +16,12 @@ public class TODOList {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+<<<<<<< HEAD
         System.out.println("Hello Dev");
         System.out.println("Acresentado pel dev à master");
+=======
+        System.out.println("Hello Master");
+>>>>>>> refs/remotes/origin/master
         
     }
     
