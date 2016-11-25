@@ -17,7 +17,7 @@ public class TODOList {
     public static void main(String[] args) {
         // TODO code application logic here
         System.out.println("Hello Master");
-        System.out.println("Acresentar ao dev");
+        System.out.println("Acresentar ao Master");
     }
     
 }
