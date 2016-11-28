@@ -7,18 +7,16 @@ public class Exame {
     Calendar fim;
     String epoca;
 
-    public Exame(Calendar inicio, Calendar fim, String epoca) {
-        this.inicio = inicio;
-        this.fim = fim;
+    public Exame(String epoca) {
         this.epoca = epoca;
     }
 
-    public void setInicio(Calendar inicio) {
-        this.inicio = inicio;
+    public void setInicio(int ano, int mes, int dia, int hora, int minuto) {
+        inicio.set(ano, mes, dia, hora, minuto);
     }
 
-    public void setFim(Calendar fim) {
-        this.fim = fim;
+    public void setFim(int ano, int mes, int dia, int hora, int minuto) {
+        fim.set(ano, mes, dia, hora, minuto);
     }
 
     public void setEpoca(String epoca) {
