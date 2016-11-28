@@ -3,10 +3,10 @@ package todolist;
 import java.util.Calendar;
 
 public class HoraAula {
-    int tipo;
-    String sala;
-    Calendar inicio;
-    Calendar fim;
+    private int tipo;
+    private String sala;
+    private Calendar inicio;
+    private Calendar fim;
     
     
 

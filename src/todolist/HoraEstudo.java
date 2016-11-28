@@ -3,9 +3,9 @@ package todolist;
 import java.util.Calendar;
 
 public class HoraEstudo {
-    String titulo;
-    Calendar inicio;
-    Calendar fim;
+    private String titulo;
+    private Calendar inicio;
+    private Calendar fim;
 
     public HoraEstudo(String titulo) {
         this.titulo = titulo;

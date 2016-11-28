@@ -1,8 +1,8 @@
 package todolist;
 
 public class Nota {
-    String Titulo;
-    String Nota;
+    private String Titulo;
+    private String Nota;
 
     public Nota(String Nota, String Titulo) {
         this.Nota = Nota;
