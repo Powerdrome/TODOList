@@ -2,7 +2,7 @@ package todolist;
 
 import java.util.Calendar;
 
-public class horaAula {
+public class HoraAula {
     int tipo;
     String sala;
     Calendar inicio;
@@ -10,7 +10,7 @@ public class horaAula {
     
     
 
-    public horaAula(int tipo, String sala) {
+    public HoraAula(int tipo, String sala) {
         this.tipo = tipo;
         this.sala = sala;
     }
