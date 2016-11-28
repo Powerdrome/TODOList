@@ -1,8 +1,8 @@
 package todolist;
 
 public class Dica {
-    String titulo;
-    String dica;
+    private String titulo;
+    private String dica;
 
     public Dica(String titulo, String nota) {
         this.titulo = titulo;

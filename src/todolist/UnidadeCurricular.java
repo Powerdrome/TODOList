@@ -3,14 +3,14 @@ package todolist;
 import java.util.ArrayList;
 
 public class UnidadeCurricular {
-    String nome;
-    int ano;
-    int semestre;
-    ArrayList<Nota> notas;
-    ArrayList<HoraAula> aulas;
-    ArrayList<HoraEstudo> horasEstudo;
-    ArrayList<Exame> exames;
-    ArrayList<Dica> dicas;
+    private String nome;
+    private int ano;
+    private int semestre;
+    private ArrayList<Nota> notas;
+    private ArrayList<HoraAula> aulas;
+    private ArrayList<HoraEstudo> horasEstudo;
+    private ArrayList<Exame> exames;
+    private ArrayList<Dica> dicas;
 
     public UnidadeCurricular(String nome, int ano, int semestre) {
         this.nome = nome;

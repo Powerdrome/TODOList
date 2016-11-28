@@ -3,7 +3,7 @@ package todolist;
 import java.util.ArrayList;
 
 public class Calendario {
-    ArrayList<UnidadeCurricular> cadeiras;
+    private ArrayList<UnidadeCurricular> cadeiras;
 
     public Calendario() {
         cadeiras = new ArrayList<>();
@@ -19,5 +19,6 @@ public class Calendario {
     
     public void addCadeira(UnidadeCurricular cadeira){
         cadeiras.add(cadeira);
+        
     }
 }

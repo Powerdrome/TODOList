@@ -3,9 +3,9 @@ package todolist;
 import java.util.Calendar;
 
 public class Exame {
-    Calendar inicio;
-    Calendar fim;
-    String epoca;
+    private Calendar inicio;
+    private Calendar fim;
+    private String epoca;
 
     public Exame(String epoca) {
         this.epoca = epoca;
