@@ -5,6 +5,8 @@
  */
 package todolist;
 
+import java.util.Calendar;
+
 /**
  *
  * @author Ricardo
@@ -20,6 +22,7 @@ public class TODOList {
         UnidadeCurricular pa_uc = new UnidadeCurricular("Programação Distrubuída", 2, 1);
         Nota pa_nota = new Nota("Programação Distribuida Nota", "Isto é uma nota para PA");
         
+<<<<<<< HEAD
         Dica pa_dica = new Dica("Programação Distribuida Dica", "Isto é uma dica pra PA");
        
         Exame pa_exame = new Exame("Normal");
@@ -43,6 +46,12 @@ public class TODOList {
         calendario.addCadeira(pa_uc);
         System.out.println(calendario.getCadeiras().toString());
         
+=======
+        Exame exame1 = new Exame("Normal");
+        exame1.setInicio(2016, 11, 29, 14, 0);
+        exame1.setFim(2016, 11, 29, 16, 0);
+        System.out.println(exame1.getInicio().get(Calendar.DATE));
+>>>>>>> refs/remotes/origin/master
     }
     
 }
