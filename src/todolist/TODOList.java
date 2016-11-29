@@ -42,15 +42,7 @@ public class TODOList {
         pa_uc.addNota(pa_nota);
         pa_uc.addExame(pa_exame);
         
-        calendario.addCadeira(pa_uc);
-        System.out.println("todolist.TODOList.main()");
-        
-<<<<<<< HEAD
-=======
-        Exame exame1 = new Exame("Normal");
-        exame1.setInicio(2016, 11, 29, 14, 0);
-        exame1.setFim(2016, 11, 29, 16, 0);
->>>>>>> master
+        calendario.addCadeira(pa_uc); 
     }
     
 }
