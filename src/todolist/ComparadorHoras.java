@@ -23,7 +23,7 @@ public class ComparadorHoras implements Comparator<Hora>{
             return o1.getInicio().get(Calendar.DATE) - o2.getInicio().get(Calendar.DATE);
         if(o1.getInicio().get(Calendar.DATE) != o2.getInicio().get(Calendar.DATE))
             return o1.getInicio().get(Calendar.DATE) - o2.getInicio().get(Calendar.DATE);
-        if(o1.getInicio().get(Calendar.HOUR) != o2.getInicio().get(Calendar.HOUR))
+        if(o1.getInicio().get(Calendar.HOUR_OF_DAY) != o2.getInicio().get(Calendar.HOUR_OF_DAY))
             return o1.getInicio().get(Calendar.HOUR) - o2.getInicio().get(Calendar.HOUR);  
         return o1.getInicio().get(Calendar.MINUTE) - o2.getInicio().get(Calendar.MINUTE);
     }
