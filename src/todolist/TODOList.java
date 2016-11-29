@@ -22,7 +22,6 @@ public class TODOList {
         Exame exame1 = new Exame("Normal");
         exame1.setInicio(2016, 11, 29, 14, 0);
         exame1.setFim(2016, 11, 29, 16, 0);
-        System.out.println(exame1.getInicio().get(Calendar.DATE));
     }
     
 }
