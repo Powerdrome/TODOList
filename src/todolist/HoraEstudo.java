@@ -1,11 +1,12 @@
 package todolist;
 
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 public class HoraEstudo {
     private String titulo;
-    private Calendar inicio;
-    private Calendar fim;
+    private GregorianCalendar inicio;
+    private GregorianCalendar fim;
 
     public HoraEstudo(String titulo) {
         this.titulo = titulo;
@@ -15,11 +16,11 @@ public class HoraEstudo {
         return titulo;
     }
 
-    public Calendar getInicio() {
+    public GregorianCalendar getInicio() {
         return inicio;
     }
 
-    public Calendar getFim() {
+    public GregorianCalendar getFim() {
         return fim;
     }
 
@@ -28,11 +29,11 @@ public class HoraEstudo {
     }
 
     public void setInicio(int ano, int mes, int dia, int hora, int minuto) {
-        this.inicio.set(ano, mes, dia, hora, minuto);
+        this.inicio = new GregorianCalendar(ano, mes, dia, hora, minuto);
     }
 
     public void setFim(int ano, int mes, int dia, int hora, int minuto) {
-        this.fim.set(ano, mes, dia, hora, minuto);
+        this.fim = new GregorianCalendar(ano, mes, dia, hora, minuto);
     }
     
     
