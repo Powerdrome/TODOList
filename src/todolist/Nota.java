@@ -5,6 +5,7 @@ public class Nota {
     private String Nota;
 
     public Nota(String Nota, String Titulo) {
+        this.Titulo = Titulo;
         this.Nota = Nota;
     }
 
