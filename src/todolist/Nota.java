@@ -4,7 +4,11 @@ public class Nota {
     private String Titulo;
     private String Nota;
 
+<<<<<<< HEAD
     public Nota(String Nota, String Titulo) {
+=======
+    public Nota(String Titulo, String Nota) {
+>>>>>>> refs/remotes/origin/master
         this.Titulo = Titulo;
         this.Nota = Nota;
     }
