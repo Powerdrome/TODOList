@@ -1,6 +1,10 @@
+/*
+    class Exame
+    Versão 1.0 30/11/16
+    
+*/
 package todolist;
 
-import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 public class Exame {
@@ -35,7 +39,4 @@ public class Exame {
     public String getEpoca() {
         return epoca;
     }
-    
-    
-    
 }

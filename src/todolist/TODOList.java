@@ -5,7 +5,6 @@
  */
 package todolist;
 
-import java.util.Calendar;
 
 /**
  *
@@ -17,7 +16,6 @@ public class TODOList {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
         Calendario calendario = new Calendario();
         UnidadeCurricular pa_uc = new UnidadeCurricular("Programação Distrubuída", 2, 1);
         Nota pa_nota = new Nota("Programação Distribuida Nota", "Isto é uma nota para PA");

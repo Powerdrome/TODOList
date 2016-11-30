@@ -1,6 +1,10 @@
+/*
+    class HoraAula
+    Versão 1.0 30/11/16
+    
+*/
 package todolist;
 
-import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 public class HoraAula {
@@ -8,9 +12,7 @@ public class HoraAula {
     private String sala;
     private GregorianCalendar inicio;
     private GregorianCalendar fim;
-    
-    
-
+ 
     public HoraAula(int tipo, String sala) {
         this.tipo = tipo;
         this.sala = sala;
