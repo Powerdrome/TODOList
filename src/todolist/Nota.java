@@ -4,7 +4,11 @@ public class Nota {
     private String Titulo;
     private String Nota;
 
-    public Nota(String Nota, String Titulo) {
+
+    
+
+    public Nota(String Titulo, String Nota){
+        this.Titulo = Titulo;
         this.Nota = Nota;
     }
 

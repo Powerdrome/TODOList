@@ -1,10 +1,11 @@
 package todolist;
 
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 public class Exame {
-    private Calendar inicio;
-    private Calendar fim;
+    private GregorianCalendar inicio;
+    private GregorianCalendar fim;
     private String epoca;
 
     public Exame(String epoca) {
@@ -12,22 +13,22 @@ public class Exame {
     }
 
     public void setInicio(int ano, int mes, int dia, int hora, int minuto) {
-        inicio.set(ano, mes, dia, hora, minuto);
+        inicio = new GregorianCalendar(ano, mes, dia, hora, minuto);
     }
 
     public void setFim(int ano, int mes, int dia, int hora, int minuto) {
-        fim.set(ano, mes, dia, hora, minuto);
+        fim = new GregorianCalendar(ano, mes, dia, hora, minuto);
     }
 
     public void setEpoca(String epoca) {
         this.epoca = epoca;
     }
 
-    public Calendar getInicio() {
+    public GregorianCalendar getInicio() {
         return inicio;
     }
 
-    public Calendar getFim() {
+    public GregorianCalendar getFim() {
         return fim;
     }
 
