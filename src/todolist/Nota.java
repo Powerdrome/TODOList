@@ -1,11 +1,13 @@
+/*
+    class Nota
+    Versão 1.0 30/11/16
+    
+*/
 package todolist;
 
 public class Nota {
     private String Titulo;
     private String Nota;
-
-
-    
 
     public Nota(String Titulo, String Nota){
         this.Titulo = Titulo;
@@ -28,11 +30,8 @@ public class Nota {
         this.Titulo = Titulo;
     }
     
-
     @Override
     public String toString() {
         return "Titulo: "+Titulo+" Nota: "+Nota;
     }
-    
-    
 }
