@@ -43,7 +43,7 @@ public class TODOList {
         pa_uc.addExame(pa_exame);
         
         calendario.addCadeira(pa_uc);
-        System.out.println("todolist.TODOList.main()");
+        System.out.println("todolist.TODO List.main()");
         
 
     }
