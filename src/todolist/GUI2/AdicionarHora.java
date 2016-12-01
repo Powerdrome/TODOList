@@ -19,8 +19,9 @@ import javax.swing.JFrame;
 public class AdicionarHora  extends JFrame {
 
     public AdicionarHora() {
-        super.setLayout(new BorderLayout());
-        super.setPreferredSize(new Dimension(200, 300));
+        setLayout(new BorderLayout());
+        setPreferredSize(new Dimension(500, 300));
+        getContentPane().setBackground(Color.BLUE);
     }
     public void paint(Graphics g) {
         g.setColor(Color.red);
