@@ -24,7 +24,8 @@ public class Inicio extends JPanel {
       //frame.setContentPane(new Inicio());
       
       frame.pack();
-      frame.setSize(700, 500);
+      frame.setSize(1200, 700);
+      frame.setMinimumSize(new Dimension(1000, 500));
       frame.setVisible(true);
       frame.getContentPane().setBackground(Color.GRAY);
    }

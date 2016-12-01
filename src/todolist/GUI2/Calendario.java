@@ -5,6 +5,7 @@
  */
 package todolist.GUI2;
 
+        
 import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.FontMetrics;
@@ -13,7 +14,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import javax.swing.JPanel;
-
+import todolist.*;
 /**
  *
  * @author jorgetrovisco
@@ -86,5 +87,13 @@ public class Calendario extends JPanel {
             cal.add(Calendar.DATE, 1);
             x +=100;
         }
+    }
+    public void DesenhaLista(Graphics g){
+        Calendar cal = Calendar.getInstance();
+        System.out.println("Data Actual:" + cal.get(Calendar.DATE)+"/"+cal.get(Calendar.MONTH)+"/"+cal.get(Calendar.YEAR));
+        cal.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
+        DateFormat df = new SimpleDateFormat("EEE dd/MM");
+        System.out.println("Primeiro dia da semana: "+df.format(cal.getTime()));
+        Calendario a = new Calendario();
     }
 }
