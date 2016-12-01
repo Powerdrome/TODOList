@@ -15,6 +15,7 @@ public class Inicio extends JPanel {
       
       @SuppressWarnings("unchecked")
       JFrame frame = new JFrame();
+      
       frame.setLayout(new BorderLayout());
       frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       
@@ -26,6 +27,8 @@ public class Inicio extends JPanel {
       frame.pack();
       frame.setSize(1200, 700);
       frame.setMinimumSize(new Dimension(1000, 500));
+      
+      
       frame.setVisible(true);
       frame.getContentPane().setBackground(Color.GRAY);
    }

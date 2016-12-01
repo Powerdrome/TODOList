@@ -50,9 +50,9 @@ public class TODOList {
 
 
         calendario.addCadeira(pa_uc); 
-<<<<<<< HEAD
 
-=======
+
+
         for(Hora hr: calendario.getHoras()){
             System.out.println(hr.getNome());
         }
@@ -72,7 +72,7 @@ for (int i = 0; i < 7; i++) {
     System.out.println(df.format(cal.getTime()));
     cal.add(Calendar.DATE, 1);
 }
->>>>>>> refs/remotes/origin/master
+
     }
     
 }
