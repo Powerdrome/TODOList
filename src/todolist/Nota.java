@@ -1,3 +1,8 @@
+/*
+    class Nota
+    Versão 1.0 30/11/16
+    
+*/
 package todolist;
 
 public class Nota {
@@ -29,6 +34,4 @@ public class Nota {
     public String toString() {
         return "Titulo: "+Titulo+" Nota: "+Nota;
     }
-    
-    
 }

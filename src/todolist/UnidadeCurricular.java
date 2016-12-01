@@ -1,8 +1,14 @@
+/*
+    class UnidadeCurricular
+    Versão 1.1 30/11/16
+    
+*/
 package todolist;
 
 import java.util.ArrayList;
+import java.util.Observable;
 
-public class UnidadeCurricular {
+public class UnidadeCurricular extends Observable{
     private String nome;
     private int ano;
     private int semestre;
@@ -12,7 +18,7 @@ public class UnidadeCurricular {
     private ArrayList<Exame> exames;
     private ArrayList<Dica> dicas;
 
-    public UnidadeCurricular(String nome, int ano, int semestre) {
+    public UnidadeCurricular (String nome, int ano, int semestre){
         this.nome = nome;
         this.ano = ano;
         this.semestre = semestre;
@@ -25,31 +31,51 @@ public class UnidadeCurricular {
 
     public void setNome(String nome) {
         this.nome = nome;
+        setChanged();
+        notifyObservers();
     }
 
     public void setAno(int ano) {
         this.ano = ano;
+        setChanged();
+        notifyObservers();
     }
 
     public void setSemestre(int semestre) {
         this.semestre = semestre;
+        setChanged();
+        notifyObservers();
     }
     
     public void addNota(Nota nota){
         notas.add(nota);
+        setChanged();
+        notifyObservers();
     }
+    
     public void addAulas(HoraAula aula){
         aulas.add(aula);
+        setChanged();
+        notifyObservers();
         
     }
+    
     public void addHoraEstudo(HoraEstudo horaEstudo){
         horasEstudo.add(horaEstudo);
+        setChanged();
+        notifyObservers();
     } 
+    
     public void addExame(Exame exame){
         exames.add(exame);
+        setChanged();
+        notifyObservers();
     }
+    
     public void addDica(Dica dica){
         dicas.add(dica);
+        setChanged();
+        notifyObservers();
     }
 
     public String getNome() {
@@ -83,8 +109,4 @@ public class UnidadeCurricular {
     public ArrayList<Dica> getDicas() {
         return dicas;
     }
-    
-    
-    
-    
 }
