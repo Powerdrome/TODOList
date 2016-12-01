@@ -5,10 +5,12 @@
 */
 package todolist;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Observable;
 
-public class UnidadeCurricular extends Observable{
+public class UnidadeCurricular extends Observable implements Serializable {
+    private static final long serialVersionUID = 1L;
     private String nome;
     private int ano;
     private int semestre;

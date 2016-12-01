@@ -5,13 +5,14 @@
 */
 package todolist;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.Observable;
 
-public class Calendario{
+public class Calendario implements Serializable {
+    private static final long serialVersionUID = 1L;
     private ArrayList<UnidadeCurricular> cadeiras;
 
     public Calendario() {
