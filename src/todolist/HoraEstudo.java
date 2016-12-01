@@ -5,9 +5,11 @@
 */
 package todolist;
 
+import java.io.Serializable;
 import java.util.GregorianCalendar;
 
-public class HoraEstudo {
+public class HoraEstudo implements Serializable {
+    private static final long serialVersionUID = 1L;
     private String titulo;
     private GregorianCalendar inicio;
     private GregorianCalendar fim;
