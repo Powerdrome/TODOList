@@ -95,7 +95,7 @@ public class Calendario extends JPanel {
         g.setFont(new Font("",0,10));
         
         GregorianCalendar inicio = new GregorianCalendar(2016, 11, 1, 10, 30);
-        GregorianCalendar fim = new GregorianCalendar(2016, 11, 1, 12, 30);
+        GregorianCalendar fim = new GregorianCalendar(2016, 11, 1, 12, 0);
         
         int x = (((inicio.get(Calendar.DAY_OF_WEEK)-2)*100)+50);
         int y = ((((inicio.get(Calendar.HOUR_OF_DAY)-9)*30)+((inicio.get(Calendar.MINUTE))/2))+35);
