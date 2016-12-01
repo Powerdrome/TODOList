@@ -43,8 +43,6 @@ public class TODOList {
         pa_uc.addNota(pa_nota);
         pa_uc.addExame(pa_exame);
         pa_uc.addHoraEstudo(pa_horaestudo);
-        
-<<<<<<< HEAD
 
         calendario.addCadeira(pa_uc);
         System.out.println("todolist.TODO List.main()");
@@ -55,10 +53,10 @@ public class TODOList {
 
 
 
-=======
+
         calendario.addCadeira(pa_uc);
         
->>>>>>> refs/remotes/origin/master
+
         for(Hora hr: calendario.getHoras()){
             System.out.println(hr.getNome());
         }
