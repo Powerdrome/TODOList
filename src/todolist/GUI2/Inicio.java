@@ -26,10 +26,14 @@ public class Inicio extends JPanel {
         frame.pack();
         int x = 870, y=600;
         frame.setSize(x, y);
-        frame.setMinimumSize(new Dimension(x, y));
-        frame.setMaximumSize(new Dimension(x, y));
         frame.setVisible(true);
         frame.getContentPane().setBackground(Color.GRAY);
-
+        if(System.getProperty("os.name").contains("Windows")) {
+            frame.setResizable(false);
+        }
+        else {
+            frame.setMinimumSize(new Dimension(x, y));
+            frame.setMaximumSize(new Dimension(x, y));
+        }
    }
 }
