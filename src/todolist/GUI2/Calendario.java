@@ -13,6 +13,7 @@ import java.awt.Graphics;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 import javax.swing.JPanel;
 import todolist.*;
 /**
@@ -35,6 +36,7 @@ public class Calendario extends JPanel {
 
         DesenhaHoras(g);
         DesenhaDias(g);
+        DesenhaLista(g);
     }
     public int getWidth(String s, FontMetrics fm){
         int w = 0;
@@ -94,6 +96,16 @@ public class Calendario extends JPanel {
         cal.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
         DateFormat df = new SimpleDateFormat("EEE dd/MM");
         System.out.println("Primeiro dia da semana: "+df.format(cal.getTime()));
-        Calendario a = new Calendario();
+        //Calendario a = new Calendario();
+        
+        System.out.println("\n\n GET DIA DA SEMANA\n");
+        GregorianCalendar inicio;
+        inicio = new GregorianCalendar(2016, 12, 3, 10, 0);
+        inicio.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
+        GregorianCalendar fim;
+        fim = new GregorianCalendar(2016, 12, 1, 1, 0);
+        int x = inicio.get(Calendar.DAY_OF_WEEK);
+        System.out.println(x);
+        
     }
 }
