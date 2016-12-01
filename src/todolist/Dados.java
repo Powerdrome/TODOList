@@ -1,17 +1,12 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+    class Dados
+    Versão 1.0 - 1/12/2016
  */
 package todolist;
 
-import java.util.List;
+import java.util.ArrayList;
 import java.util.Observable;
 
-/**
- *
- * @author Rui
- */
 public class Dados extends Observable{
     private Calendario calendario;
     
@@ -23,7 +18,10 @@ public class Dados extends Observable{
         this.calendario = calendario;
     }
     
-    public List getHoras() {
+    public ArrayList<Hora> getHoras() {
         return calendario.getHoras();
+    }
+    public ArrayList<UnidadeCurricular> getCadeiras() {
+        return calendario.getCadeiras();
     }
 }
