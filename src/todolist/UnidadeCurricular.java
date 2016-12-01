@@ -31,51 +31,34 @@ public class UnidadeCurricular extends Observable{
 
     public void setNome(String nome) {
         this.nome = nome;
-        setChanged();
-        notifyObservers();
     }
 
     public void setAno(int ano) {
         this.ano = ano;
-        setChanged();
-        notifyObservers();
     }
 
     public void setSemestre(int semestre) {
         this.semestre = semestre;
-        setChanged();
-        notifyObservers();
     }
     
     public void addNota(Nota nota){
         notas.add(nota);
-        setChanged();
-        notifyObservers();
     }
     
     public void addAulas(HoraAula aula){
         aulas.add(aula);
-        setChanged();
-        notifyObservers();
-        
     }
     
     public void addHoraEstudo(HoraEstudo horaEstudo){
         horasEstudo.add(horaEstudo);
-        setChanged();
-        notifyObservers();
     } 
     
     public void addExame(Exame exame){
         exames.add(exame);
-        setChanged();
-        notifyObservers();
     }
     
     public void addDica(Dica dica){
         dicas.add(dica);
-        setChanged();
-        notifyObservers();
     }
 
     public String getNome() {
