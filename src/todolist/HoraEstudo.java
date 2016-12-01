@@ -33,10 +33,10 @@ public class HoraEstudo {
     }
 
     public void setInicio(int ano, int mes, int dia, int hora, int minuto) {
-        this.inicio = new GregorianCalendar(ano, mes, dia, hora, minuto);
+        inicio = new GregorianCalendar(ano, mes, dia, hora, minuto);
     }
 
     public void setFim(int ano, int mes, int dia, int hora, int minuto) {
-        this.fim = new GregorianCalendar(ano, mes, dia, hora, minuto);
+        fim = new GregorianCalendar(ano, mes, dia, hora, minuto);
     }
 }
