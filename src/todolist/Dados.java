@@ -23,13 +23,12 @@ public class Dados extends Observable{
         calendario = null;
         
         //se ficheiro existe, ler calendário previamente guardado
-        if (f.exists() && f.isFile()) {
+        if (f.exists()) {
             try {
                 FileInputStream fis = new FileInputStream(f);
                 ObjectInputStream ois = new ObjectInputStream(fis);
                 
-                Object obj = ois.readObject();
-                this.calendario = (Calendario)obj;
+                calendario = (Calendario)ois.readObject();
                 
                 ois.close();
                 fis.close();
