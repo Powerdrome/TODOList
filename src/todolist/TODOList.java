@@ -42,10 +42,14 @@ public class TODOList {
         pa_uc.addNota(pa_nota);
         pa_uc.addExame(pa_exame);
         
+<<<<<<< HEAD
         calendario.addCadeira(pa_uc);
         System.out.println("todolist.TODO List.main()");
         
 
+=======
+        calendario.addCadeira(pa_uc); 
+>>>>>>> refs/remotes/origin/master
     }
     
 }
