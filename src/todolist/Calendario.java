@@ -9,10 +9,9 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.GregorianCalendar;
 import java.util.Observable;
 
-public class Calendario extends Observable {
+public class Calendario{
     private ArrayList<UnidadeCurricular> cadeiras;
 
     public Calendario() {
@@ -25,14 +24,10 @@ public class Calendario extends Observable {
 
     public void setCadeiras(ArrayList<UnidadeCurricular> cadeiras) {
         this.cadeiras = cadeiras;
-        setChanged();
-        notifyObservers();
     }
     
     public void addCadeira(UnidadeCurricular cadeira){
         cadeiras.add(cadeira);
-        setChanged();
-        notifyObservers();
     }
     
     public ArrayList<Hora> getHoras(){
