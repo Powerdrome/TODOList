@@ -1,3 +1,8 @@
+/*
+    class Dica
+    Versão 1.0 30/11/16
+    
+*/
 package todolist;
 
 public class Dica {
@@ -24,8 +29,4 @@ public class Dica {
     public void setNota(String nota) {
         this.dica = nota;
     }
-    
-    
-       
-    
 }

@@ -1,6 +1,10 @@
+/*
+    class HoraEstudo
+    Versão 1.0 30/11/16
+    
+*/
 package todolist;
 
-import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 public class HoraEstudo {
@@ -29,12 +33,10 @@ public class HoraEstudo {
     }
 
     public void setInicio(int ano, int mes, int dia, int hora, int minuto) {
-        this.inicio = new GregorianCalendar(ano, mes, dia, hora, minuto);
+        inicio = new GregorianCalendar(ano, mes, dia, hora, minuto);
     }
 
     public void setFim(int ano, int mes, int dia, int hora, int minuto) {
-        this.fim = new GregorianCalendar(ano, mes, dia, hora, minuto);
+        fim = new GregorianCalendar(ano, mes, dia, hora, minuto);
     }
-    
-    
 }
