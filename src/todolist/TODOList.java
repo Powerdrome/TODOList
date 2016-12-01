@@ -5,15 +5,9 @@
  */
 package todolist;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-=======
->>>>>>> master
-=======
->>>>>>> master
 
 /**
  *
