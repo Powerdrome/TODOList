@@ -44,30 +44,6 @@ public class Calendario {
         return horas;
     }
     
-private class Hora {
-    String nome;
-    GregorianCalendar inicio;
-    GregorianCalendar fim;
-
-    public Hora(String nome, GregorianCalendar inicio, GregorianCalendar fim) {
-        this.nome = nome;
-        this.inicio = inicio;
-        this.fim = fim;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public GregorianCalendar getInicio() {
-        return inicio;
-    }
-
-    public GregorianCalendar getFim() {
-        return fim;
-    }  
-}
-
 private class ComparadorHoras implements Comparator<Hora>{
 
     @Override

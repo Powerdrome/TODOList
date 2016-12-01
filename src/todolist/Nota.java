@@ -4,9 +4,6 @@ public class Nota {
     private String Titulo;
     private String Nota;
 
-
-    
-
     public Nota(String Titulo, String Nota){
         this.Titulo = Titulo;
         this.Nota = Nota;
@@ -28,7 +25,6 @@ public class Nota {
         this.Titulo = Titulo;
     }
     
-
     @Override
     public String toString() {
         return "Titulo: "+Titulo+" Nota: "+Nota;
