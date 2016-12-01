@@ -11,21 +11,23 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 public class Inicio extends JPanel {
-
+   
    public static void main(String[] args) {
       
         @SuppressWarnings("unchecked")
         JFrame frame = new JFrame();
         frame.setLayout(new BorderLayout());
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-      
+        
         frame.add(new Calendario(), BorderLayout.CENTER);
         frame.add(new BarraLateral(), BorderLayout.WEST);
         frame.add(new BarraSuperior(), BorderLayout.NORTH);
       
         frame.pack();
-        frame.setSize(1200, 700);
-        frame.setMinimumSize(new Dimension(1000, 500));
+        int x = 870, y=600;
+        frame.setSize(x, y);
+        frame.setMinimumSize(new Dimension(x, y));
+        frame.setMaximumSize(new Dimension(x, y));
         frame.setVisible(true);
         frame.getContentPane().setBackground(Color.GRAY);
 
