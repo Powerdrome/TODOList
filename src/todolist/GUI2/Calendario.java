@@ -7,6 +7,7 @@ package todolist.GUI2;
 
         
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
@@ -14,8 +15,8 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.TimeZone;
 import javax.swing.JPanel;
-import todolist.*;
 /**
  *
  * @author jorgetrovisco
@@ -91,6 +92,7 @@ public class Calendario extends JPanel {
         }
     }
     public void DesenhaLista(Graphics g){
+        g.setFont(new Font("",0,10));
         Calendar cal = Calendar.getInstance();
         System.out.println("Data Actual:" + cal.get(Calendar.DATE)+"/"+cal.get(Calendar.MONTH)+"/"+cal.get(Calendar.YEAR));
         cal.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
@@ -100,11 +102,17 @@ public class Calendario extends JPanel {
         
         System.out.println("\n\n GET DIA DA SEMANA\n");
         GregorianCalendar inicio;
-        inicio = new GregorianCalendar(2016, 12, 3, 10, 0);
-        inicio.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
+        inicio = new GregorianCalendar(2016, 11, 1, 10, 0);
         GregorianCalendar fim;
-        fim = new GregorianCalendar(2016, 12, 1, 1, 0);
-        int x = inicio.get(Calendar.DAY_OF_WEEK);
+        fim = new GregorianCalendar(2016, 11, 1, 11, 0);
+        
+        int x = (((inicio.get(Calendar.DAY_OF_WEEK)-2)*100)+50);
+        int y = ((((inicio.get(Calendar.HOUR_OF_DAY)-9)*30)+((inicio.get(Calendar.MINUTE))/2))+5);
+        g.setColor(Color.blue);
+        g.fillRect(x, y, 100, 30);
+        g.setColor(Color.white);
+        g.drawString("Aula PA", x+5, y+10);
+        System.out.println("Data Actual:" + inicio.get(Calendar.DATE)+"/"+(inicio.get(Calendar.MONTH)+1)+"/"+inicio.get(Calendar.YEAR));
         System.out.println(x);
         
     }
