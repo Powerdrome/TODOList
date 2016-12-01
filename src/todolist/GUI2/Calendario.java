@@ -93,27 +93,20 @@ public class Calendario extends JPanel {
     }
     public void DesenhaLista(Graphics g){
         g.setFont(new Font("",0,10));
-        Calendar cal = Calendar.getInstance();
-        System.out.println("Data Actual:" + cal.get(Calendar.DATE)+"/"+cal.get(Calendar.MONTH)+"/"+cal.get(Calendar.YEAR));
-        cal.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
-        DateFormat df = new SimpleDateFormat("EEE dd/MM");
-        System.out.println("Primeiro dia da semana: "+df.format(cal.getTime()));
-        //Calendario a = new Calendario();
         
-        System.out.println("\n\n GET DIA DA SEMANA\n");
-        GregorianCalendar inicio;
-        inicio = new GregorianCalendar(2016, 11, 1, 10, 0);
-        GregorianCalendar fim;
-        fim = new GregorianCalendar(2016, 11, 1, 11, 0);
+        GregorianCalendar inicio = new GregorianCalendar(2016, 11, 1, 10, 30);
+        GregorianCalendar fim = new GregorianCalendar(2016, 11, 1, 12, 0);
         
         int x = (((inicio.get(Calendar.DAY_OF_WEEK)-2)*100)+50);
-        int y = ((((inicio.get(Calendar.HOUR_OF_DAY)-9)*30)+((inicio.get(Calendar.MINUTE))/2))+5);
+        int y = ((((inicio.get(Calendar.HOUR_OF_DAY)-9)*30)+((inicio.get(Calendar.MINUTE))/2))+35);
+        int horas =  fim.get(Calendar.HOUR_OF_DAY) - inicio.get(Calendar.HOUR_OF_DAY);
+        int minutos = fim.get(Calendar.MINUTE) - inicio.get(Calendar.MINUTE);
+        int tam = ((horas*30)+(minutos/2));
         g.setColor(Color.blue);
-        g.fillRect(x, y, 100, 30);
+        g.fillRect(x, y, 100, tam);
+        
         g.setColor(Color.white);
         g.drawString("Aula PA", x+5, y+10);
-        System.out.println("Data Actual:" + inicio.get(Calendar.DATE)+"/"+(inicio.get(Calendar.MONTH)+1)+"/"+inicio.get(Calendar.YEAR));
-        System.out.println(x);
         
     }
 }

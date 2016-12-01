@@ -20,6 +20,7 @@ public class TODOList {
      */
     public static void main(String[] args) {
         Calendario calendario = new Calendario();
+        
         UnidadeCurricular pa_uc = new UnidadeCurricular("Programação Distrubuída", 2, 1);
         Nota pa_nota = new Nota("Programação Distribuida Nota", "Isto é uma nota para PA");
         
@@ -43,6 +44,7 @@ public class TODOList {
         pa_uc.addExame(pa_exame);
         pa_uc.addHoraEstudo(pa_horaestudo);
         
+<<<<<<< HEAD
 
         calendario.addCadeira(pa_uc);
         System.out.println("todolist.TODO List.main()");
@@ -53,13 +55,17 @@ public class TODOList {
 
 
 
+=======
+        calendario.addCadeira(pa_uc);
+        
+>>>>>>> refs/remotes/origin/master
         for(Hora hr: calendario.getHoras()){
             System.out.println(hr.getNome());
         }
         for(Hora hr: calendario.getHoras()){
             System.out.println(hr.getInicio().get(Calendar.DATE));
         }
-        System.out.println("\n\nGETHORAS:");
+        System.out.println("\n\nGETHORAS ORIG:");
         System.out.println(calendario.getHoras());
         
 // Imprime 1º dia da semana e toda a semana
