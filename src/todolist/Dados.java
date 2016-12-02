@@ -16,9 +16,11 @@ import java.util.Observable;
 
 public class Dados extends Observable{
     private Calendario calendario;
+    private UnidadeCurricular ucs;
     private final String NOME_FICHEIRO = "CUSTOMDATA";
     
     public Dados() {
+        
         File f = new File(NOME_FICHEIRO);
         calendario = null;
         
