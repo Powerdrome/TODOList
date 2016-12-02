@@ -92,12 +92,12 @@ public class BarraLateral extends JPanel implements Observer{
                 for(UnidadeCurricular uc : dados.getCadeiras()){
                     if(y>=y0 && y<=yM){
                        JOptionPane.showMessageDialog(null, uc.getNome());
-<<<<<<< HEAD
+
                        new Tarefas(uc);
-=======
+
                        dados.setEstado(2);
                         System.out.println(dados.getEstado());
->>>>>>> refs/remotes/origin/master
+
                     }
                     y0+=30;
                     yM+=30;

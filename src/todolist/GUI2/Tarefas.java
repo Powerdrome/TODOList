@@ -22,6 +22,10 @@ public class Tarefas extends JPanel {
     Tarefas(UnidadeCurricular uc) {
         setLayout(new BorderLayout());
     }
+
+    Tarefas() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     public void paint(Graphics g) {
         desenhaTarefas(g);
     }
