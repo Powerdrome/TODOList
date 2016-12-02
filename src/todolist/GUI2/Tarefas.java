@@ -8,10 +8,8 @@ package todolist.GUI2;
 import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.Graphics;
-import java.util.Observable;
-import java.util.Observer;
 import javax.swing.JPanel;
-import todolist.UnidadeCurricular;
+import todolist.Dados;
 
 /**
  *
@@ -19,16 +17,14 @@ import todolist.UnidadeCurricular;
  */
 public class Tarefas extends JPanel {
 
-    Tarefas(UnidadeCurricular uc) {
+    Tarefas(Dados dados) {
         setLayout(new BorderLayout());
     }
-
-    Tarefas() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
     public void paint(Graphics g) {
         desenhaTarefas(g);
     }
+    
     protected void desenhaTarefas(Graphics g){
         g.setFont(new Font("",0,20));
         g.drawRect(10, 10, 700, 75);
