@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -40,6 +41,8 @@ public class Inicio extends JPanel {
 
    }
 =======
+=======
+>>>>>>> origin/Ricardo
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -107,7 +110,7 @@ public class Inicio extends JPanel {
         pa_horaaula.setInicio(2016,01,14,17,30);
         pa_horaaula.setFim(2016,01,14,18,00);
         
-        HoraEstudo pa_horaestudo = new HoraEstudo("Hora de Estudo de PA");
+        HoraEstudo pa_horaestudo = new HoraEstudo("Hora d e Estudo de PA");
         pa_horaestudo.setInicio(2017,01,13,17,30);
         pa_horaestudo.setFim(2017,01,13,18,00);
         
@@ -119,5 +122,48 @@ public class Inicio extends JPanel {
         
         calendario.addCadeira(pa_uc);
     }
+<<<<<<< HEAD
+>>>>>>> origin/Ricardo
+=======
+=======
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package todolist.GUI2;
+
+import java.awt.*;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+public class Inicio extends JPanel {
+   
+   public static void main(String[] args) {
+      
+        @SuppressWarnings("unchecked")
+        JFrame frame = new JFrame();
+        frame.setLayout(new BorderLayout());
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+        frame.add(new Calendario(), BorderLayout.CENTER);
+        frame.add(new BarraLateral2(), BorderLayout.WEST);
+        frame.add(new BarraSuperior(), BorderLayout.NORTH);
+      
+        frame.pack();
+        int x = 870, y=600;
+        frame.setSize(x, y);
+        frame.setVisible(true);
+        frame.getContentPane().setBackground(Color.GRAY);
+        if(System.getProperty("os.name").contains("Windows")) {
+            frame.setResizable(false);
+        }
+        else {
+            frame.setMinimumSize(new Dimension(x, y));
+            frame.setMaximumSize(new Dimension(x, y));
+        }
+   }
+>>>>>>> refs/remotes/origin/master
 >>>>>>> origin/Ricardo
 }
