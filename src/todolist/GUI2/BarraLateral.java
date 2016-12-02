@@ -14,6 +14,8 @@ import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import todolist.Dados;
@@ -23,7 +25,7 @@ import todolist.UnidadeCurricular;
  *
  * @author jorgetrovisco
  */
-public class BarraLateral  extends JPanel {
+public class BarraLateral extends JPanel implements Observer{
     //ArrayList<String> lista = new ArrayList<>();
     todolist.Dados dados;
     
@@ -32,9 +34,11 @@ public class BarraLateral  extends JPanel {
         lista.add("IP");
         lista.add("SD");
         */
+        this.dados = dados;
+        this.dados.addObserver(this);
         setLayout(new BorderLayout());
         setPreferredSize(new Dimension(100, 500));
-        this.dados = dados;
+        
         
         addMouseListener(new UCSListener());
     }
@@ -66,6 +70,11 @@ public class BarraLateral  extends JPanel {
             y += 30;
         }
     }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        System.out.println("UPDATE");
+    }
     
     class UCSListener extends MouseAdapter{
     
@@ -79,11 +88,7 @@ public class BarraLateral  extends JPanel {
             int y0=5;
             int yM=30;
             
-<<<<<<< HEAD
-            if(y<=dados.getCadeiras().size()*30){
-=======
             if(y<=dados.getCadeiras().size()*30 && x<=90){
->>>>>>> master
                 for(UnidadeCurricular uc : dados.getCadeiras()){
                     if(y>=y0 && y<=yM){
                        JOptionPane.showMessageDialog(null, uc.getNome());

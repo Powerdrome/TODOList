@@ -48,11 +48,9 @@ public class Dados extends Observable{
         calendario = new Calendario();
         
         UnidadeCurricular pa_uc = new UnidadeCurricular("PA", 2, 1);
-<<<<<<< HEAD
         UnidadeCurricular ed_uc = new UnidadeCurricular("ED", 2, 1);
+        UnidadeCurricular md_uc = new UnidadeCurricular("MD", 2, 1);
         
-=======
->>>>>>> master
         Nota pa_nota = new Nota("Programação Distribuida Nota", "Isto é uma nota para PA");
         
         Dica pa_dica = new Dica("Programação Distribuida Dica", "Isto é uma dica pra PA");
@@ -76,7 +74,7 @@ public class Dados extends Observable{
         pa_uc.addHoraEstudo(pa_horaestudo);
         
         
-        UnidadeCurricular md_uc = new UnidadeCurricular("MD", 2, 1);
+        
         Nota md_nota = new Nota("Programação Distribuida Nota", "Isto é uma nota para PA");
         
         Dica md_dica = new Dica("Programação Distribuida Dica", "Isto é uma dica pra PA");
@@ -100,11 +98,8 @@ public class Dados extends Observable{
         pa_uc.addHoraEstudo(pa_horaestudo);
         
         calendario.addCadeira(pa_uc);
-<<<<<<< HEAD
         calendario.addCadeira(ed_uc);
-=======
         calendario.addCadeira(md_uc);
->>>>>>> master
     }
     
     public Dados(Calendario calendario) {
