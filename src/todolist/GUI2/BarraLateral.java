@@ -83,6 +83,7 @@ public class BarraLateral  extends JPanel {
                 for(UnidadeCurricular uc : dados.getCadeiras()){
                     if(y>=y0 && y<=yM){
                        JOptionPane.showMessageDialog(null, uc.getNome());
+                       new Tarefas(uc);
                     }
                     y0+=30;
                     yM+=30;

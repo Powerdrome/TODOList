@@ -22,7 +22,7 @@ public class Inicio extends JPanel {
         if(ver == 1)
             frame.add(new Calendario(), BorderLayout.CENTER);
         else if(ver == 2)
-            frame.add(new Tarefas(), BorderLayout.CENTER);
+            //frame.add(new Tarefas(), BorderLayout.CENTER);
 
         
         frame.add(new BarraLateral(dados), BorderLayout.WEST);

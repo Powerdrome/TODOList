@@ -8,14 +8,18 @@ package todolist.GUI2;
 import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.util.Observable;
+import java.util.Observer;
 import javax.swing.JPanel;
+import todolist.UnidadeCurricular;
 
 /**
  *
  * @author jorgetrovisco
  */
-public class Tarefas extends JPanel{
-    public Tarefas() {
+public class Tarefas extends JPanel {
+
+    Tarefas(UnidadeCurricular uc) {
         setLayout(new BorderLayout());
     }
     public void paint(Graphics g) {
@@ -30,5 +34,9 @@ public class Tarefas extends JPanel{
         g.drawString("24/11/2017", 600, 35);
         g.drawString("18h00 - 20h30", 590, 60);
     }
+
+    
+    
+    
     
 }
