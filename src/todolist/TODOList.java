@@ -43,9 +43,20 @@ public class TODOList {
         pa_uc.addNota(pa_nota);
         pa_uc.addExame(pa_exame);
         pa_uc.addHoraEstudo(pa_horaestudo);
+
+        calendario.addCadeira(pa_uc);
+        System.out.println("todolist.TODO List.main()");
         
+
+
+        calendario.addCadeira(pa_uc); 
+
+
+
+
         calendario.addCadeira(pa_uc);
         
+
         for(Hora hr: calendario.getHoras()){
             System.out.println(hr.getNome());
         }
@@ -65,6 +76,12 @@ for (int i = 0; i < 7; i++) {
     System.out.println(df.format(cal.getTime()));
     cal.add(Calendar.DATE, 1);
 }
+
+        System.out.println("todolist.TODOList.main()");
+        
+        Exame exame1 = new Exame("Normal");
+        exame1.setInicio(2016, 11, 29, 14, 0);
+        exame1.setFim(2016, 11, 29, 16, 0);
     }
     
 }
