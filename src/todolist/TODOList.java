@@ -21,7 +21,7 @@ public class TODOList {
     public static void main(String[] args) {
         Calendario calendario = new Calendario();
         
-        UnidadeCurricular pa_uc = new UnidadeCurricular("Programação Distrubuída", 2, 1);
+        UnidadeCurricular pa_uc = new UnidadeCurricular("Programação Distribuída", 2, 1);
         Nota pa_nota = new Nota("Programação Distribuida Nota", "Isto é uma nota para PA");
         
         Dica pa_dica = new Dica("Programação Distribuida Dica", "Isto é uma dica pra PA");
@@ -42,7 +42,7 @@ public class TODOList {
         pa_uc.addDica(pa_dica);
         pa_uc.addNota(pa_nota);
         pa_uc.addExame(pa_exame);
-        pa_uc.addHoraEstudo(pa_horaestudo);
+        calendario.addHoraEstudo(pa_horaestudo);
 
         calendario.addCadeira(pa_uc);
         System.out.println("todolist.TODO List.main()");

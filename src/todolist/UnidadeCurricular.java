@@ -10,13 +10,12 @@ import java.util.ArrayList;
 import java.util.Observable;
 
 public class UnidadeCurricular extends Observable implements Serializable {
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 2L;
     private String nome;
     private int ano;
     private int semestre;
     private ArrayList<Nota> notas;
     private ArrayList<HoraAula> aulas;
-    private ArrayList<HoraEstudo> horasEstudo;
     private ArrayList<Exame> exames;
     private ArrayList<Dica> dicas;
 
@@ -26,7 +25,6 @@ public class UnidadeCurricular extends Observable implements Serializable {
         this.semestre = semestre;
         notas = new ArrayList<>();
         aulas = new ArrayList<>();
-        horasEstudo = new ArrayList<>();
         exames = new ArrayList<>();
         dicas = new ArrayList<>();
     }
@@ -49,10 +47,6 @@ public class UnidadeCurricular extends Observable implements Serializable {
     
     public void addAulas(HoraAula aula){
         aulas.add(aula);
-    }
-    
-    public void addHoraEstudo(HoraEstudo horaEstudo){
-        horasEstudo.add(horaEstudo);
     } 
     
     public void addExame(Exame exame){
@@ -81,10 +75,6 @@ public class UnidadeCurricular extends Observable implements Serializable {
 
     public ArrayList<HoraAula> getAulas() {
         return aulas;
-    }
-
-    public ArrayList<HoraEstudo> getHorasEstudo() {
-        return horasEstudo;
     }
 
     public ArrayList<Exame> getExames() {

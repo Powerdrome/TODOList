@@ -8,6 +8,8 @@ package todolist.GUI2;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.Observable;
 import java.util.Observer;
 import javax.swing.JFrame;
@@ -25,8 +27,13 @@ class TODOListFrame extends JFrame implements Observer{
     private Tarefas tar;
     public TODOListFrame(Dados dados) {
         super("TODOList");
-        this.dados=dados;
+        this.dados = dados;
         dados.addObserver(this);
+        
+        if (dados.getEstado() == 0) {
+            EscolherCadeiras escolha = new EscolherCadeiras(this, dados);
+        }
+        
         cal = new Calendario(dados);
         cal.setBackground(Color.gray);
         tar = new Tarefas(dados);
@@ -40,6 +47,13 @@ class TODOListFrame extends JFrame implements Observer{
         
         setLayout(new BorderLayout());
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent event) {
+                dados.guardaCalendario();
+            }
+        });
         
         add(new BarraSuperior(), BorderLayout.NORTH);
         add(new BarraLateral(dados), BorderLayout.WEST);
