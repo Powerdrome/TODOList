@@ -7,14 +7,14 @@ package todolist.GUI2;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dialog;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
-import javax.swing.JFrame;
+import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -29,6 +29,7 @@ public class BarraSuperior extends JPanel {
         setLayout(new BorderLayout());
         setPreferredSize(new Dimension(700, 30));
         createAndDisplay();
+        registarListeners();
     }
     public void paint(Graphics g) {
         g.setColor(Color.red);
@@ -40,16 +41,26 @@ public class BarraSuperior extends JPanel {
         
     }
     protected void createAndDisplay(){
+        JPanel frame = new JPanel();
         botao = new JButton();
         botao.setText("+");
-        add(botao);
+        frame.add(botao);
+        frame.setBackground(Color.red);
         botao.setBounds(100,100,10,10);
+        add(frame, BorderLayout.EAST);
     }
+    
     protected void registarListeners(){
         botao.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 stuff = new AdicionarHora();
                 JOptionPane.showMessageDialog(stuff,"Adicionar Hora");
+                JDialog mydialog = new JDialog();
+                mydialog.setSize(new Dimension(400,300));
+                mydialog.setLocation(200,200);
+                mydialog.setTitle("Adicionar Hora");
+                mydialog.setModalityType(Dialog.ModalityType.APPLICATION_MODAL); // prevent user from doing something else
+                mydialog.setVisible(true);
          }          
       });
     }
