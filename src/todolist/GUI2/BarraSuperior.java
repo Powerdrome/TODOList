@@ -24,7 +24,7 @@ import javax.swing.JPanel;
  */
 public class BarraSuperior extends JPanel {
     JButton botao;
-//    AdicionarHora stuff;
+    AdicionarHora stuff;
     public BarraSuperior() {
         setLayout(new BorderLayout());
         setPreferredSize(new Dimension(700, 30));
@@ -53,8 +53,8 @@ public class BarraSuperior extends JPanel {
     protected void registarListeners(){
         botao.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-//                stuff = new AdicionarHora();
-//                JOptionPane.showMessageDialog(stuff,"Adicionar Hora");
+                stuff = new AdicionarHora();
+                JOptionPane.showMessageDialog(stuff,"Adicionar Hora");
                 JDialog mydialog = new JDialog();
                 mydialog.setSize(new Dimension(400,300));
                 mydialog.setLocation(200,200);
