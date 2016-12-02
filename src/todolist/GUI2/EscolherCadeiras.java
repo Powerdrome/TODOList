@@ -32,7 +32,7 @@ public class EscolherCadeiras extends JDialog implements ItemListener{
     private ArrayList<JCheckBox> cadeirasOpcao;
     private ArrayList<JPanel> opcoesAno;
     private JButton botaoConcluir;
-    private int nCadeiras = 0;
+    private int nCadeiras;
 
     public EscolherCadeiras(JFrame owner, Dados dados) {
         super(owner);
@@ -41,6 +41,7 @@ public class EscolherCadeiras extends JDialog implements ItemListener{
         this.setTitle("Escolha de Unidades Curriculares");
         this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         this.dados = dados;
+        this.nCadeiras = dados.getNCadeiras();
         cadeirasOpcao = new ArrayList<>();
         opcoesAno = new ArrayList<>();
         
