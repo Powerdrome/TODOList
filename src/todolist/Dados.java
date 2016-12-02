@@ -18,7 +18,7 @@ public class Dados extends Observable{
     private Calendario calendario;
     private UnidadeCurricular ucs;
     private final String NOME_FICHEIRO = "CUSTOMDATA";
-    
+    int estado = 1;
     public Dados() {
         
         File f = new File(NOME_FICHEIRO);
@@ -48,6 +48,9 @@ public class Dados extends Observable{
         calendario = new Calendario();
         
         UnidadeCurricular pa_uc = new UnidadeCurricular("PA", 2, 1);
+        UnidadeCurricular ed_uc = new UnidadeCurricular("ED", 2, 1);
+        UnidadeCurricular md_uc = new UnidadeCurricular("MD", 2, 1);
+        
         Nota pa_nota = new Nota("Programação Distribuida Nota", "Isto é uma nota para PA");
         
         Dica pa_dica = new Dica("Programação Distribuida Dica", "Isto é uma dica pra PA");
@@ -71,7 +74,7 @@ public class Dados extends Observable{
         pa_uc.addHoraEstudo(pa_horaestudo);
         
         
-        UnidadeCurricular md_uc = new UnidadeCurricular("MD", 2, 1);
+        
         Nota md_nota = new Nota("Programação Distribuida Nota", "Isto é uma nota para PA");
         
         Dica md_dica = new Dica("Programação Distribuida Dica", "Isto é uma dica pra PA");
@@ -95,6 +98,7 @@ public class Dados extends Observable{
         pa_uc.addHoraEstudo(pa_horaestudo);
         
         calendario.addCadeira(pa_uc);
+        calendario.addCadeira(ed_uc);
         calendario.addCadeira(md_uc);
     }
     
@@ -130,5 +134,13 @@ public class Dados extends Observable{
     }
     public ArrayList<UnidadeCurricular> getCadeiras() {
         return calendario.getCadeiras();
+    }
+    public void setEstado(int x){
+        estado = x;
+        setChanged();
+        notifyObservers();
+    }
+    public int getEstado(){
+        return estado;
     }
 }

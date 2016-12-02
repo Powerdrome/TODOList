@@ -1,6 +1,8 @@
 package todolist.GUI2;
 
 import java.awt.*;
+import java.util.Observable;
+import java.util.Observer;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -11,18 +13,22 @@ import todolist.HoraEstudo;
 import todolist.Nota;
 import todolist.UnidadeCurricular;
 
-public class Inicio extends JPanel {
+public class Inicio extends JPanel implements Observer{
+   static JFrame frame  = new JFrame();
+   static todolist.Dados dados = new todolist.Dados();
    public static void main(String[] args) {
-        int ver = 1; //1->Calendario 2->Tarefas
-        todolist.Dados dados = new todolist.Dados();
-        @SuppressWarnings("unchecked")
-        JFrame frame = new JFrame();
+        //@SuppressWarnings("unchecked");
         frame.setLayout(new BorderLayout());
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        if(ver == 1)
+        if(dados.getEstado() == 1)
             frame.add(new Calendario(), BorderLayout.CENTER);
+<<<<<<< HEAD
         else if(ver == 2)
             //frame.add(new Tarefas(), BorderLayout.CENTER);
+=======
+        else if(dados.getEstado() == 2)
+            frame.add(new Tarefas(), BorderLayout.CENTER);
+>>>>>>> refs/remotes/origin/master
 
         
         frame.add(new BarraLateral(dados), BorderLayout.WEST);
@@ -47,4 +53,11 @@ public class Inicio extends JPanel {
         
         
    }
+   @Override
+    public void update(Observable arg0, Object arg1) {
+        if(dados.getEstado() == 1)
+            frame.add(new Calendario(), BorderLayout.CENTER);
+        else if(dados.getEstado() == 2)
+            frame.add(new Tarefas(), BorderLayout.CENTER);
+    }
 }
