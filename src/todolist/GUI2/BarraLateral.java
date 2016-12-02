@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import todolist.Dados;
+import todolist.UnidadeCurricular;
 
 /**
  *
@@ -24,16 +25,16 @@ import todolist.Dados;
  */
 public class BarraLateral  extends JPanel {
     //ArrayList<String> lista = new ArrayList<>();
-    Dados lista_uc  = new Dados();
+    todolist.Dados dados;
     
-    public BarraLateral() {
+    public BarraLateral(todolist.Dados dados) {
         /*lista.add("PW");
         lista.add("IP");
         lista.add("SD");
         */
         setLayout(new BorderLayout());
         setPreferredSize(new Dimension(100, 500));
-        
+        this.dados = dados;
         
         addMouseListener(new UCSListener());
     }
@@ -57,11 +58,11 @@ public class BarraLateral  extends JPanel {
         FontMetrics fm = getFontMetrics(new Font("",0,15));
         int x=5, y=5;
         
-        for(int i=0; i<lista_uc.getCadeiras().size();i++){
-            int w = getWidth(lista_uc.getCadeiras().get(i).getNome(), fm);
+        for(UnidadeCurricular uc : dados.getCadeiras()){
+            int w = getWidth(uc.getNome(), fm);
             int h = fm.getHeight();
             g.drawRect(x, y, 90, 30);
-            g.drawString(lista_uc.getCadeiras().get(i).getNome(), x+5, y + h);
+            g.drawString(uc.getNome(), x+5, y + h);
             y += 30;
         }
     }
@@ -78,15 +79,14 @@ public class BarraLateral  extends JPanel {
             int y0=0;
             int yM=30;
             
-            if(x<=lista_uc.getCadeiras().size()*30){
-                for(int i=0;i<lista_uc.getCadeiras().size();i++){
+            if(x<=dados.getCadeiras().size()*30){
+                for(UnidadeCurricular uc : dados.getCadeiras()){
                     if(y>=y0 && y<=yM){
-                       JOptionPane.showMessageDialog(null,lista_uc.getCadeiras().get(i).getNome());
+                       JOptionPane.showMessageDialog(null, uc.getNome());
                     }
                     y0+=30;
                     yM+=30;
                 }
-            
             }
             
         
