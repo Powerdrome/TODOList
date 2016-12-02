@@ -15,14 +15,21 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.Observable;
+import java.util.Observer;
 import java.util.TimeZone;
 import javax.swing.JPanel;
 /**
  *
  * @author jorgetrovisco
  */
-public class Calendario extends JPanel {
-    public Calendario() {
+public class Calendario extends JPanel  implements Observer{
+    todolist.Dados dados;
+    boolean show;
+    public Calendario(todolist.Dados dados){
+        this.dados = dados;
+        this.dados.addObserver(this);
+        show = true;
         setLayout(new BorderLayout());
     }
     public void paint(Graphics g) {
@@ -34,10 +41,11 @@ public class Calendario extends JPanel {
 //        int h = fm.getHeight();
 //        g.drawRect(x, y, w, h);
 //        g.drawString(s + h, x, y + h);
-
-        DesenhaHoras(g);
-        DesenhaDias(g);
-        DesenhaLista(g);
+        if(show){
+            DesenhaHoras(g);
+            DesenhaDias(g);
+            DesenhaLista(g);
+        }
     }
     public int getWidth(String s, FontMetrics fm){
         int w = 0;
@@ -108,5 +116,17 @@ public class Calendario extends JPanel {
         g.setColor(Color.white);
         g.drawString("Aula PA", x+5, y+10);
         
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        if(dados.getEstado() == 1){
+            show = true;
+        }else{
+            show = false;
+        }
+        revalidate();
+        validate();
+        repaint();
     }
 }
