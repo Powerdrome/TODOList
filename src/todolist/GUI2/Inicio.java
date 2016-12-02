@@ -23,12 +23,12 @@ public class Inicio extends JPanel {
             frame.add(new Calendario(), BorderLayout.CENTER);
         else if(ver == 2)
             frame.add(new Tarefas(), BorderLayout.CENTER);
-<<<<<<< HEAD
+
         
-        frame.add(new BarraLateral(), BorderLayout.WEST);
-=======
         frame.add(new BarraLateral(dados), BorderLayout.WEST);
->>>>>>> refs/remotes/origin/master
+
+        frame.add(new BarraLateral(dados), BorderLayout.WEST);
+
         frame.add(new BarraSuperior(), BorderLayout.NORTH);
       
         frame.pack();
