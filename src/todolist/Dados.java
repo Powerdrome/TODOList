@@ -13,11 +13,12 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Observable;
+import java.util.StringTokenizer;
 
 public class Dados extends Observable{
     private Calendario calendario;
     private ArrayList<String> nomeCadeiras;
-    private final String NOME_FICHEIRO = "CUSTOMDATA";
+    private final String NOME_FICHEIRO = "SAVEDATA";
     private int estado;
     
     public Dados() {
@@ -45,9 +46,11 @@ public class Dados extends Observable{
             calendario = new Calendario(); // faz o que tem a fazer para criar novo calendário
             estado = 0;
         }
-        criar_uc();
+        
+        // criar_uc(); para testar
     }
     
+    //para testar apenas
     private void criar_uc() {
         UnidadeCurricular pa_uc = new UnidadeCurricular("PA", 2, 1);
         UnidadeCurricular ed_uc = new UnidadeCurricular("ED", 2, 1);
@@ -133,12 +136,63 @@ public class Dados extends Observable{
     public void preparaNomes() {
         nomeCadeiras = new ArrayList<>();
         
+        //1ºano 1ºsemestre
         nomeCadeiras.add("Tecnologias Web");
         nomeCadeiras.add("Introdução à Programação");
+        nomeCadeiras.add("Sistemas Digitais");
+        nomeCadeiras.add("Álgebra Linear");
+        nomeCadeiras.add("Gestão");
+        nomeCadeiras.add("Análise Matemática I");
+        
+        //1ºano 2ºsemestre
+        nomeCadeiras.add("Análise Matemática II");
+        nomeCadeiras.add("Fundamentos de Computação Gráfica");
+        nomeCadeiras.add("Programação");
+        nomeCadeiras.add("Tecnologias e Arquitecturas de Computadores");
+        nomeCadeiras.add("Métodos Estatísticos");
+        nomeCadeiras.add("Eletrónica");
+        nomeCadeiras.add("Análise Matemática I (deslizante)");
+        
+        //2ºano 1ºsemestre
+        nomeCadeiras.add("Programação Orientada a Objectos");
+        nomeCadeiras.add("Introdução às Redes de Comunicação");
         nomeCadeiras.add("Bases de Dados");
         nomeCadeiras.add("Investigação Operacional");
+        nomeCadeiras.add("Sistemas Operativos");
+        nomeCadeiras.add("Introdução à Inteligência Artificial");
+        
+        //2ºano 2ºsemestre
+        nomeCadeiras.add("Serviço de Rede I");
+        nomeCadeiras.add("Cablagem Estruturada");
+        nomeCadeiras.add("Encaminhamento de Dados");
+        nomeCadeiras.add("Segurança");
+        nomeCadeiras.add("Empreendedorismo e Inovação");
+        nomeCadeiras.add("Sistemas Operativos II");
+        nomeCadeiras.add("Interação Pessoa-Máquina");
+        nomeCadeiras.add("Programação Avançada");
+        nomeCadeiras.add("Conhecimento e Raciocínio");
+        nomeCadeiras.add("Arquitectura e Administração de Bases de Dados");
+        nomeCadeiras.add("Integração de Dados");
+        nomeCadeiras.add("Modelação e Design");
+        nomeCadeiras.add("Sistemas de Informação I");
+        
+        //3ºano 1ºsemestre
+        nomeCadeiras.add("Tecnologias de Ligação");
+        nomeCadeiras.add("Serviços de Rede II");
+        nomeCadeiras.add("Disponibilidade e Desempenho");
+        nomeCadeiras.add("Gestão de Redes");
+        nomeCadeiras.add("Programação Web");
         nomeCadeiras.add("Programação Distribuída");
         nomeCadeiras.add("Arquitecturas Móveis");
+        nomeCadeiras.add("Estruturas de Dados");
+        nomeCadeiras.add("Gestão de Projeto de Software");
+        nomeCadeiras.add("Inteligência Computacional");
+        nomeCadeiras.add("Sistemas de Informação II");
+        nomeCadeiras.add("Metodologias de Otimização e Apoio à Decisão");
+        nomeCadeiras.add("Estratégia Organizacional");
+        
+        //3ºano 2ºsemestre
+        nomeCadeiras.add("Ética e Deontologia");
     }
     
     public ArrayList<String> getNomeCadeiras() {
@@ -149,26 +203,112 @@ public class Dados extends Observable{
         switch(nome) {
             case "Tecnologias Web":
             case "Introdução à Programação":
+            case "Sistemas Digitais":
+            case "Álgebra Linear":
+            case "Gestão":
+            case "Análise Matemática I":
+            case "Análise Matemática II":
+            case "Fundamentos de Computação Gráfica":
+            case "Programação":
+            case "Tecnologias e Arquitecturas de Computadores":
+            case "Métodos Estatísticos":
+            case "Eletrónica":
+            case "Análise Matemática I (deslizante)":
                 return 1;
+            case "Programação Orientada a Objectos":
+            case "Introdução às Redes de Comunicação":
             case "Bases de Dados":
             case "Investigação Operacional":
+            case "Sistemas Operativos":
+            case "Introdução à Inteligência Artificial":
+            case "Serviço de Rede I":
+            case "Cablagem Estruturada":
+            case "Encaminhamento de Dados":
+            case "Segurança":
+            case "Empreendedorismo e Inovação":
+            case "Sistemas Operativos II":
+            case "Interação Pessoa-Máquina":
+            case "Programação Avançada":
+            case "Modelação e Design":
+            case "Conhecimento e Raciocínio":
+            case "Arquitectura e Administração de Bases de Dados":
+            case "Integração de Dados":
+            case "Sistemas de Informação I":
                 return 2;
+            case "Tecnologias de Ligação":
+            case "Serviços de Rede II":
+            case "Disponibilidade e Desempenho":
+            case "Gestão de Redes":
+            case "Programação Web":
             case "Programação Distribuída":
             case "Arquitecturas Móveis":
+            case "Estruturas de Dados":
+            case "Gestão de Projeto de Software":
+            case "Inteligência Computacional":
+            case "Sistemas de Informação II":
+            case "Metodologias de Otimização e Apoio à Decisão":
+            case "Estratégia Organizacional":
+            case "Ética e Deontologia":
                 return 3;
+            default:
+                break;
         }
+        
         return -1;
     }
     
     public int findSemestreCadeira(String nome) {
         switch(nome) {
-            case "Tecnologias Web":
-            case "Introdução à Programação":
-            case "Bases de Dados":
-            case "Investigação Operacional":
-            case "Programação Distribuída":
-            case "Arquitecturas Móveis":
+        case "Tecnologias Web" :
+        case "Introdução à Programação":
+        case "Sistemas Digitais":
+        case "Álgebra Linear":
+        case "Gestão":
+        case "Análise Matemática I":
+        case "Programação Orientada a Objectos":
+        case "Introdução às Redes de Comunicação":
+        case "Bases de Dados":
+        case "Investigação Operacional":
+        case "Sistemas Operativos":
+        case "Introdução à Inteligência Artificial":
+        case "Tecnologias de Ligação":
+        case "Serviços de Rede II":
+        case "Disponibilidade e Desempenho":
+        case "Gestão de Redes":
+        case "Programação Web":
+        case "Programação Distribuída":
+        case "Arquitecturas Móveis":
+        case "Estruturas de Dados":
+        case "Gestão de Projeto de Software":
+        case "Inteligência Computacional":
+        case "Sistemas de Informação II":
+        case "Metodologias de Otimização e Apoio à Decisão":
+        case "Estratégia Organizacional":
                 return 1;
+        case "Análise Matemática II":
+        case "Fundamentos de Computação Gráfica":
+        case "Programação":
+        case "Tecnologias e Arquitecturas de Computadores":
+        case "Métodos Estatísticos":
+        case "Eletrónica":
+        case "Análise Matemática I (deslizante)":
+        case "Serviço de Rede I":
+        case "Cablagem Estruturada":
+        case "Encaminhamento de Dados":
+        case "Segurança":
+        case "Empreendedorismo e Inovação":
+        case "Sistemas Operativos II":
+        case "Interação Pessoa-Máquina":
+        case "Programação Avançada":
+        case "Modelação e Design":
+        case "Conhecimento e Raciocínio":
+        case "Arquitectura e Administração de Bases de Dados":
+        case "Integração de Dados":
+        case "Sistemas de Informação I":
+        case "Ética e Deontologia":
+            return 2;
+        default:
+            break;
         }
         return -1;
     }
@@ -203,17 +343,13 @@ public class Dados extends Observable{
         }
         return null;
     }
-    
-    public void setEstado(int x){
-        estado = x;
-        setChanged();
-        notifyObservers();
-    }
-    
-    public int getEstado(){
-        return estado;
-    }
 
+    public void addCadeira(String nome) {
+        calendario.getCadeiras().add(new UnidadeCurricular(nome,
+                findAnoCadeira(nome),
+                findSemestreCadeira(nome)));
+    }
+    
     public void removeCadeira(String nome) {
         for(UnidadeCurricular uc: getCadeiras()) {
             if(uc.getNome().equals(nome)) {
@@ -221,12 +357,6 @@ public class Dados extends Observable{
                 return;
             }
         }
-    }
-
-    public void addCadeira(String nome) {
-        calendario.getCadeiras().add(new UnidadeCurricular(nome,
-                findAnoCadeira(nome),
-                findSemestreCadeira(nome)));
     }
     
     public boolean inscritoCadeira(String nome) {
@@ -239,4 +369,55 @@ public class Dados extends Observable{
         return false;
     }
     
+    public void addNota(String nomeUC, String titulo, String nota) {
+        getCadeira(nomeUC).addNota(new Nota(titulo,nota));
+    }
+    
+    public void addHoraEstudo(String titulo, String dataInicio, String dataFim) {
+        int ano;
+        int mes;
+        int dia;
+        int hora;
+        int minuto;
+        StringTokenizer tokenizer;
+        
+
+        ArrayList<HoraEstudo> horas = calendario.getHorasEstudo();
+        horas.add(new HoraEstudo(titulo));
+        
+        tokenizer = new StringTokenizer(dataInicio, "/: ", false);
+        dia = Integer.parseInt(tokenizer.nextToken());
+        mes = Integer.parseInt(tokenizer.nextToken());
+        ano = Integer.parseInt(tokenizer.nextToken());
+        hora = Integer.parseInt(tokenizer.nextToken());
+        minuto = Integer.parseInt(tokenizer.nextToken());
+        horas.get(horas.size()-1).setInicio(ano,mes,dia,hora,minuto);
+        
+        tokenizer = new StringTokenizer(dataFim, "/: ", false);
+        dia = Integer.parseInt(tokenizer.nextToken());
+        mes = Integer.parseInt(tokenizer.nextToken());
+        ano = Integer.parseInt(tokenizer.nextToken());
+        hora = Integer.parseInt(tokenizer.nextToken());
+        minuto = Integer.parseInt(tokenizer.nextToken());
+        horas.get(horas.size()-1).setFim(ano,mes,dia,hora,minuto);
+        
+    }
+    
+    public void removeHoraEstudo(String titulo) {
+        for (HoraEstudo he: calendario.getHorasEstudo()) {
+            if (he.getTitulo().equals(titulo)) {
+               calendario.getHoras().remove(he);
+            }
+        }
+    }
+    
+    public void setEstado(int x){
+        estado = x;
+        setChanged();
+        notifyObservers();
+    }
+    
+    public int getEstado(){
+        return estado;
+    }
 }

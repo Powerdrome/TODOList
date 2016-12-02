@@ -1,7 +1,7 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+    class EscolherCadeira
+    Versão 1.1 - 02/12/2016
+
  */
 package todolist.GUI2;
 
@@ -40,6 +40,7 @@ public class EscolherCadeiras extends JDialog implements ItemListener{
         this.setAlwaysOnTop(true);
         this.setTitle("Escolha de Unidades Curriculares");
         this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+        this.setResizable(false);
         this.dados = dados;
         this.nCadeiras = dados.getNCadeiras();
         cadeirasOpcao = new ArrayList<>();
@@ -60,15 +61,15 @@ public class EscolherCadeiras extends JDialog implements ItemListener{
         setBackground(Color.gray);
         setLayout(new GridLayout());
         empty.setVisible(false);
+        
         botaoConcluir.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(nCadeiras != 0) {
+                if (nCadeiras != 0) {
                     setModalityType(Dialog.ModalityType.MODELESS);
                     getOwner().setEnabled(true);
                     EscolherCadeiras.this.dispose();
                 }
-                return;
             }
         });
         
@@ -87,7 +88,7 @@ public class EscolherCadeiras extends JDialog implements ItemListener{
             i++;
             
             
-            if(dados.inscritoCadeira(cbox.getText())) {
+            if (dados.inscritoCadeira(cbox.getText())) {
                 cbox.setSelected(true); //se estiver inscrito marca a checkbox
             }
             cbox.addItemListener(this);
@@ -103,7 +104,7 @@ public class EscolherCadeiras extends JDialog implements ItemListener{
         pack();
         setSize(x,y);
         setVisible(true);
-         if(System.getProperty("os.name").contains("Windows")) {
+        if (System.getProperty("os.name").contains("Windows")) {
             setResizable(false);
         }
         else {
@@ -115,7 +116,8 @@ public class EscolherCadeiras extends JDialog implements ItemListener{
     @Override
     public void itemStateChanged(ItemEvent e) {
         JCheckBox source = (JCheckBox) e.getItemSelectable();
-        if(e.getStateChange() == ItemEvent.SELECTED) {
+        
+        if (e.getStateChange() == ItemEvent.SELECTED) {
             dados.addCadeira(source.getText());
             nCadeiras++;
         } else {
