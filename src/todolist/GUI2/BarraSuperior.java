@@ -7,7 +7,6 @@ package todolist.GUI2;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dialog;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -15,12 +14,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JDialog;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
  *
- * @author jorgetrovisco
+ * @author G21
  */
 public class BarraSuperior extends JPanel {
     JButton botao;
@@ -55,12 +53,8 @@ public class BarraSuperior extends JPanel {
             public void actionPerformed(ActionEvent e) {
 //                stuff = new AdicionarHora();
 //                JOptionPane.showMessageDialog(stuff,"Adicionar Hora");
-                JDialog mydialog = new JDialog();
-                mydialog.setSize(new Dimension(400,300));
-                mydialog.setLocation(200,200);
-                mydialog.setTitle("Adicionar Hora");
-                mydialog.setModalityType(Dialog.ModalityType.APPLICATION_MODAL); // prevent user from doing something else
-                mydialog.setVisible(true);
+                JDialog mydialog = new AdicionarHora();
+
          }          
       });
     }

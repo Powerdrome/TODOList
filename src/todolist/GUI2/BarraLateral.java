@@ -11,21 +11,36 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import todolist.Dados;
+import todolist.UnidadeCurricular;
 
 /**
  *
  * @author jorgetrovisco
  */
-public class BarraLateral  extends JPanel {
-    ArrayList<String> lista = new ArrayList<>();
-    public BarraLateral() {
-        lista.add("PW");
+public class BarraLateral extends JPanel implements Observer{
+    //ArrayList<String> lista = new ArrayList<>();
+    todolist.Dados dados;
+    
+    public BarraLateral(Dados dados) {
+        /*lista.add("PW");
         lista.add("IP");
         lista.add("SD");
+        */
+        this.dados = dados;
+        this.dados.addObserver(this);
         setLayout(new BorderLayout());
         setPreferredSize(new Dimension(100, 500));
+        
+        
+        addMouseListener(new UCSListener());
     }
     public void paint(Graphics g) {
         g.setColor(Color.white);
@@ -46,12 +61,47 @@ public class BarraLateral  extends JPanel {
         g.setFont(new Font("",0,15));
         FontMetrics fm = getFontMetrics(new Font("",0,15));
         int x=5, y=5;
-        for(String str : lista){
-            int w = getWidth(str, fm);
+        
+        for(UnidadeCurricular uc : dados.getCadeiras()){
+            int w = getWidth(uc.getNome(), fm);
             int h = fm.getHeight();
             g.drawRect(x, y, 90, 30);
-            g.drawString(str, x+5, y + h);
-            y += 35;
+            g.drawString(uc.getNome(), x+5, y + h);
+            y += 30;
+        }
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        System.out.println("UPDATE");
+    }
+    
+    class UCSListener extends MouseAdapter{
+    
+    
+        @Override
+        public void mousePressed(MouseEvent e) {
+        
+            int x = e.getX();
+            int y = e.getY();
+            
+            int y0=5;
+            int yM=30;
+            
+            if(y<=dados.getCadeiras().size()*30 && x<=90){
+                for(UnidadeCurricular uc : dados.getCadeiras()){
+                    if(y>=y0 && y<=yM){
+                       JOptionPane.showMessageDialog(null, uc.getNome());
+                       dados.setEstado(2);
+                        System.out.println(dados.getEstado());
+
+                    }
+                    y0+=30;
+                    yM+=30;
+                }
+            }
+            
+        
         }
     }
 }
