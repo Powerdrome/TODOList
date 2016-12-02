@@ -20,6 +20,7 @@ import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 import todolist.Dados;
 
 /**
@@ -72,7 +73,7 @@ public class EscolherCadeiras extends JDialog implements ItemListener{
         
         for (i = 1; i <= 3; i++) {
             opcoesAno.add(new JPanel(new GridLayout(14,1)));
-            opcoesAno.get(i-1).add(new JLabel("       Ano " + i));
+            opcoesAno.get(i-1).add(new JLabel("Ano " + i,SwingConstants.CENTER));
         }
 
         for (String nome: dados.getNomeCadeiras()) {
@@ -83,6 +84,11 @@ public class EscolherCadeiras extends JDialog implements ItemListener{
         for (JCheckBox cbox: cadeirasOpcao) {
             opcoesAno.get(i/2).add(cbox);
             i++;
+            
+            
+            if(dados.inscritoCadeira(cbox.getText())) {
+                cbox.setSelected(true); //se estiver inscrito marca a checkbox
+            }
             cbox.addItemListener(this);
         }
         opcoesAno.get(0).add(empty);

@@ -221,4 +221,14 @@ public class Dados extends Observable{
                 findSemestreCadeira(nome)));
     }
     
+    public boolean inscritoCadeira(String nome) {
+        if(calendario.getCadeiras().isEmpty())
+            return false;
+        for(UnidadeCurricular uc : calendario.getCadeiras()) {
+            if(uc.getNome().equals(nome))
+                return true;
+        }
+        return false;
+    }
+    
 }
