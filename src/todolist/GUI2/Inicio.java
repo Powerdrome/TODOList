@@ -18,7 +18,6 @@ public class Inicio extends JPanel implements Observer{
    static todolist.Dados dados = new todolist.Dados();
    public static void main(String[] args) {
         //@SuppressWarnings("unchecked");
-        
         frame.setLayout(new BorderLayout());
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         if(dados.getEstado() == 1)
