@@ -181,12 +181,20 @@ public class Dados extends Observable{
         return calendario.getCadeiras();
     }
     
+    public int getNCadeiras() {
+        return getCadeiras().size();
+    }
+    
     public ArrayList<HoraEstudo> getHorasEstudo() {
         return calendario.getHorasEstudo();
     }
     
     public UnidadeCurricular getCadeira(String id) {
         ArrayList<UnidadeCurricular> ucs = getCadeiras();
+        
+        if (ucs.isEmpty()) {
+            return null;
+        }
         
         for(UnidadeCurricular uc: ucs) {
             if(uc.getNome().equals(id)) {
