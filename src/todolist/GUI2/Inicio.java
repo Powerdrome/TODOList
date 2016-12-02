@@ -65,7 +65,7 @@ public class Inicio extends JPanel {
         pa_horaaula.setInicio(2016,01,14,17,30);
         pa_horaaula.setFim(2016,01,14,18,00);
         
-        HoraEstudo pa_horaestudo = new HoraEstudo("Hora de Estudo de PA");
+        HoraEstudo pa_horaestudo = new HoraEstudo("Hora d e Estudo de PA");
         pa_horaestudo.setInicio(2017,01,13,17,30);
         pa_horaestudo.setFim(2017,01,13,18,00);
         
