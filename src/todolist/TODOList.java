@@ -77,6 +77,11 @@ for (int i = 0; i < 7; i++) {
     cal.add(Calendar.DATE, 1);
 }
 
+        System.out.println("todolist.TODOList.main()");
+        
+        Exame exame1 = new Exame("Normal");
+        exame1.setInicio(2016, 11, 29, 14, 0);
+        exame1.setFim(2016, 11, 29, 16, 0);
     }
     
 }
