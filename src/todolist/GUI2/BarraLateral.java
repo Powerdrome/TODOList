@@ -27,7 +27,7 @@ public class BarraLateral  extends JPanel {
     //ArrayList<String> lista = new ArrayList<>();
     todolist.Dados dados;
     
-    public BarraLateral(todolist.Dados dados) {
+    public BarraLateral(Dados dados) {
         /*lista.add("PW");
         lista.add("IP");
         lista.add("SD");
@@ -76,10 +76,14 @@ public class BarraLateral  extends JPanel {
             int x = e.getX();
             int y = e.getY();
             
-            int y0=0;
+            int y0=5;
             int yM=30;
             
+<<<<<<< HEAD
             if(y<=dados.getCadeiras().size()*30){
+=======
+            if(y<=dados.getCadeiras().size()*30 && x<=90){
+>>>>>>> master
                 for(UnidadeCurricular uc : dados.getCadeiras()){
                     if(y>=y0 && y<=yM){
                        JOptionPane.showMessageDialog(null, uc.getNome());

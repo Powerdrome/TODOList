@@ -48,8 +48,11 @@ public class Dados extends Observable{
         calendario = new Calendario();
         
         UnidadeCurricular pa_uc = new UnidadeCurricular("PA", 2, 1);
+<<<<<<< HEAD
         UnidadeCurricular ed_uc = new UnidadeCurricular("ED", 2, 1);
         
+=======
+>>>>>>> master
         Nota pa_nota = new Nota("Programação Distribuida Nota", "Isto é uma nota para PA");
         
         Dica pa_dica = new Dica("Programação Distribuida Dica", "Isto é uma dica pra PA");
@@ -72,8 +75,36 @@ public class Dados extends Observable{
         pa_uc.addExame(pa_exame);
         pa_uc.addHoraEstudo(pa_horaestudo);
         
+        
+        UnidadeCurricular md_uc = new UnidadeCurricular("MD", 2, 1);
+        Nota md_nota = new Nota("Programação Distribuida Nota", "Isto é uma nota para PA");
+        
+        Dica md_dica = new Dica("Programação Distribuida Dica", "Isto é uma dica pra PA");
+       
+        Exame md_exame = new Exame("Normal");
+        pa_exame.setInicio(2017,01,14,14,30);
+        pa_exame.setFim(2017,01,14,16,30);
+        
+        HoraAula md_horaaula = new HoraAula(1, "L2.1");
+        pa_horaaula.setInicio(2016,01,14,17,30);
+        pa_horaaula.setFim(2016,01,14,18,00);
+        
+        HoraEstudo md_horaestudo = new HoraEstudo("Hora d e Estudo de PA");
+        pa_horaestudo.setInicio(2017,01,13,17,30);
+        pa_horaestudo.setFim(2017,01,13,18,00);
+        
+        pa_uc.addAulas(pa_horaaula);
+        pa_uc.addDica(pa_dica);
+        pa_uc.addNota(pa_nota);
+        pa_uc.addExame(pa_exame);
+        pa_uc.addHoraEstudo(pa_horaestudo);
+        
         calendario.addCadeira(pa_uc);
+<<<<<<< HEAD
         calendario.addCadeira(ed_uc);
+=======
+        calendario.addCadeira(md_uc);
+>>>>>>> master
     }
     
     public Dados(Calendario calendario) {
