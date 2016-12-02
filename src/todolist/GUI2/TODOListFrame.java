@@ -27,6 +27,11 @@ class TODOListFrame extends JFrame implements Observer{
         super("TODOList");
         this.dados=dados;
         dados.addObserver(this);
+        
+        if (dados.getEstado() == 0) {
+            EscolherCadeiras escolha = new EscolherCadeiras(this, dados);
+        }
+        
         cal = new Calendario(dados);
         cal.setBackground(Color.gray);
         tar = new Tarefas(dados);
@@ -51,6 +56,7 @@ class TODOListFrame extends JFrame implements Observer{
         setSize(x, y);
         
         setVisible(true);
+        setEnabled(false);
         getContentPane().setBackground(Color.GRAY);
         if(System.getProperty("os.name").contains("Windows")) {
             setResizable(false);

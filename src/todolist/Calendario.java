@@ -12,11 +12,13 @@ import java.util.Collections;
 import java.util.Comparator;
 
 public class Calendario implements Serializable {
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 2L;
     private ArrayList<UnidadeCurricular> cadeiras;
+    private ArrayList<HoraEstudo> horasEstudo;
 
     public Calendario() {
         cadeiras = new ArrayList<>();
+        horasEstudo = new ArrayList<>();
     }
 
     public ArrayList<UnidadeCurricular> getCadeiras() {
@@ -31,6 +33,14 @@ public class Calendario implements Serializable {
         cadeiras.add(cadeira);
     }
     
+    public void addHoraEstudo(HoraEstudo horaEstudo){
+        horasEstudo.add(horaEstudo);
+    }
+    
+    public ArrayList<HoraEstudo> getHorasEstudo() {
+        return horasEstudo;
+    }
+    
     public ArrayList<Hora> getHoras(){
         ArrayList<Hora> horas = new ArrayList<>();
         String exame;
@@ -38,7 +48,7 @@ public class Calendario implements Serializable {
             for(HoraAula ha: (uc.getAulas())){
                 horas.add(new Hora(uc.getNome(), ha.getInicio(), ha.getFim()));
             }
-            for(HoraEstudo he: (uc.getHorasEstudo())){
+            for(HoraEstudo he: horasEstudo){
                 horas.add(new Hora(he.getTitulo(), he.getInicio(),
                         he.getFim()));
             }
