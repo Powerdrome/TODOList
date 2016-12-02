@@ -20,7 +20,7 @@ public class Inicio extends JPanel {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         frame.add(new Calendario(), BorderLayout.CENTER);
-        frame.add(new BarraLateral(), BorderLayout.WEST);
+        frame.add(new BarraLateral2(), BorderLayout.WEST);
         frame.add(new BarraSuperior(), BorderLayout.NORTH);
       
         frame.pack();
