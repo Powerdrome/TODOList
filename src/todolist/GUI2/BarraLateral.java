@@ -79,10 +79,16 @@ public class BarraLateral  extends JPanel {
             int y0=5;
             int yM=30;
             
+<<<<<<< HEAD
+            if(y<=dados.getCadeiras().size()*30){
+=======
             if(y<=dados.getCadeiras().size()*30 && x<=90){
+>>>>>>> master
                 for(UnidadeCurricular uc : dados.getCadeiras()){
                     if(y>=y0 && y<=yM){
                        JOptionPane.showMessageDialog(null, uc.getNome());
+                       dados.setEstado(2);
+                        System.out.println(dados.getEstado());
                     }
                     y0+=30;
                     yM+=30;
