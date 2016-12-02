@@ -13,13 +13,16 @@ import javax.swing.JPanel;
 public class Inicio extends JPanel {
    
    public static void main(String[] args) {
-      
+        int ver = 2; //1->Calendario 2->Tarefas
         @SuppressWarnings("unchecked")
         JFrame frame = new JFrame();
         frame.setLayout(new BorderLayout());
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
-        frame.add(new Calendario(), BorderLayout.CENTER);
+        if(ver == 1)
+            frame.add(new Calendario(), BorderLayout.CENTER);
+        else if(ver == 2)
+            frame.add(new Tarefas(), BorderLayout.CENTER);
+            
         frame.add(new BarraLateral2(), BorderLayout.WEST);
         frame.add(new BarraSuperior(), BorderLayout.NORTH);
       
