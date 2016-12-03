@@ -17,16 +17,10 @@ import java.util.StringTokenizer;
 
 public class Dados extends Observable{
     private Calendario calendario;
-<<<<<<< HEAD
-    private UnidadeCurricular ucs;
-    private final String NOME_FICHEIRO = "CUSTOMDATA";
-    int estado = 2;
-=======
     private ArrayList<String> nomeCadeiras;
     private final String NOME_FICHEIRO = "SAVEDATA";
     private int estado;
     
->>>>>>> master
     public Dados() {
         File f = new File(NOME_FICHEIRO);
         calendario = null;
