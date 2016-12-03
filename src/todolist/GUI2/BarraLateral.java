@@ -13,6 +13,7 @@ import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import static java.lang.Character.isUpperCase;
 import java.util.Observable;
 import java.util.Observer;
 import javax.swing.JOptionPane;
@@ -74,16 +75,11 @@ public class BarraLateral extends JPanel implements Observer{
     
     public String getIniciais(String uc){
         String initials = "";
-        //get the first letter of the name and add it to our initial string
-        char c = uc.charAt(0);
-        initials += c;
         for (int i = 0; i < uc.length(); i++) {
             char letter = uc.charAt(i);
-            // if we find a space, select the first letter after it until the end
-            if (letter == ' ') {
-                initials += uc.charAt(i + 1);
+            if (isUpperCase(letter)) {
+                initials += uc.charAt(i);
             }
-
         }
         return initials;
     }
