@@ -13,7 +13,7 @@ import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.ArrayList;
+import static java.lang.Character.isUpperCase;
 import java.util.Observable;
 import java.util.Observer;
 import javax.swing.JOptionPane;
@@ -33,11 +33,11 @@ public class BarraLateral extends JPanel implements Observer{
 
         this.dados = dados;
         this.dados.addObserver(this);
-        setLayout(new BorderLayout());
-        setPreferredSize(new Dimension(100, 500));
+        super.setLayout(new BorderLayout());
+        super.setPreferredSize(new Dimension(100, 500));
         
         
-        addMouseListener(new UCSListener());
+        super.addMouseListener(new UCSListener());
     }
     public void paint(Graphics g) {
         g.setColor(Color.white);
@@ -63,7 +63,7 @@ public class BarraLateral extends JPanel implements Observer{
             int w = getWidth(uc.getNome(), fm);
             int h = fm.getHeight();
             g.drawRect(x, y, 90, 30);
-            g.drawString(uc.getNome(), x+5, y + h);
+            g.drawString(getIniciais(uc.getNome()), x+5, y + h);
             y += 30;
         }
     }
@@ -71,6 +71,17 @@ public class BarraLateral extends JPanel implements Observer{
     @Override
     public void update(Observable o, Object arg) {
         System.out.println("UPDATE");
+    }
+    
+    public String getIniciais(String uc){
+        String initials = "";
+        for (int i = 0; i < uc.length(); i++) {
+            char letter = uc.charAt(i);
+            if (isUpperCase(letter)) {
+                initials += uc.charAt(i);
+            }
+        }
+        return initials;
     }
     
     class UCSListener extends MouseAdapter{

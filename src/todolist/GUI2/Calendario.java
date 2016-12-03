@@ -111,7 +111,6 @@ public class Calendario extends JPanel  implements Observer{
         int tam = ((horas*30)+(minutos/2));
         g.setColor(Color.blue);
         g.fillRect(x, y, 100, tam);
-        
         g.setColor(Color.white);
         g.drawString("Aula PA", x+5, y+10);
         
