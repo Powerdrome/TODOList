@@ -68,8 +68,7 @@ class TODOListFrame extends JFrame implements Observer{
         getContentPane().setBackground(Color.GRAY);
         if(System.getProperty("os.name").contains("Windows")) {
             setResizable(false);
-        }
-        else {
+        } else {
             setMinimumSize(new Dimension(x, y));
             setMaximumSize(new Dimension(x, y));
         }
