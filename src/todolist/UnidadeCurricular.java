@@ -7,16 +7,16 @@ package todolist;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Observable;
 
 public class UnidadeCurricular extends Observable implements Serializable {
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 2L;
     private String nome;
     private int ano;
     private int semestre;
     private ArrayList<Nota> notas;
     private ArrayList<HoraAula> aulas;
-    private ArrayList<HoraEstudo> horasEstudo;
     private ArrayList<Exame> exames;
     private ArrayList<Dica> dicas;
 
@@ -26,7 +26,6 @@ public class UnidadeCurricular extends Observable implements Serializable {
         this.semestre = semestre;
         notas = new ArrayList<>();
         aulas = new ArrayList<>();
-        horasEstudo = new ArrayList<>();
         exames = new ArrayList<>();
         dicas = new ArrayList<>();
     }
@@ -49,10 +48,6 @@ public class UnidadeCurricular extends Observable implements Serializable {
     
     public void addAulas(HoraAula aula){
         aulas.add(aula);
-    }
-    
-    public void addHoraEstudo(HoraEstudo horaEstudo){
-        horasEstudo.add(horaEstudo);
     } 
     
     public void addExame(Exame exame){
@@ -83,15 +78,36 @@ public class UnidadeCurricular extends Observable implements Serializable {
         return aulas;
     }
 
-    public ArrayList<HoraEstudo> getHorasEstudo() {
-        return horasEstudo;
-    }
-
     public ArrayList<Exame> getExames() {
         return exames;
     }
 
     public ArrayList<Dica> getDicas() {
         return dicas;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 89 * hash + Objects.hashCode(this.nome);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final UnidadeCurricular other = (UnidadeCurricular) obj;
+        if (!Objects.equals(this.nome, other.nome)) {
+            return false;
+        }
+        return true;
     }
 }

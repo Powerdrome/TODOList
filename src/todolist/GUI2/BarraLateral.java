@@ -30,10 +30,7 @@ public class BarraLateral extends JPanel implements Observer{
     todolist.Dados dados;
     
     public BarraLateral(Dados dados) {
-        /*lista.add("PW");
-        lista.add("IP");
-        lista.add("SD");
-        */
+
         this.dados = dados;
         this.dados.addObserver(this);
         setLayout(new BorderLayout());
@@ -93,8 +90,7 @@ public class BarraLateral extends JPanel implements Observer{
                     if(y>=y0 && y<=yM){
                        JOptionPane.showMessageDialog(null, uc.getNome());
                        dados.setEstado(2);
-                        System.out.println(dados.getEstado());
-
+                       System.out.println(dados.getEstado());
                     }
                     y0+=30;
                     yM+=30;
