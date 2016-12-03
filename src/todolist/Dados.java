@@ -350,7 +350,7 @@ public class Dados extends Observable{
                 findSemestreCadeira(nome)));
     }
     
-    public void removeCadeira(String nome) {
+    public void removeCadeira(String nome) { //nao foi testado
         for(UnidadeCurricular uc: getCadeiras()) {
             if(uc.getNome().equals(nome)) {
                 calendario.getCadeiras().remove(uc);
@@ -359,7 +359,7 @@ public class Dados extends Observable{
         }
     }
     
-    public boolean inscritoCadeira(String nome) {
+    public boolean inscritoCadeira(String nome) { //nao foi testado
         if(calendario.getCadeiras().isEmpty())
             return false;
         for(UnidadeCurricular uc : calendario.getCadeiras()) {
@@ -369,11 +369,11 @@ public class Dados extends Observable{
         return false;
     }
     
-    public void addNota(String nomeUC, String titulo, String nota) {
+    public void addNota(String nomeUC, String titulo, String nota) { //nao foi testado
         getCadeira(nomeUC).addNota(new Nota(titulo,nota));
     }
     
-    public void addHoraEstudo(String titulo, String dataInicio, String dataFim) {
+    public void addHoraEstudo(String titulo, String dataInicio, String dataFim) { // nao foi testado
         int ano;
         int mes;
         int dia;
@@ -403,7 +403,7 @@ public class Dados extends Observable{
         
     }
     
-    public void removeHoraEstudo(String titulo) {
+    public void removeHoraEstudo(String titulo) { // nao foi testado
         for (HoraEstudo he: calendario.getHorasEstudo()) {
             if (he.getTitulo().equals(titulo)) {
                calendario.getHoras().remove(he);
