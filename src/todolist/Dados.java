@@ -18,7 +18,7 @@ public class Dados extends Observable{
     private Calendario calendario;
     private UnidadeCurricular ucs;
     private final String NOME_FICHEIRO = "CUSTOMDATA";
-    int estado = 1;
+    int estado = 2;
     public Dados() {
         
         File f = new File(NOME_FICHEIRO);

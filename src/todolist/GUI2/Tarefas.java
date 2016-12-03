@@ -6,6 +6,7 @@
 package todolist.GUI2;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import javax.swing.JPanel;
@@ -21,8 +22,10 @@ public class Tarefas extends JPanel {
         setLayout(new BorderLayout());
     }
     
+    @Override
     public void paint(Graphics g) {
         desenhaTarefas(g);
+        setBackground(Color.white);
     }
     
     protected void desenhaTarefas(Graphics g){
