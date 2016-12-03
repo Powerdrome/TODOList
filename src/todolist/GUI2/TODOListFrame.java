@@ -24,7 +24,8 @@ class TODOListFrame extends JFrame implements Observer{
 
     private Dados dados;
     private Calendario cal;
-    private Tarefas tar;
+    //private Tarefas tar;
+    private testeScroll tar;
     public TODOListFrame(Dados dados) {
         super("TODOList");
         this.dados = dados;
@@ -36,8 +37,9 @@ class TODOListFrame extends JFrame implements Observer{
         
         cal = new Calendario(dados);
         cal.setBackground(Color.gray);
-        tar = new Tarefas(dados);
-        tar.setBackground(Color.blue);
+        tar = new testeScroll(dados);
+        //tar = new Tarefas(dados);
+        //tar.setBackground(Color.blue);
         addCompontes();
         
         validate();
