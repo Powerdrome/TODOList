@@ -1,6 +1,6 @@
 /*
     class EscolherCadeira
-    Versão 1.1 - 02/12/2016
+    Versão 1.2 - 02/12/2016
 
  */
 package todolist.GUI2;
@@ -36,15 +36,16 @@ public class EscolherCadeiras extends JDialog implements ItemListener{
 
     public EscolherCadeiras(JFrame owner, Dados dados) {
         super(owner);
-        this.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
-        this.setAlwaysOnTop(true);
-        this.setTitle("Escolha de Unidades Curriculares");
-        this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
-        this.setResizable(false);
         this.dados = dados;
         this.nCadeiras = dados.getNCadeiras();
         cadeirasOpcao = new ArrayList<>();
         opcoesAno = new ArrayList<>();
+        
+        this.setModal(true);
+        this.setAlwaysOnTop(true);
+        this.setTitle("Escolha de Unidades Curriculares");
+        this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+        
         
         addComponentes();
         
@@ -52,15 +53,26 @@ public class EscolherCadeiras extends JDialog implements ItemListener{
     }
     
     public void addComponentes() {
-        int x = 700;
-        int y = 500;
-        int i;
-        JPanel empty =  new JPanel();
+        int x = 940;
+        int y = 575;
+        int startx;
+        int starty;
+        int diferenca;
         botaoConcluir = new JButton("Concluir");
         
         setBackground(Color.gray);
         setLayout(new GridLayout());
-        empty.setVisible(false);
+        if (System.getProperty("os.name").contains("Windows")) {
+            setResizable(false);
+        } else {
+            setMinimumSize(new Dimension(x, y));
+            setMaximumSize(new Dimension(x, y));
+        }
+        
+        //calcula a posição e coloca aí a janela
+        startx = (int) (getToolkit().getScreenSize().getWidth()/2 - x/2 + 0.5);
+        starty = (int) (getToolkit().getScreenSize().getHeight()/2 - y/2 + 0.5);
+        setLocation(startx,starty);
         
         botaoConcluir.addActionListener(new ActionListener() {
             @Override
@@ -73,29 +85,44 @@ public class EscolherCadeiras extends JDialog implements ItemListener{
             }
         });
         
-        for (i = 1; i <= 3; i++) {
-            opcoesAno.add(new JPanel(new GridLayout(14,1)));
+        for (int i = 1; i <= 3; i++) {
+            GridLayout gl = new GridLayout(25, 1, 0, 0);
+            opcoesAno.add(new JPanel(gl));
             opcoesAno.get(i-1).add(new JLabel("Ano " + i,SwingConstants.CENTER));
         }
+        opcoesAno.get(0).add(new JPanel());
+        opcoesAno.get(1).add(new JPanel());
+        opcoesAno.get(2).add(new JPanel());
 
         for (String nome: dados.getNomeCadeiras()) {
             cadeirasOpcao.add(new JCheckBox(nome));
         }
-        
-        i = 0;
+
         for (JCheckBox cbox: cadeirasOpcao) {
-            opcoesAno.get(i/2).add(cbox);
-            i++;
-            
+            int ano = dados.findAnoCadeira(cbox.getText());
+            opcoesAno.get(ano-1).add(cbox);
             
             if (dados.inscritoCadeira(cbox.getText())) {
                 cbox.setSelected(true); //se estiver inscrito marca a checkbox
             }
             cbox.addItemListener(this);
         }
-        opcoesAno.get(0).add(empty);
+        
+        diferenca = opcoesAno.get(1).getComponentCount()-opcoesAno.get(0).getComponentCount();
+        for (int i = 0; i < diferenca; i++) {
+            opcoesAno.get(0).add(new JPanel());
+        }
+        
+        diferenca = opcoesAno.get(2).getComponentCount()-opcoesAno.get(0).getComponentCount();
+        for (int i = 0; i < diferenca; i++) {
+            opcoesAno.get(2).add(new JPanel());
+        }
+        opcoesAno.get(0).add(new JPanel());
+        opcoesAno.get(1).add(new JPanel());
+        opcoesAno.get(2).add(new JPanel());
+        opcoesAno.get(0).add(new JPanel());
         opcoesAno.get(1).add(botaoConcluir);
-        opcoesAno.get(2).add(empty);
+        opcoesAno.get(2).add(new JPanel());
               
         for(JPanel label: opcoesAno) {
             this.add(label);
@@ -104,13 +131,6 @@ public class EscolherCadeiras extends JDialog implements ItemListener{
         pack();
         setSize(x,y);
         setVisible(true);
-        if (System.getProperty("os.name").contains("Windows")) {
-            setResizable(false);
-        }
-        else {
-            setMinimumSize(new Dimension(x, y));
-            setMaximumSize(new Dimension(x, y));
-        }
     }
 
     @Override
