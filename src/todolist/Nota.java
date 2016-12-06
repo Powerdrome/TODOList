@@ -1,10 +1,19 @@
+/*
+    class Nota
+    Versão 1.0 30/11/16
+    
+*/
 package todolist;
 
-public class Nota {
-    String Titulo;
-    String Nota;
+import java.io.Serializable;
 
-    public Nota(String Nota, String Titulo) {
+public class Nota implements Serializable {
+    private static final long serialVersionUID = 1L;
+    private String Titulo;
+    private String Nota;
+
+    public Nota(String Titulo, String Nota){
+        this.Titulo = Titulo;
         this.Nota = Nota;
     }
 
@@ -24,11 +33,8 @@ public class Nota {
         this.Titulo = Titulo;
     }
     
-
     @Override
     public String toString() {
         return "Titulo: "+Titulo+" Nota: "+Nota;
     }
-    
-    
 }

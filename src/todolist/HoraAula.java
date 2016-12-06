@@ -1,5 +1,5 @@
 /*
-    class Exame
+    class HoraAula
     Versão 1.0 30/11/16
     
 */
@@ -8,14 +8,24 @@ package todolist;
 import java.io.Serializable;
 import java.util.GregorianCalendar;
 
-public class Exame implements Serializable {
+public class HoraAula implements Serializable {
     private static final long serialVersionUID = 1L;
+    private int tipo;
+    private String sala;
     private GregorianCalendar inicio;
     private GregorianCalendar fim;
-    private String epoca;
+ 
+    public HoraAula(int tipo, String sala) {
+        this.tipo = tipo;
+        this.sala = sala;
+    }
 
-    public Exame(String epoca) {
-        this.epoca = epoca;
+    public void setTipo(int tipo) {
+        this.tipo = tipo;
+    }
+
+    public void setSala(String sala) {
+        this.sala = sala;
     }
 
     public void setInicio(int ano, int mes, int dia, int hora, int minuto) {
@@ -26,8 +36,12 @@ public class Exame implements Serializable {
         fim = new GregorianCalendar(ano, mes, dia, hora, minuto);
     }
 
-    public void setEpoca(String epoca) {
-        this.epoca = epoca;
+    public int getTipo() {
+        return tipo;
+    }
+
+    public String getSala() {
+        return sala;
     }
 
     public GregorianCalendar getInicio() {
@@ -36,9 +50,5 @@ public class Exame implements Serializable {
 
     public GregorianCalendar getFim() {
         return fim;
-    }
-
-    public String getEpoca() {
-        return epoca;
-    }
+    }       
 }
