@@ -87,8 +87,7 @@ class TODOListFrame extends JFrame implements Observer{
             add(tar, BorderLayout.CENTER);
             System.out.println("Devia aparecer outra coisa");
         }
-        revalidate();
-        validate();
+        
         repaint();
     }
     
