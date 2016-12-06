@@ -16,6 +16,8 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.Observable;
+import java.util.Observer;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -26,7 +28,7 @@ import javax.swing.JPanel;
  *
  * @author G21
  */
-public class BarraSuperior extends JPanel {
+public class BarraSuperior extends JPanel implements Observer{
     JButton botao, novo;
     private Image ImgMais;
 //    AdicionarHora stuff;
@@ -36,19 +38,23 @@ public class BarraSuperior extends JPanel {
         createAndDisplay();
         registarListeners();
         
-        repaint();
+        
         validate();
-        revalidate();
+        
     }
-    public void paint(Graphics g) {
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g); //To change body of generated methods, choose Tools | Templates.
         g.setColor(Color.red);
         g.fillRect(0, 0, getWidth(), getHeight());
         g.setColor(Color.white);
         g.setFont(new Font("",0,15));
         String s = "TODOList";
         g.drawString(s, 20, 20);
-        
     }
+    
+    
     protected void createAndDisplay(){
         JPanel frame = new JPanel(new GridLayout(0,2));
         try{
@@ -93,5 +99,10 @@ public class BarraSuperior extends JPanel {
 
          }          
       });
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        repaint();
     }
 }
