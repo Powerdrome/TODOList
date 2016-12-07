@@ -30,7 +30,7 @@ import todolist.Dados;
  * @author G21
  */
 public class BarraSuperior extends JPanel implements Observer{
-    JButton botao, novo;
+    JButton botao, novo, botaoNota, botaoDica;
     private Image ImgMais;
     todolist.Dados dados;
 //    AdicionarHora stuff;
@@ -68,7 +68,7 @@ public class BarraSuperior extends JPanel implements Observer{
     
     }
     protected void createAndDisplay(){
-        JPanel frame = new JPanel(new GridLayout(0,2));
+        JPanel frame = new JPanel(new GridLayout(0,4));
         try{
             ImgMais = ImageIO.read(Resources.getResourceFile("imagens/plus.png"));
         }catch(IOException e){}
@@ -81,13 +81,25 @@ public class BarraSuperior extends JPanel implements Observer{
         botao.setMargin(new Insets(0, 0, 0, 0));
         botao.setEnabled(true);
         
-        novo = new JButton("Novo");
+        novo = new JButton("Nova Tarefa");
         novo.setIcon(IcoMais);
         novo.setMargin(new Insets(0, 0, 0, 0));
         novo.setEnabled(true);
         
+        botaoNota = new JButton("Nova Nota");
+        botaoNota.setIcon(IcoMais);
+        botaoNota.setMargin(new Insets(0, 0, 0,0));
+        botaoNota.setEnabled(true);
+        
+        botaoDica = new JButton("Dicas");
+        botaoDica.setMargin(new Insets(0, 0, 0, 0));
+        botaoDica.setEnabled(true);
+        
+        
         frame.add(botao);
         frame.add(novo);
+        frame.add(botaoNota);
+        frame.add(botaoDica);
         
         frame.setBackground(Color.red);
         
