@@ -42,13 +42,11 @@ public class NotasAdicionar extends JPanel implements Observer{
         JPanel frame = new JPanel(new GridLayout(0,2));
         //JLabel 
         JTextField tarefa = new JTextField("Nota");        
-        JTextField titulo = new JTextField("titulo");
-        JTextField nota = new JTextField("nota");
+        JTextField nota = new JTextField("escreva nota");
         
         JButton btnAdicionar = new JButton("Adicionar");
         btnCancelar = new JButton("Cancelar");
         frame.add(tarefa);
-        frame.add(titulo);
         frame.add(nota);        
         frame.add(btnCancelar);
         frame.add(btnAdicionar);
@@ -69,7 +67,7 @@ public class NotasAdicionar extends JPanel implements Observer{
     protected void registarListeners(){
         btnCancelar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                dados.setEstado(2);
+                dados.setEstado(4); //mudar??
          }          
       });
     }

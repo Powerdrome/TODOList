@@ -120,9 +120,23 @@ public class BarraSuperior extends JPanel implements Observer{
 //                stuff = new AdicionarHora();
 //                JOptionPane.showMessageDialog(stuff,"Adicionar Hora");
                 //JDialog mydialog = new AdicionarHora();
+                
 
          }          
       });
+      
+      botaoNota.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                dados.setEstado(5);
+            }
+        });
+      
+      botaoDica.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+        });      
     }
 
     @Override
