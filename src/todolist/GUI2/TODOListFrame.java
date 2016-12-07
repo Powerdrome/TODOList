@@ -83,7 +83,7 @@ class TODOListFrame extends JFrame implements Observer{
         remove(tar);
         if(dados.getEstado() == 1){
             add(cal, BorderLayout.CENTER);
-        }else if(dados.getEstado() == 2){
+        }else if(dados.getEstado() == 2 || dados.getEstado() == 3){
             add(tar, BorderLayout.CENTER);
             System.out.println("Devia aparecer outra coisa");
         }
