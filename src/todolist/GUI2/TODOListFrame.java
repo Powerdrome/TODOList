@@ -25,7 +25,7 @@ class TODOListFrame extends JFrame implements Observer{
     private Dados dados;
     private Calendario cal;
     //private Tarefas tar;
-    private testeScroll tar;
+    private ScrollTarefas tar;
     public TODOListFrame(Dados dados) {
         super("TODOList");
         this.dados = dados;
@@ -37,7 +37,7 @@ class TODOListFrame extends JFrame implements Observer{
         
         cal = new Calendario(dados);
         cal.setBackground(Color.gray);
-        tar = new testeScroll(dados);
+        tar = new ScrollTarefas(dados);
         //tar = new Tarefas(dados);
         //tar.setBackground(Color.blue);
         addCompontes();
@@ -57,7 +57,7 @@ class TODOListFrame extends JFrame implements Observer{
             }
         });
         
-        add(new BarraSuperior(), BorderLayout.NORTH);
+        add(new BarraSuperior(dados), BorderLayout.NORTH);
         add(new BarraLateral(dados), BorderLayout.WEST);
         add(new Calendario(dados), BorderLayout.CENTER);
         
@@ -83,7 +83,7 @@ class TODOListFrame extends JFrame implements Observer{
         remove(tar);
         if(dados.getEstado() == 1){
             add(cal, BorderLayout.CENTER);
-        }else if(dados.getEstado() == 2){
+        }else if(dados.getEstado() == 2 || dados.getEstado() == 3){
             add(tar, BorderLayout.CENTER);
             System.out.println("Devia aparecer outra coisa");
         }
