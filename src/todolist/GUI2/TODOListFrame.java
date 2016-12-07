@@ -57,7 +57,7 @@ class TODOListFrame extends JFrame implements Observer{
             }
         });
         
-        add(new BarraSuperior(), BorderLayout.NORTH);
+        add(new BarraSuperior(dados), BorderLayout.NORTH);
         add(new BarraLateral(dados), BorderLayout.WEST);
         add(new Calendario(dados), BorderLayout.CENTER);
         

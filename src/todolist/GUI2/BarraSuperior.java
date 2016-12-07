@@ -23,6 +23,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
+import todolist.Dados;
 
 /**
  *
@@ -31,16 +32,20 @@ import javax.swing.JPanel;
 public class BarraSuperior extends JPanel implements Observer{
     JButton botao, novo;
     private Image ImgMais;
+    todolist.Dados dados;
 //    AdicionarHora stuff;
-    public BarraSuperior() {
+    public BarraSuperior(Dados dados) {
+        this.dados = dados;
+        this.dados.addObserver(this);
         setLayout(new BorderLayout());
         setPreferredSize(new Dimension(700, 30));
         createAndDisplay();
         registarListeners();
         
-        
+        novo.addActionListener(new StartListener());
         validate();
         
+        update(dados,null);
     }
 
     @Override
@@ -54,7 +59,14 @@ public class BarraSuperior extends JPanel implements Observer{
         g.drawString(s, 20, 20);
     }
     
+    class StartListener implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            dados.setEstado(3);
+        }
     
+    }
     protected void createAndDisplay(){
         JPanel frame = new JPanel(new GridLayout(0,2));
         try{
