@@ -35,6 +35,7 @@ public class TarefasAdicionar extends JPanel implements Observer{
         createAndDisplay();
         this.setPreferredSize(new Dimension(100, 100));
         createAndDisplay();
+        registarListeners();
     }
     
     protected void createAndDisplay(){
@@ -70,7 +71,6 @@ public class TarefasAdicionar extends JPanel implements Observer{
         btnCancelar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 dados.setEstado(2);
-
          }          
       });
     }
