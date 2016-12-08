@@ -473,7 +473,7 @@ public class Dados extends Observable{
     }
     
     public void setEstado(int x){
-        if ((x < 0) || (x > 2)) {
+        if ((x < 0) || (x > 6)) {
             return;
         }
         estado = x;
