@@ -16,41 +16,59 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.Observable;
+import java.util.Observer;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
+import todolist.Dados;
 
 /**
  *
  * @author G21
  */
-public class BarraSuperior extends JPanel {
-    JButton botao, novo;
+public class BarraSuperior extends JPanel implements Observer{
+    JButton botao, novo, botaoNota, botaoDica;
     private Image ImgMais;
+    todolist.Dados dados;
 //    AdicionarHora stuff;
-    public BarraSuperior() {
+    public BarraSuperior(Dados dados) {
+        this.dados = dados;
+        this.dados.addObserver(this);
         setLayout(new BorderLayout());
         setPreferredSize(new Dimension(700, 30));
         createAndDisplay();
         registarListeners();
         
-        repaint();
+        novo.addActionListener(new StartListener());
         validate();
-        revalidate();
+        
+        update(dados,null);
     }
-    public void paint(Graphics g) {
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g); //To change body of generated methods, choose Tools | Templates.
         g.setColor(Color.red);
         g.fillRect(0, 0, getWidth(), getHeight());
         g.setColor(Color.white);
         g.setFont(new Font("",0,15));
         String s = "TODOList";
         g.drawString(s, 20, 20);
-        
+    }
+    
+    class StartListener implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            dados.setEstado(3);
+        }
+    
     }
     protected void createAndDisplay(){
-        JPanel frame = new JPanel(new GridLayout(0,2));
+        JPanel frame = new JPanel(new GridLayout(0,4));
         try{
             ImgMais = ImageIO.read(Resources.getResourceFile("imagens/plus.png"));
         }catch(IOException e){}
@@ -63,13 +81,25 @@ public class BarraSuperior extends JPanel {
         botao.setMargin(new Insets(0, 0, 0, 0));
         botao.setEnabled(true);
         
-        novo = new JButton("Novo");
+        novo = new JButton("Nova Tarefa");
         novo.setIcon(IcoMais);
         novo.setMargin(new Insets(0, 0, 0, 0));
         novo.setEnabled(true);
         
+        botaoNota = new JButton("Nova Nota");
+        botaoNota.setIcon(IcoMais);
+        botaoNota.setMargin(new Insets(0, 0, 0,0));
+        botaoNota.setEnabled(true);
+        
+        botaoDica = new JButton("Dicas");
+        botaoDica.setMargin(new Insets(0, 0, 0, 0));
+        botaoDica.setEnabled(true);
+        
+        
         frame.add(botao);
         frame.add(novo);
+        frame.add(botaoNota);
+        frame.add(botaoDica);
         
         frame.setBackground(Color.red);
         
@@ -90,8 +120,27 @@ public class BarraSuperior extends JPanel {
 //                stuff = new AdicionarHora();
 //                JOptionPane.showMessageDialog(stuff,"Adicionar Hora");
                 //JDialog mydialog = new AdicionarHora();
+                
 
          }          
       });
+      
+      botaoNota.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                dados.setEstado(5);
+            }
+        });
+      
+      botaoDica.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+        });      
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        repaint();
     }
 }
