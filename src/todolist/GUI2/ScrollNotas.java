@@ -6,24 +6,26 @@
 package todolist.GUI2;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
 import java.util.Observable;
 import java.util.Observer;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-public class ScrollTarefas extends JPanel implements Observer{
+/**
+ *
+ * @author Paulo
+ */
+public class ScrollNotas extends JPanel implements Observer{
     todolist.Dados dados;
-    JPanel addTarefa;
-    public ScrollTarefas(todolist.Dados dados) {
+    JPanel addNota;
+    public ScrollNotas(todolist.Dados dados) {
         setLayout(new BorderLayout());
         this.dados = dados;
         this.dados.addObserver(this);
         
-        addTarefa = new TarefasAdicionar(dados);
+        addNota = new NotasAdicionar(dados);
         
-        JScrollPane jsp = new JScrollPane(new Tarefas(dados));
+        JScrollPane jsp = new JScrollPane(new Notas(dados));
         jsp.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         jsp.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         
@@ -37,10 +39,10 @@ public class ScrollTarefas extends JPanel implements Observer{
     
     @Override
     public void update(Observable o, Object arg) {
-        if(dados.getEstado() == 3){ //3
-            add(addTarefa, BorderLayout.SOUTH);
+        if(dados.getEstado() == 5){
+            add(addNota, BorderLayout.SOUTH);
         }else{
-            remove(addTarefa);
+            remove(addNota);
         }
     
     }
