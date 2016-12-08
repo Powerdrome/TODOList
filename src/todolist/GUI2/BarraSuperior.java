@@ -63,6 +63,7 @@ public class BarraSuperior extends JPanel implements Observer{
     
     protected void createAndDisplay(){
         JPanel frame = new JPanel(new BorderLayout());
+        
         Box box = Box.createHorizontalBox();
         
         try{
