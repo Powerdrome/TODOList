@@ -26,6 +26,22 @@ import java.util.logging.Logger;
  *
 */
 
+
+/*
+
+======== TABELA DE ESTADOS ============
+    0 - Define Cadeiras (e depois para as turmas)
+    1 - Calendario
+    2 - Tarefas 
+´   3 - InsereTarefas
+    4 - Notas
+    5 - InsereNotas
+    6 - Truques e Dicas
+
+*/
+
+
+
 public class Dados extends Observable{
     private Calendario calendario = null;
     private ArrayList<String> nomeCadeiras = null;
