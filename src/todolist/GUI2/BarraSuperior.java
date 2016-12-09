@@ -15,6 +15,8 @@ import java.awt.Image;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.util.Observable;
 import java.util.Observer;
@@ -31,10 +33,10 @@ import todolist.Dados;
  * @author G21
  */
 public class BarraSuperior extends JPanel implements Observer{
-    JButton hora_estudo, nova_tarefa, botaoNota, botaoDica;
+    JButton hora_estudo, nova_tarefa, nova_nota, botaoDica,tarefas,notas;
     private Image ImgMais;
     Dados dados;
-//    AdicionarHora stuff;
+
     public BarraSuperior(Dados dados) {
         this.dados = dados;
         this.dados.addObserver(this);
@@ -42,16 +44,32 @@ public class BarraSuperior extends JPanel implements Observer{
         setPreferredSize(new Dimension(700, 30));
         createAndDisplay();
         registarListeners();
-        
+        addMouseListener(new Voltar_a_Calendario());
         
         validate();
         
         update(dados,null);
     }
 
+    class Voltar_a_Calendario extends MouseAdapter{
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+             int x = e.getX();
+             int y = e.getY();
+             
+             if((x>=20 && x<=86) && (y>=7 && y<=18) ){
+                 dados.setEstado(1);
+             }
+             
+             
+        }
+        
+    
+    }
     @Override
     protected void paintComponent(Graphics g) {
-        super.paintComponent(g); //To change body of generated methods, choose Tools | Templates.
+        super.paintComponent(g); 
         g.setColor(Color.red);
         g.fillRect(0, 0, getWidth(), getHeight());
         g.setColor(Color.white);
@@ -76,28 +94,35 @@ public class BarraSuperior extends JPanel implements Observer{
         
         hora_estudo = new JButton("Hora Estudo");
         hora_estudo.setIcon(IcoMais);
-        
         hora_estudo.setEnabled(true);
         
         nova_tarefa = new JButton("Nova Tarefa");
         nova_tarefa.setIcon(IcoMais);
-        
         nova_tarefa.setEnabled(true);
         
-        botaoNota = new JButton("Nova Nota");
-        botaoNota.setIcon(IcoMais);
+        nova_nota = new JButton("Nova Nota");
+        nova_nota.setIcon(IcoMais); 
+        nova_nota.setEnabled(true);
         
-        botaoNota.setEnabled(true);
-        
-        botaoDica = new JButton("Dicas");
-        
+        botaoDica = new JButton("Dicas");    
         botaoDica.setEnabled(true);
         
+        tarefas = new JButton("Tarefas");
+        tarefas.setEnabled(true);
+        
+        notas = new JButton("Notas");
+        notas.setEnabled(true);
+        
+        
+        box.add(tarefas);
+        box.add(Box.createRigidArea(new Dimension(3,0)));
+        box.add(notas);
+        box.add(Box.createRigidArea(new Dimension(3,0)));
         box.add(hora_estudo);
         box.add(Box.createRigidArea(new Dimension(3,0))); 
         box.add(nova_tarefa);
         box.add(Box.createRigidArea(new Dimension(3,0))); 
-        box.add(botaoNota);
+        box.add(nova_nota);
         box.add(Box.createRigidArea(new Dimension(3,0))); 
         box.add(botaoDica);
         
@@ -111,6 +136,19 @@ public class BarraSuperior extends JPanel implements Observer{
     
     protected void registarListeners(){
         
+        notas.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dados.setEstado(4);
+            }
+        });
+        
+        tarefas.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+              dados.setEstado(2);
+            }
+        });
         nova_tarefa.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -125,7 +163,7 @@ public class BarraSuperior extends JPanel implements Observer{
          }          
       });
       
-        botaoNota.addActionListener(new ActionListener() {
+        nova_nota.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 dados.setEstado(5);
             }
