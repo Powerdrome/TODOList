@@ -1,6 +1,6 @@
 /*
     class Dica
-    Versão 1.0 30/11/16
+    Versão 1.1 09/12/16
     
 */
 package todolist;
@@ -12,16 +12,16 @@ public class Dica implements Serializable {
     private String titulo;
     private String dica;
 
-    public Dica(String titulo, String nota) {
+    public Dica(String titulo, String dica) {
         this.titulo = titulo;
-        this.dica = nota;
+        this.dica = dica;
     }
 
     public String getTitulo() {
         return titulo;
     }
 
-    public String getNota() {
+    public String getDica() {
         return dica;
     }
 
@@ -29,7 +29,12 @@ public class Dica implements Serializable {
         this.titulo = titulo;
     }
 
-    public void setNota(String nota) {
-        this.dica = nota;
+    public void setDica(String dica) {
+        this.dica = dica;
+    }
+    
+    @Override
+    public String toString() {
+        return "Titulo: "+titulo+" Dica: "+dica;
     }
 }
