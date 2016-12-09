@@ -7,7 +7,9 @@ package todolist.GUI2;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import static java.awt.Component.RIGHT_ALIGNMENT;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.GridLayout;
@@ -18,6 +20,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
+import java.text.AttributedCharacterIterator;
 import java.util.Observable;
 import java.util.Observer;
 import javax.imageio.ImageIO;
@@ -25,6 +28,7 @@ import javax.swing.Box;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import todolist.Dados;
 
@@ -34,6 +38,7 @@ import todolist.Dados;
  */
 public class BarraSuperior extends JPanel implements Observer{
     JButton hora_estudo, nova_tarefa, nova_nota, botaoDica,tarefas,notas;
+    JLabel label;
     private Image ImgMais;
     Dados dados;
 
@@ -62,7 +67,7 @@ public class BarraSuperior extends JPanel implements Observer{
                  dados.setEstado(1);
              }
              
-             
+             System.out.println(x+":"+y);
         }
         
     
@@ -76,12 +81,15 @@ public class BarraSuperior extends JPanel implements Observer{
         g.setFont(new Font("",0,15));
         String s = "TODOList";
         g.drawString(s, 20, 20);
+        
+        
+        
     }
     
     
     protected void createAndDisplay(){
         JPanel frame = new JPanel(new BorderLayout());
-        
+        JPanel texto = new JPanel(new FlowLayout());
         Box box = Box.createHorizontalBox();
         
         try{
@@ -113,7 +121,18 @@ public class BarraSuperior extends JPanel implements Observer{
         notas = new JButton("Notas");
         notas.setEnabled(true);
         
+        label = new JLabel();
+        label.setForeground(Color.WHITE);
+        label.setAlignmentX(RIGHT_ALIGNMENT);
+        label.setFont(new Font("Arial", Font.PLAIN,16));
+        label.setLocation(135, 11);
+        label.setBackground(Color.red);
         
+        texto.add(label);
+        texto.setBackground(Color.red);
+        
+        
+        box.add(texto);
         box.add(tarefas);
         box.add(Box.createRigidArea(new Dimension(3,0)));
         box.add(notas);
@@ -132,6 +151,7 @@ public class BarraSuperior extends JPanel implements Observer{
         frame.setBackground(Color.red);
         
         super.add(frame, BorderLayout.EAST);
+        
     }
     
     protected void registarListeners(){
@@ -178,6 +198,17 @@ public class BarraSuperior extends JPanel implements Observer{
 
     @Override
     public void update(Observable o, Object arg) {
+        
+        if(dados.getEstado()==2){
+            label.setText("Tarefa > AMI");
+        }
+        if(dados.getEstado()==4){
+        label.setText("Notas > AMI");
+        }
+        if(dados.getEstado()==1){
+            label.setText("");
+        }
+        
         repaint();
     }
 }
