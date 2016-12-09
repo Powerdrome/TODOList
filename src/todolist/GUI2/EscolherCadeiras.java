@@ -124,7 +124,7 @@ public class EscolherCadeiras extends JDialog implements ItemListener{
         opcoesAno.get(1).add(botaoConcluir);
         opcoesAno.get(2).add(new JPanel());
               
-        for(JPanel label: opcoesAno) {
+        for (JPanel label: opcoesAno) {
             this.add(label);
         }
         
