@@ -15,10 +15,13 @@ import java.awt.Image;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.util.Observable;
 import java.util.Observer;
 import javax.imageio.ImageIO;
+import javax.swing.Box;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -30,10 +33,10 @@ import todolist.Dados;
  * @author G21
  */
 public class BarraSuperior extends JPanel implements Observer{
-    JButton botao, novo, botaoNota, botaoDica;
+    JButton hora_estudo, nova_tarefa, nova_nota, botaoDica,tarefas,notas;
     private Image ImgMais;
-    todolist.Dados dados;
-//    AdicionarHora stuff;
+    Dados dados;
+
     public BarraSuperior(Dados dados) {
         this.dados = dados;
         this.dados.addObserver(this);
@@ -41,16 +44,32 @@ public class BarraSuperior extends JPanel implements Observer{
         setPreferredSize(new Dimension(700, 30));
         createAndDisplay();
         registarListeners();
+        addMouseListener(new Voltar_a_Calendario());
         
-        novo.addActionListener(new StartListener());
         validate();
         
         update(dados,null);
     }
 
+    class Voltar_a_Calendario extends MouseAdapter{
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+             int x = e.getX();
+             int y = e.getY();
+             
+             if((x>=20 && x<=86) && (y>=7 && y<=18) ){
+                 dados.setEstado(1);
+             }
+             
+             
+        }
+        
+    
+    }
     @Override
     protected void paintComponent(Graphics g) {
-        super.paintComponent(g); //To change body of generated methods, choose Tools | Templates.
+        super.paintComponent(g); 
         g.setColor(Color.red);
         g.fillRect(0, 0, getWidth(), getHeight());
         g.setColor(Color.white);
@@ -59,47 +78,56 @@ public class BarraSuperior extends JPanel implements Observer{
         g.drawString(s, 20, 20);
     }
     
-    class StartListener implements ActionListener{
-
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            dados.setEstado(3);
-        }
     
-    }
     protected void createAndDisplay(){
-        JPanel frame = new JPanel(new GridLayout(0,4));
+        JPanel frame = new JPanel(new BorderLayout());
+        
+        Box box = Box.createHorizontalBox();
+        
         try{
             ImgMais = ImageIO.read(Resources.getResourceFile("imagens/plus.png"));
         }catch(IOException e){}
+        
         int x = 12, y = 12;
         ImgMais = ImgMais.getScaledInstance(x, y, 100);
         ImageIcon IcoMais = new ImageIcon(ImgMais);
         
-        botao = new JButton("Hora Estudo");
-        botao.setIcon(IcoMais);
-        botao.setMargin(new Insets(0, 0, 0, 0));
-        botao.setEnabled(true);
+        hora_estudo = new JButton("Hora Estudo");
+        hora_estudo.setIcon(IcoMais);
+        hora_estudo.setEnabled(true);
         
-        novo = new JButton("Nova Tarefa");
-        novo.setIcon(IcoMais);
-        novo.setMargin(new Insets(0, 0, 0, 0));
-        novo.setEnabled(true);
+        nova_tarefa = new JButton("Nova Tarefa");
+        nova_tarefa.setIcon(IcoMais);
+        nova_tarefa.setEnabled(true);
         
-        botaoNota = new JButton("Nova Nota");
-        botaoNota.setIcon(IcoMais);
-        botaoNota.setMargin(new Insets(0, 0, 0,0));
-        botaoNota.setEnabled(true);
+        nova_nota = new JButton("Nova Nota");
+        nova_nota.setIcon(IcoMais); 
+        nova_nota.setEnabled(true);
         
-        botaoDica = new JButton("Dicas");
-        botaoDica.setMargin(new Insets(0, 0, 0, 0));
+        botaoDica = new JButton("Dicas");    
         botaoDica.setEnabled(true);
         
+        tarefas = new JButton("Tarefas");
+        tarefas.setEnabled(true);
         
-        frame.add(botao);
-        frame.add(novo);
-        frame.add(botaoNota);
-        frame.add(botaoDica);
+        notas = new JButton("Notas");
+        notas.setEnabled(true);
+        
+        
+        box.add(tarefas);
+        box.add(Box.createRigidArea(new Dimension(3,0)));
+        box.add(notas);
+        box.add(Box.createRigidArea(new Dimension(3,0)));
+        box.add(hora_estudo);
+        box.add(Box.createRigidArea(new Dimension(3,0))); 
+        box.add(nova_tarefa);
+        box.add(Box.createRigidArea(new Dimension(3,0))); 
+        box.add(nova_nota);
+        box.add(Box.createRigidArea(new Dimension(3,0))); 
+        box.add(botaoDica);
+        
+        frame.add(box);
+        
         
         frame.setBackground(Color.red);
         
@@ -107,34 +135,43 @@ public class BarraSuperior extends JPanel implements Observer{
     }
     
     protected void registarListeners(){
-        botao.addActionListener(new ActionListener() {
+        
+        notas.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent e) {
-//                stuff = new AdicionarHora();
-//                JOptionPane.showMessageDialog(stuff,"Adicionar Hora");
+                dados.setEstado(4);
+            }
+        });
+        
+        tarefas.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+              dados.setEstado(2);
+            }
+        });
+        nova_tarefa.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dados.setEstado(3);
+            }
+        });
+        
+        hora_estudo.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
                 JDialog mydialog = new AdicionarHora();
 
          }          
       });
-      novo.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-//                stuff = new AdicionarHora();
-//                JOptionPane.showMessageDialog(stuff,"Adicionar Hora");
-                //JDialog mydialog = new AdicionarHora();
-                
-
-         }          
-      });
       
-      botaoNota.addActionListener(new ActionListener() {
+        nova_nota.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
                 dados.setEstado(5);
             }
         });
       
       botaoDica.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                dados.setEstado(6);
             }
         });      
     }

@@ -1,27 +1,28 @@
 /*
     class Dica
-    Versão 1.0 30/11/16
+    Versão 1.1 09/12/16
     
 */
 package todolist;
 
 import java.io.Serializable;
+import java.util.Observable;
 
 public class Dica implements Serializable {
     private static final long serialVersionUID = 1L;
     private String titulo;
     private String dica;
 
-    public Dica(String titulo, String nota) {
+    public Dica(String titulo, String dica) {
         this.titulo = titulo;
-        this.dica = nota;
+        this.dica = dica;
     }
 
     public String getTitulo() {
         return titulo;
     }
 
-    public String getNota() {
+    public String getDica() {
         return dica;
     }
 
@@ -29,7 +30,12 @@ public class Dica implements Serializable {
         this.titulo = titulo;
     }
 
-    public void setNota(String nota) {
-        this.dica = nota;
+    public void setDica(String dica) {
+        this.dica = dica;
+    }
+    
+    @Override
+    public String toString() {
+        return "Titulo: "+titulo+" Dica: "+dica;
     }
 }

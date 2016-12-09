@@ -41,4 +41,12 @@ public class HoraEstudo implements Serializable {
     public void setFim(int ano, int mes, int dia, int hora, int minuto) {
         fim = new GregorianCalendar(ano, mes, dia, hora, minuto);
     }
+    
+    public void setInicio(GregorianCalendar inicio) {
+        this.inicio = inicio;
+    }
+
+    public void setFim(GregorianCalendar fim) {
+        this.fim = fim;
+    }
 }
