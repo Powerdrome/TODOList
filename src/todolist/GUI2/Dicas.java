@@ -77,6 +77,7 @@ public class Dicas extends JPanel implements Observer {
             if(this.mouseOvering) {
                 JDialog mydialog = new DicasAcao(dados);
                 
+                
             }
             
         
