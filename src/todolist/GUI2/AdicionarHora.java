@@ -59,8 +59,8 @@ public class AdicionarHora  extends JDialog {
         frameBotao.add(botao);
         
         
-        frame.setBackground(Color.BLUE);
-        frameBotao.setBackground(Color.BLUE);
+        frame.setBackground(Color.gray);
+        frameBotao.setBackground(Color.gray);
         add(frame, BorderLayout.CENTER);
         add(frameBotao, BorderLayout.SOUTH);
     }
