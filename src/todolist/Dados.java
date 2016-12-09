@@ -433,8 +433,10 @@ public class Dados extends Observable{
                 return;
             }
         }
-        setChanged();
-        notifyObservers();
+        if (estado != 0) {
+            setChanged();
+            notifyObservers();
+        }
     }
     
     public boolean inscritoCadeira(String nome) {
