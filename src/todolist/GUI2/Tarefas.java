@@ -9,6 +9,9 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import javax.swing.JDialog;
 import javax.swing.JPanel;
 import todolist.Dados;
 
@@ -17,9 +20,11 @@ import todolist.Dados;
  * @author jorgetrovisco
  */
 public class Tarefas extends JPanel {
-
+    Dados dados;
     Tarefas(Dados dados) {
+        this.dados = dados;
         setLayout(new BorderLayout());
+        super.addMouseListener(new AcaoTarefa());
     }
     
     @Override
@@ -37,7 +42,32 @@ public class Tarefas extends JPanel {
         g.drawString("24/11/2017", 600, 35);
         g.drawString("18h00 - 20h30", 590, 60);
     }
-
+    
+    class AcaoTarefa extends MouseAdapter{
+    
+    
+        @Override
+        public void mousePressed(MouseEvent e) {
+        
+//            int x = e.getX();
+//            int y = e.getY();
+//            
+//            int y0=5;
+//            int yM=30;
+//            
+//            if(y<=dados.getCadeiras().size()*30 && x<=90){
+//                for(UnidadeCurricular uc : dados.getCadeiras()){
+//                    if(y>=y0 && y<=yM){
+                        JDialog mydialog = new TarefasAcao(dados);
+//                    }
+//                    y0+=30;
+//                    yM+=30;
+//                }
+//            }
+//            
+//        
+        }
+    }
     
     
     
