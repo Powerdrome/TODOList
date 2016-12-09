@@ -25,9 +25,7 @@ public class Dicas extends JPanel {
         g.drawRect(10, 10, 700, 75);
         g.drawString("Dica x", (20+15), (20+30));
         g.setFont(new Font("",0,15));
-        g.drawLine(550, 10, 550, 85);
-        g.drawString("25/01/2525", 600, 35);
-        g.drawString("18h00 - 20h30", 590, 60);
+        
     }
 
 }
