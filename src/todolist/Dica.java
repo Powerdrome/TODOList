@@ -6,6 +6,7 @@
 package todolist;
 
 import java.io.Serializable;
+import java.util.Observable;
 
 public class Dica implements Serializable {
     private static final long serialVersionUID = 1L;

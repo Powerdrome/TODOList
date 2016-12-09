@@ -4,14 +4,36 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.Observable;
+import java.util.Observer;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import todolist.Dados;
+import todolist.UnidadeCurricular;
 
 
-public class Dicas extends JPanel {
-
+public class Dicas extends JPanel implements Observer {
+    
+    todolist.Dados dados;
+    
+    
     Dicas(Dados dados) {
+        this.dados = dados;
+        this.dados.addObserver(this);
         setLayout(new BorderLayout());
+        
+        
+        JPanel jp = new JPanel();
+        jp.setVisible(true);
+        jp.setSize(50, 50);
+        jp.setBackground(Color.red);
+        
+        this.add(jp);
+        
+        
+        super.addMouseListener(new UCSListener());
     }
     
     @Override
@@ -25,9 +47,48 @@ public class Dicas extends JPanel {
         g.drawRect(10, 10, 700, 75);
         g.drawString("Dica x", (20+15), (20+30));
         g.setFont(new Font("",0,15));
-        g.drawLine(550, 10, 550, 85);
-        g.drawString("25/01/2525", 600, 35);
-        g.drawString("18h00 - 20h30", 590, 60);
+        
+        
     }
-
+    
+    @Override
+    public void update(Observable o, Object arg) {
+        System.out.println("UPDATE - DICAS");
+    }
+    
+    class UCSListener extends MouseAdapter{
+    
+    
+        Boolean mouseOvering = false;
+        
+        @Override
+        public void mouseEntered(MouseEvent e) {
+       this.mouseOvering = true;
+    }
+        
+        @Override
+        public void mouseExited(MouseEvent e) {
+       this.mouseOvering = false;
+    }
+        
+        @Override
+        public void mousePressed(MouseEvent e) {
+        
+            int x = e.getX();
+            int y = e.getY();
+            
+            int y0=5;
+            int yM=30;
+            
+            if(this.mouseOvering) {
+                JOptionPane.showMessageDialog(null,"Dica XPTO para que mquer aprender HAHAHAHA");
+                System.out.println(dados.getEstado());
+                
+            }
+            
+        
+        }
+    }
+    
+    
 }
