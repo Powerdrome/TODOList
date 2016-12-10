@@ -22,7 +22,7 @@ public class TarefasAcao extends JDialog {
         setLayout(new BorderLayout());
         setSize(new Dimension(400, 70));
         setLocation(200,200);
-        setTitle("Selecionar ação");
+        setTitle("DICA XPTO NUMERO QUALQUER COISA");
         createAndDisplay();
         setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
         setVisible(true);
