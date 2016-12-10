@@ -35,7 +35,8 @@ class TODOListFrame extends JFrame implements Observer{
         dados.addObserver(this);
         
         if (dados.getEstado() == 0) {
-            EscolherCadeiras escolha = new EscolherCadeiras(this, dados);
+            EscolherCadeiras cadeiras = new EscolherCadeiras(this, dados);
+            //EscolherHoras horas = new EscolherHoras(this, dados);
         }
         
         cal = new Calendario(dados);
