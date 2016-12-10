@@ -99,6 +99,9 @@ public class Dados extends Observable{
         Nota mdNota = null;
         HoraEstudo paEstudo = null;
         HoraAula paAula = null;
+        Tarefa a = new Tarefa("Programar ClassXPTO");
+        Tarefa b = new Tarefa("Fazer exericio 2 Ficha 3");
+        
         Nota paNota = new Nota("Programação Distribuida Nota",
                 "Isto é uma nota para PA");
         Dica paDica = new Dica("Programação Distribuida Dica",
@@ -120,6 +123,8 @@ public class Dados extends Observable{
         paUC.addDica(paDica);
         paUC.addNota(paNota);
         paUC.addExame(paExame);
+        paUC.addTarefa(a);
+        paUC.addTarefa(b);
         calendario.addHoraEstudo(paEstudo);
         
         mdNota = new Nota("Programação Distribuida Nota",
