@@ -2,12 +2,19 @@ package todolist.GUI2;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
+import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Observable;
 import java.util.Observer;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import todolist.Dados;
@@ -24,21 +31,14 @@ public class Dicas extends JPanel implements Observer {
         this.dados.addObserver(this);
         setLayout(new BorderLayout());
         
-        
-        JPanel jp = new JPanel();
-        jp.setVisible(true);
-        jp.setSize(50, 50);
-        jp.setBackground(Color.red);
-        
-        this.add(jp);
-        
-        
         super.addMouseListener(new UCSListener());
     }
     
     @Override
     public void paint(Graphics g) {
         desenhaDicas(g);
+        
+        
         setBackground(Color.white);
     }
     
@@ -81,8 +81,8 @@ public class Dicas extends JPanel implements Observer {
             int yM=30;
             
             if(this.mouseOvering) {
-                JOptionPane.showMessageDialog(null,"Dica XPTO para que mquer aprender HAHAHAHA");
-                System.out.println(dados.getEstado());
+                JDialog mydialog = new DicasAcao(dados);
+                
                 
             }
             
