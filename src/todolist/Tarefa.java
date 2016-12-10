@@ -2,36 +2,58 @@
 package todolist;
 
 import java.io.Serializable;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.Observable;
 
 public class Tarefa implements Serializable {
     private static final long serialVersionUID = 1L;
-    private String titulo;
-    private String tarefa;
+        String nome;
+    GregorianCalendar inicio;
+    GregorianCalendar fim;
 
-    public Tarefa(String titulo, String tarefa) {
-        this.titulo = titulo;
-        this.tarefa = tarefa;
+    public Tarefa(String nome) {
+        this.nome = nome;
     }
 
-    public String getTitulo() {
-        return titulo;
+    public String getNome() {
+        return nome;
     }
 
-    public String getTarefa() {
-        return tarefa;
+    public GregorianCalendar getInicio() {
+        return inicio;
     }
 
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
+    public GregorianCalendar getFim() {
+        return fim;
+    }  
+    
+    public void setInicio(int ano, int mes, int dia, int hora, int minuto) {
+        inicio = new GregorianCalendar(ano, mes, dia, hora, minuto);
     }
 
-    public void setTarefa(String tarefa) {
-        this.tarefa = tarefa;
+    public void setFim(int ano, int mes, int dia, int hora, int minuto) {
+        fim = new GregorianCalendar(ano, mes, dia, hora, minuto);
+    }
+    
+    public void setInicio(GregorianCalendar inicio) {
+        this.inicio = inicio;
+    }
+
+    public void setFim(GregorianCalendar fim) {
+        this.fim = fim;
     }
     
     @Override
     public String toString() {
-        return "Titulo: "+titulo+" Tarefa: "+tarefa;
+        String inicioStr = inicio.get(Calendar.DATE)+"/"+inicio.get(Calendar.MONTH)
+                +"/"+inicio.get(Calendar.YEAR)
+                +" "+inicio.get(Calendar.HOUR_OF_DAY)+":"+inicio.get(Calendar.MINUTE);
+
+        String fimStr = fim.get(Calendar.DATE)+""+"/"+fim.get(Calendar.MONTH)
+                +"/"+fim.get(Calendar.YEAR)
+                +" "+fim.get(Calendar.HOUR_OF_DAY)+":"+fim.get(Calendar.MINUTE);
+
+        return "\n\nnome=" + nome + "\nInicio=" + inicioStr + ", \nFim=" + fimStr;
     }
 }
