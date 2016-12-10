@@ -7,6 +7,7 @@ package todolist.GUI2;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
@@ -24,6 +25,7 @@ public class Tarefas extends JPanel {
     Tarefas(Dados dados) {
         this.dados = dados;
         setLayout(new BorderLayout());
+        //setSize(new Dimension(4000, 7000));
         super.addMouseListener(new AcaoTarefa());
     }
     
@@ -34,13 +36,23 @@ public class Tarefas extends JPanel {
     }
     
     protected void desenhaTarefas(Graphics g){
+        int x = 10;
+        int y = 10;
+        int i = 0;
+        for(; i<3; i++){
         g.setFont(new Font("",0,20));
-        g.drawRect(10, 10, 700, 75);
-        g.drawString("Tarefa x", (20+15), (20+30));
+        g.drawRect(10, y, 700, 75);
+        String string = "Tarefa " + i;
+        g.drawString(string, (35), (y+40));
         g.setFont(new Font("",0,15));
-        g.drawLine(550, 10, 550, 85);
-        g.drawString("24/11/2017", 600, 35);
-        g.drawString("18h00 - 20h30", 590, 60);
+        g.drawLine(550, y, 550, y+75);
+        g.drawString("24/11/2017", 600, y+25);
+        g.drawString("18h00 - 20h30", 590, y+50);
+        y+= 100;
+        }
+        setPreferredSize(new Dimension(0, (i*100)));
+        
+        
     }
     
     class AcaoTarefa extends MouseAdapter{
