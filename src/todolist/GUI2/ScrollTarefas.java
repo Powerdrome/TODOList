@@ -20,13 +20,13 @@ public class ScrollTarefas extends JPanel implements Observer{
         setLayout(new BorderLayout());
         this.dados = dados;
         this.dados.addObserver(this);
-        
+        Tarefas x = new Tarefas(dados);
         addTarefa = new TarefasAdicionar(dados);
+        
         
         JScrollPane jsp = new JScrollPane(new Tarefas(dados));
         jsp.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         jsp.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        
         add(jsp, BorderLayout.CENTER);
         
         

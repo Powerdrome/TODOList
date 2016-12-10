@@ -19,6 +19,7 @@ public class UnidadeCurricular extends Observable implements Serializable {
     private ArrayList<HoraAula> aulas;
     private ArrayList<Exame> exames;
     private ArrayList<Dica> dicas;
+    private ArrayList<Tarefa> tarefas;
 
     public UnidadeCurricular (String nome, int ano, int semestre){
         this.nome = nome;
@@ -28,6 +29,7 @@ public class UnidadeCurricular extends Observable implements Serializable {
         aulas = new ArrayList<>();
         exames = new ArrayList<>();
         dicas = new ArrayList<>();
+        tarefas = new ArrayList<>();
     }
 
     public void setNome(String nome) {
@@ -57,6 +59,10 @@ public class UnidadeCurricular extends Observable implements Serializable {
     public void addDica(Dica dica){
         dicas.add(dica);
     }
+    
+    public void addTarefa(Tarefa tarefa){
+        tarefas.add(tarefa);
+    }
 
     public String getNome() {
         return nome;
@@ -84,6 +90,10 @@ public class UnidadeCurricular extends Observable implements Serializable {
 
     public ArrayList<Dica> getDicas() {
         return dicas;
+    }
+    
+    public ArrayList<Tarefa> getTarefas(){
+        return tarefas;
     }
 
     @Override

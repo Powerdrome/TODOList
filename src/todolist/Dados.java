@@ -1,18 +1,23 @@
 package todolist;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.Observable;
+import java.util.StringTokenizer;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /*
  *   class Dados
- *   Versão 1.0 - 1/12/2016
+ *   Versão 1.2 - 6/12/2016
  *
  *      Esta classe tem como objetivo servir de controlador na aplicação (de
  * acordo com o padrão MVC), e como tal possibilita a alteração dos dados
@@ -94,6 +99,9 @@ public class Dados extends Observable{
         Nota mdNota = null;
         HoraEstudo paEstudo = null;
         HoraAula paAula = null;
+        Tarefa a = new Tarefa("Programar ClassXPTO");
+        Tarefa b = new Tarefa("Fazer exericio 2 Ficha 3");
+        
         Nota paNota = new Nota("Programação Distribuida Nota",
                 "Isto é uma nota para PA");
         Dica paDica = new Dica("Programação Distribuida Dica",
@@ -115,6 +123,8 @@ public class Dados extends Observable{
         paUC.addDica(paDica);
         paUC.addNota(paNota);
         paUC.addExame(paExame);
+        paUC.addTarefa(a);
+        paUC.addTarefa(b);
         calendario.addHoraEstudo(paEstudo);
         
         mdNota = new Nota("Programação Distribuida Nota",
@@ -410,8 +420,11 @@ public class Dados extends Observable{
         calendario.getCadeiras().add(new UnidadeCurricular(nome,
                 findAnoCadeira(nome),
                 findSemestreCadeira(nome)));
-        setChanged();
-        notifyObservers();
+        
+        if (estado != 0) {
+            setChanged();
+            notifyObservers();
+        }
     }
     
     public void removeCadeira(String nome) {
@@ -425,8 +438,10 @@ public class Dados extends Observable{
                 return;
             }
         }
-        setChanged();
-        notifyObservers();
+        if (estado != 0) {
+            setChanged();
+            notifyObservers();
+        }
     }
     
     public boolean inscritoCadeira(String nome) {
@@ -487,6 +502,43 @@ public class Dados extends Observable{
         setChanged();
         notifyObservers();
     }
+    
+//    public ArrayList<String> getTurmas(String nomeUC, String tipo) {
+//        ArrayList<String> turmas =  new ArrayList<>();
+//        File timesFile = new File("Calendario.txt");
+//        BufferedReader bufReader = null;
+//        String line = "";
+//        String [] turma = null;
+//        
+//        try {
+//            bufReader = new BufferedReader(new FileReader(timesFile));
+//        } catch(IOException ex) {
+//            System.err.println(ex.toString());
+//        }
+//        
+//        if (bufReader == null) {
+//            return null;
+//        }       
+//        while (true) {
+//            try {
+//                line = bufReader.readLine();
+//                if (line.equals(nomeUC)) {
+//                    line = bufReader.readLine();
+//                    turma = line.split(" ");
+//                    for (int i = 0; i < turma.length; i++) {
+//                        turmas.add(turma[i]);
+//                    }
+//                }
+//                else {
+//                    line = bufReader.readLine();
+//                }
+//            } catch (IOException ex) {
+//                Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//        }
+//        
+//        return turmas;
+//    }
     
     public void setEstado(int x){
         if ((x < 0) || (x > 6)) {
