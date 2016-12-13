@@ -30,6 +30,7 @@ public class Calendario extends JPanel  implements Observer{
         this.dados.addObserver(this);
         show = true;
         setLayout(new BorderLayout());
+        update(dados,null);
     }
     public void paint(Graphics g) {
 //        g.setFont(new Font("",0,15));

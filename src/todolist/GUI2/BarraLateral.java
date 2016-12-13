@@ -38,6 +38,7 @@ public class BarraLateral extends JPanel implements Observer{
         
         
         super.addMouseListener(new UCSListener());
+        update(dados,null);
     }
     public void paint(Graphics g) {
         g.setColor(Color.white);
