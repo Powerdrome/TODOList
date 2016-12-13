@@ -1,17 +1,15 @@
 package todolist;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.Observable;
-import java.util.StringTokenizer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -44,15 +42,35 @@ import java.util.logging.Logger;
 
 public class Dados extends Observable{
     private Calendario calendario = null;
+    private AulasExistentes aulasExistentes = null;
     private ArrayList<String> nomeCadeiras = null;
-    private final String NOME_FICHEIRO = "SAVEDATA";
+    private final String NOME_FICHEIRO_USER = "SAVEDATA";
+    private final String NOME_FICHEIRO_HORARIOS = "HORARIOS";
     private int estado = -1;
     
-    public Dados() {
-        File saveFile = new File(NOME_FICHEIRO);
+    public Dados(){
+        File saveFile = new File(NOME_FICHEIRO_USER);
+        File horarios = new File(NOME_FICHEIRO_HORARIOS);
+        
         preparaNomes();
         
         //se ficheiro existe, ler calendário previamente guardado
+        if (horarios.exists()) {
+            try {
+                FileInputStream fis = new FileInputStream(horarios);
+                ObjectInputStream ois = new ObjectInputStream(fis);
+                
+                aulasExistentes = (AulasExistentes) ois.readObject();
+                if(aulasExistentes != null) {
+                    System.out.println("O ficheiro de turmas foi carregado com sucesso.");
+                }
+                
+                ois.close();
+                fis.close();
+            } catch (Exception ex) {
+                System.err.println(ex.toString());
+            }
+        }
         if (saveFile.exists()) {
             try {
                 FileInputStream fis = new FileInputStream(saveFile);
@@ -108,9 +126,13 @@ public class Dados extends Observable{
         paExame.setInicio(2017, 01, 14, 14, 30);
         paExame.setFim(2017, 01, 14, 16, 30);
         
-        paAula = new HoraAula(1, "L2.1");
-        paAula.setInicio(2016, 01, 14, 17, 30);
-        paAula.setFim(2016, 01, 14, 18, 00);
+        paAula = new HoraAula(1, "L2.1", 1);
+        try {
+            paAula.setInicio("14/01/2016 17:30");
+            paAula.setFim("14/01/2016 18:00");
+        } catch (ParseException ex) {
+            Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         paEstudo = new HoraEstudo("Hora d e Estudo de PA");
         paEstudo.setInicio(2017, 01, 13, 17, 30);
@@ -131,9 +153,13 @@ public class Dados extends Observable{
         mdExame.setInicio(2017, 01, 14, 14, 30);
         mdExame.setFim(2017, 01, 14, 16, 30);
         
-        mdAula = new HoraAula(1, "L2.1");
-        mdAula.setInicio(2016, 01, 14, 17, 30);
-        mdAula.setFim(2016, 01, 14, 18, 00);
+        mdAula = new HoraAula(1, "L2.1", 1);
+        try {
+            mdAula.setInicio("14/01/2016 17:30");
+            mdAula.setFim("14/01/2016 18:00");
+        } catch (ParseException ex) {
+            Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         mdEstudo = new HoraEstudo("Hora d e Estudo de PA");
         mdEstudo.setInicio(2017, 01, 13, 17, 30);
@@ -152,7 +178,7 @@ public class Dados extends Observable{
     
     //chamar quando janela principal for fechada
     public void guardaCalendario() {
-        File saveFile = new File(NOME_FICHEIRO);
+        File saveFile = new File(NOME_FICHEIRO_USER);
         
         //elimina ficheiro prévio (se existir)
         if (saveFile.exists()) {
@@ -379,6 +405,18 @@ public class Dados extends Observable{
     public ArrayList<Hora> getHoras() {
         return calendario.getHoras();
     }
+
+    public String [] getHorasAulasT(String nomeUC) {
+        return aulasExistentes.getHorasAulasT(nomeUC);
+    }
+    
+    public String [] getHorasAulasP(String nomeUC) {
+        return aulasExistentes.getHorasAulasP(nomeUC);
+    }
+    
+    public String [] getHorasAulasTP(String nomeUC) {
+        return aulasExistentes.getHorasAulasTP(nomeUC);
+    }
     
     public ArrayList<UnidadeCurricular> getCadeiras() {
         return calendario.getCadeiras();
@@ -465,6 +503,21 @@ public class Dados extends Observable{
             setChanged();
             notifyObservers();
         }
+    }
+    
+    public void addHoraAula(int aulaIndex, HoraAula h) {
+        if(aulaIndex > getNCadeiras())
+            return;
+        getCadeiras().get(aulaIndex).addAulas(h);
+    } 
+    
+    public HoraAula getHoraAula(String desc, String nomeUC) {
+        if(desc == null || desc.length() == 0)
+            return null;
+        if(nomeUC == null || nomeUC.length() == 0)
+            return null;
+        
+        return aulasExistentes.getHoraAula(desc, nomeUC);
     }
     
     public void addHoraEstudo(String titulo, GregorianCalendar dataInicio,
