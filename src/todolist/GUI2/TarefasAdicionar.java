@@ -59,7 +59,7 @@ public class TarefasAdicionar extends JPanel implements Observer{
         JPanel linha2 = new JPanel(new GridLayout(0,2));
         JPanel col1 = new JPanel(new GridLayout(0,2));
         col1.add(jlData);
-        col1.add(new DatePickerExample());
+        col1.add(data);
         //JPanel linha3 = new JPanel(new GridLayout(0,2));´
         JPanel col2 = new JPanel(new GridLayout(0,2));
         col2.add(jlInicio);
@@ -109,6 +109,11 @@ public class TarefasAdicionar extends JPanel implements Observer{
                 String a = "";
                 a += "Tarefa: " + tarefa.getText() + "\n";
                 a += "Data: " + data.getData() + "\n";
+                String strData = data.getData();
+                int dia = Integer.parseInt(strData.substring(0, 2));
+                int mes = Integer.parseInt(strData.substring(3, 5));
+                int ano = Integer.parseInt(strData.substring(6, 10));
+                System.out.println(dia + " " + mes + " " + ano);
                 a += "Inicio: " + inicio.getText() + "\n";
                 a += "Fim: " + fim.getText();
                 System.out.println(a);
