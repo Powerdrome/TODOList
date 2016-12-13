@@ -47,7 +47,7 @@ public class Dados extends Observable{
     private ArrayList<String> nomeCadeiras = null;
     private final String NOME_FICHEIRO = "SAVEDATA";
     private int estado = -1;
-    
+    private UnidadeCurricular uc;
     public Dados() {
         File saveFile = new File(NOME_FICHEIRO);
         preparaNomes();
@@ -552,4 +552,16 @@ public class Dados extends Observable{
     public int getEstado(){
         return estado;
     }
+
+    public void setDisciplina(UnidadeCurricular uc) {
+        this.uc=uc;
+        setChanged();
+        notifyObservers();
+    }
+
+    public UnidadeCurricular getUc() {
+        return uc;
+    }
+    
+    
 }
