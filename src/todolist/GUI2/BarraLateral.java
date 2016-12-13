@@ -40,13 +40,17 @@ public class BarraLateral extends JPanel implements Observer{
         super.addMouseListener(new UCSListener());
         update(dados,null);
     }
-    public void paint(Graphics g) {
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g); //To change body of generated methods, choose Tools | Templates.
         g.setColor(Color.white);
         g.fillRect(0, 0, getWidth(), getHeight());
         g.setColor(Color.GRAY);
         DesenhaUC(g);
-        
     }
+    
+    
     public int getWidth(String s, FontMetrics fm){
         int w = 0;
         for (int i = 0; i < s.length(); i++) {
@@ -100,9 +104,11 @@ public class BarraLateral extends JPanel implements Observer{
             if(y<=dados.getCadeiras().size()*30 && x<=90){
                 for(UnidadeCurricular uc : dados.getCadeiras()){
                     if(y>=y0 && y<=yM){
-                       JOptionPane.showMessageDialog(null, uc.getNome());
+                       //JOptionPane.showMessageDialog(null, uc.getNome());
+                       
+                       dados.setDisciplina(uc);
                        dados.setEstado(2);
-                       System.out.println(dados.getEstado());
+                       
                     }
                     y0+=30;
                     yM+=30;
