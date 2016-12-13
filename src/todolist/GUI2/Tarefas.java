@@ -61,27 +61,17 @@ public class Tarefas extends JPanel {
         @Override
         public void mousePressed(MouseEvent e) {
         
-//            int x = e.getX();
-//            int y = e.getY();
-//            
-//            int y0=5;
-//            int yM=30;
-//            
-//            if(y<=dados.getCadeiras().size()*30 && x<=90){
-//                for(UnidadeCurricular uc : dados.getCadeiras()){
-//                    if(y>=y0 && y<=yM){
-                        JDialog mydialog = new TarefasAcao(dados);
-//                    }
-//                    y0+=30;
-//                    yM+=30;
-//                }
-//            }
-//            
-//        
+            int x = e.getX(), y = e.getY();
+            int xI = 10, yI = 10;
+            
+            for(int i=0; i<3; i++){
+                if(x>xI && x<xI+700 && y>yI && y<yI+85){
+                    //System.out.println("Este é o "+i+"º");
+                    String titulo = "Titulo "+ i;
+                    JDialog mydialog = new TarefasAcao(dados, titulo);
+                }
+                yI+=100;
+            } 
         }
     }
-    
-    
-    
-    
 }
