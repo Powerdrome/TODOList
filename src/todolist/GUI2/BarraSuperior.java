@@ -205,12 +205,14 @@ public class BarraSuperior extends JPanel implements Observer{
 
     @Override
     public void update(Observable o, Object arg) {
-        
+        String texto="";
         if(dados.getEstado()==2){
-            label.setText("Tarefa > AMI");
+            texto = "Tarefas > "+ dados.getUc().getNome();
+            label.setText(texto);
         }
         if(dados.getEstado()==4){
-        label.setText("Notas > AMI");
+            texto = "Notas > "+ dados.getUc().getNome();
+            label.setText(texto);
         }
         if(dados.getEstado()==1){
             label.setText("");
