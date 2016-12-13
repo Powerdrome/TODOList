@@ -10,7 +10,7 @@ import java.awt.Dialog;
 import java.awt.Dimension;
 import java.awt.Frame;
 import java.awt.GridBagConstraints;
-import java.awt.GridLayout;
+import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -52,7 +52,7 @@ public class EscolherHoras extends JDialog{
         this.setTitle("Definição do horário");
         this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         
-        //preparaJanela();
+        preparaJanela();
         
         //calcula a posição e coloca aí a janela
         startx = (int) (getToolkit().getScreenSize().getWidth()/2 - x/2 + 0.5);
@@ -71,82 +71,110 @@ public class EscolherHoras extends JDialog{
         validate();
     }
     
-//    public void preparaJanela() {
-//        int x = 940;
-//        int y = 575;
-//        String [] combos;
-//        ArrayList<String> turmas = null;
-//        GridBagConstraints gbConstraints = new GridBagConstraints();
-//
-//        setLayout(new GridLayout(8, 3));
-//        
-////        if (getComponentCount() != 0) {
-////            for (Component c: getComponents()) {
-////                remove(c);
-////            }
-////        }
-//
-//        text = new JLabel(dados.getCadeiras().get(nCadeiraActual).getNome());
-//        gbConstraints.gridwidth = 3;
-//        this.add(text,gbConstraints);
-//        
-//        gbConstraints.gridwidth = 1;
-//        this.add(TEORICA,gbConstraints);
-//        //preparar array de strings com as horas das aulas teóricas
-//        if (combos == null) {
-//            combos = new String[1];
-//            combos[0] = "Escolha uma turma teórica";
-//            dropdownT = new JComboBox<>(combos);
-//            dropdownT.setEnabled(false);
-//        } else {
-//            dropdownT = new JComboBox<>(combos);    
-//        }
-//        gbConstraints.gridwidth = 2;
-//        this.add(dropdownT, gbConstraints);
-//        
-//        gbConstraints.gridwidth = 1;
-//        this.add(PRATICA,gbConstraints);
-//        //preparar array de strings com as horas das aulas práticas
-//        if (combos == null) {
-//            combos = new String[1];
-//            combos[0] = "Escolha uma turma prática";
-//            dropdownP = new JComboBox<>(combos);
-//            dropdownP.setEnabled(false);
-//        } else {
-//            dropdownP = new JComboBox<>(combos);    
-//        }
-//        gbConstraints.gridwidth = 2;
-//        this.add(dropdownP, gbConstraints);
-//        
-//        gbConstraints.gridwidth = 1;
-//        this.add(TPRATICA,gbConstraints);
-//        //preparar array de strings com as horas das aulas teórico-práticas
-//        if (combos == null) {
-//            combos = new String[1];
-//            combos[0] = "Escolha uma turma teórico-prática";
-//            dropdownTP = new JComboBox<>(combos);
-//            dropdownTP.setEnabled(false);
-//        } else {
-//            dropdownTP = new JComboBox<>(combos);    
-//        }
-//        gbConstraints.gridwidth = 2;
-//        this.add(dropdownTP, gbConstraints);
-//        
-//        this.add(new JLabel(),gbConstraints);
-//        
-//        gbConstraints.gridwidth = 1;
-//        if (nCadeiraActual < nCadeiras) {
-//            button = new JButton("Próximo");
-//            button.addActionListener(new ProximoActionListener());
-//        } else {
-//            button = new JButton("Concluir");
-//            button.addActionListener(new ConcluirActionListener());
-//        }
-//        this.add(button,gbConstraints);
-//        
-//        pack();
-//        setSize(x,y);
-//    }
+    public void preparaJanela() {
+        int x = 940;
+        int y = 575;
+        String [] combos;
+        String [] firstOpt = new String[1];
+        String [] combosFinal;
+        ArrayList<String> turmas = null;
+        GridBagConstraints gbConstraints = new GridBagConstraints();
+
+        setLayout(new GridBagLayout());
+        
+        text = new JLabel(dados.getCadeiras().get(nCadeiraActual).getNome());
+        gbConstraints.gridheight = 1;
+        gbConstraints.gridwidth = 3;
+        gbConstraints.gridx = 0;
+        gbConstraints.gridy = 0;
+        add(text,gbConstraints);
+        
+        gbConstraints.gridy = 1;
+        gbConstraints.gridwidth = 1;
+        add(TEORICA,gbConstraints);
+        combos = dados.getHorasAulasT(dados.getCadeiras().get(nCadeiraActual).getNome());
+        if (combos == null || combos.length == 0) {
+            combos = new String[1];
+            combos[0] = "Escolha uma turma teórica";
+            dropdownT = new JComboBox<>(combos);
+            dropdownT.setEnabled(false);
+        } else {
+            firstOpt[0] = "Escolha uma turma teórica";
+            combosFinal = new String[1 + combos.length];
+            combosFinal[0] = firstOpt[0];
+            for(int i = 1; i < combosFinal.length; i++) {
+                combosFinal[i] = combos[i-1];
+            }
+            dropdownT = new JComboBox<>(combos);    
+        }
+        gbConstraints.gridx = 1;
+        gbConstraints.gridwidth = 2;
+        add(dropdownT, gbConstraints);
+        
+        gbConstraints.gridy = 2;
+        gbConstraints.gridx = 0;
+        gbConstraints.gridwidth = 1;
+        add(PRATICA,gbConstraints);
+        combos = dados.getHorasAulasP(dados.getCadeiras().get(nCadeiraActual).getNome());
+        if (combos == null || combos.length == 0) {
+            combos = new String[1];
+            combos[0] = "Escolha uma turma prática";
+            dropdownP = new JComboBox<>(combos);
+            dropdownP.setEnabled(false);
+        } else {
+            firstOpt[0] = "Escolha uma turma prática";
+            combosFinal = new String[1 + combos.length];
+            combosFinal[0] = firstOpt[0];
+            for(int i = 1; i < combosFinal.length; i++) {
+                combosFinal[i] = combos[i-1];
+            }
+            dropdownP = new JComboBox<>(combosFinal);
+        }
+        gbConstraints.gridx = 1;
+        gbConstraints.gridwidth = 2;
+        add(dropdownP, gbConstraints);
+        
+        gbConstraints.gridy = 3;
+        gbConstraints.gridx = 0;
+        gbConstraints.gridwidth = 1;
+        add(TPRATICA,gbConstraints);
+        combos = dados.getHorasAulasTP(dados.getCadeiras().get(nCadeiraActual).getNome());
+        if (combos == null || combos.length == 0) {
+            combos = new String[1];
+            combos[0] = "Escolha uma turma teórico-prática";
+            dropdownTP = new JComboBox<>(combos);
+            dropdownTP.setEnabled(false);
+        } else {
+            firstOpt[0] = "Escolha uma turma teórico-prática";
+            combosFinal = new String[1 + combos.length];
+            combosFinal[0] = firstOpt[0];
+            for(int i = 1; i < combosFinal.length; i++) {
+                combosFinal[i] = combos[i-1];
+            }
+            dropdownTP = new JComboBox<>(combosFinal);    
+        }
+        gbConstraints.gridx = 1;
+        gbConstraints.gridwidth = 2;
+        add(dropdownTP, gbConstraints);
+        
+        gbConstraints.gridx = 0;
+        gbConstraints.gridy = 4;
+        add(new JLabel(),gbConstraints);
+        
+        gbConstraints.gridx = 2;
+        gbConstraints.gridwidth = 1;
+        if (nCadeiraActual < nCadeiras) {
+            button = new JButton("Próximo");
+            button.addActionListener(new ProximoActionListener());
+        } else {
+            button = new JButton("Concluir");
+            button.addActionListener(new ConcluirActionListener());
+        }
+        add(button,gbConstraints);
+        
+        pack();
+        setSize(x,y);
+    }
 
     private class ConcluirActionListener implements ActionListener {
         @Override
@@ -174,6 +202,21 @@ public class EscolherHoras extends JDialog{
             //dados.getCadeiras().get(nCadeiraAtual).addAulas(*******)
             
             if (checkInput) {
+                if(dropdownT.isEnabled()) {
+                    dados.addHoraAula(nCadeiraActual,dados.getHoraAula(
+                            (String)dropdownT.getSelectedItem(),
+                            dados.getCadeiras().get(nCadeiraActual).getNome()));
+                }
+                if(dropdownP.isEnabled()) {
+                    dados.addHoraAula(nCadeiraActual,dados.getHoraAula(
+                            (String)dropdownP.getSelectedItem(),
+                            dados.getCadeiras().get(nCadeiraActual).getNome()));
+                }
+                if(dropdownTP.isEnabled()) {
+                    dados.addHoraAula(nCadeiraActual,dados.getHoraAula(
+                            (String)dropdownTP.getSelectedItem(),
+                            dados.getCadeiras().get(nCadeiraActual).getNome()));
+                }
                 setModalityType(Dialog.ModalityType.MODELESS);
                 getOwner().setEnabled(true);
                 EscolherHoras.this.dispose();
@@ -206,6 +249,21 @@ public class EscolherHoras extends JDialog{
             //dados.getCadeiras().get(nCadeiraAtual).addAulas(*******)
             
             if (checkInput) {
+                if(dropdownT.isEnabled()) {
+                    dados.addHoraAula(nCadeiraActual,dados.getHoraAula(
+                            (String)dropdownT.getSelectedItem(),
+                            dados.getCadeiras().get(nCadeiraActual).getNome()));
+                }
+                if(dropdownP.isEnabled()) {
+                    dados.addHoraAula(nCadeiraActual,dados.getHoraAula(
+                            (String)dropdownP.getSelectedItem(),
+                            dados.getCadeiras().get(nCadeiraActual).getNome()));
+                }
+                if(dropdownTP.isEnabled()) {
+                    dados.addHoraAula(nCadeiraActual,dados.getHoraAula(
+                            (String)dropdownTP.getSelectedItem(),
+                            dados.getCadeiras().get(nCadeiraActual).getNome()));
+                }
                 nCadeiraActual++;
                 //preparaJanela();
             }
