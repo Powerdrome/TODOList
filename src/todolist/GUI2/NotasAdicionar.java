@@ -38,6 +38,7 @@ public class NotasAdicionar extends JPanel implements Observer{
         this.setPreferredSize(new Dimension(100, 100));
         createAndDisplay();
         registarListeners();
+        update(dados,null);
     }
     
         protected void createAndDisplay(){
@@ -100,6 +101,7 @@ public class NotasAdicionar extends JPanel implements Observer{
     
     @Override
     public void paintComponent(Graphics g) {
+        super.paintComponent(g);
         desenhaNotas(g);
         //setBackground(Color.white);
     }

@@ -29,7 +29,7 @@ public class ScrollTarefas extends JPanel implements Observer{
         jsp.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         add(jsp, BorderLayout.CENTER);
         
-        
+        update(dados,null);
         
         
         
