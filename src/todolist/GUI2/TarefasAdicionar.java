@@ -40,6 +40,7 @@ public class TarefasAdicionar extends JPanel implements Observer{
         this.setPreferredSize(new Dimension(100, 100));
         createAndDisplay();
         registarListeners();
+        update(dados,null);
     }
     
     protected void createAndDisplay(){
@@ -88,6 +89,7 @@ public class TarefasAdicionar extends JPanel implements Observer{
     
     @Override
     public void paintComponent(Graphics g) {
+        super.paintComponent(g); //To change body of generated methods, choose Tools | Templates.
         desenhaTarefas(g);
         //setBackground(Color.white);
     }
