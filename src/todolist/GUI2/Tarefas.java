@@ -8,6 +8,8 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Observable;
+import java.util.Observer;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import todolist.Dados;
@@ -16,20 +18,24 @@ import todolist.Dados;
  *
  * @author jorgetrovisco
  */
-public class Tarefas extends JPanel {
+public class Tarefas extends JPanel implements Observer{
     Dados dados;
     Tarefas(Dados dados) {
         this.dados = dados;
         setLayout(new BorderLayout());
         //setSize(new Dimension(4000, 7000));
         super.addMouseListener(new AcaoTarefa());
+        update(dados,null);
     }
-    
+
     @Override
-    public void paint(Graphics g) {
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g); //To change body of generated methods, choose Tools | Templates.
         desenhaTarefas(g);
         setBackground(Color.white);
     }
+    
+    
     
     protected void desenhaTarefas(Graphics g){
         int x = 10;
@@ -50,6 +56,11 @@ public class Tarefas extends JPanel {
         
         
     }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        repaint();
+    }
     
     class AcaoTarefa extends MouseAdapter{
     
@@ -57,27 +68,17 @@ public class Tarefas extends JPanel {
         @Override
         public void mousePressed(MouseEvent e) {
         
-//            int x = e.getX();
-//            int y = e.getY();
-//            
-//            int y0=5;
-//            int yM=30;
-//            
-//            if(y<=dados.getCadeiras().size()*30 && x<=90){
-//                for(UnidadeCurricular uc : dados.getCadeiras()){
-//                    if(y>=y0 && y<=yM){
-                        JDialog mydialog = new TarefasAcao(dados);
-//                    }
-//                    y0+=30;
-//                    yM+=30;
-//                }
-//            }
-//            
-//        
+            int x = e.getX(), y = e.getY();
+            int xI = 10, yI = 10;
+            
+            for(int i=0; i<3; i++){
+                if(x>xI && x<xI+700 && y>yI && y<yI+85){
+                    //System.out.println("Este é o "+i+"º");
+                    String titulo = "Titulo "+ i;
+                    JDialog mydialog = new TarefasAcao(dados, titulo);
+                }
+                yI+=100;
+            } 
         }
     }
-    
-    
-    
-    
 }

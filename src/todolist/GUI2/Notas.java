@@ -13,6 +13,8 @@ import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.Observable;
+import java.util.Observer;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import todolist.Dados;
@@ -22,7 +24,7 @@ import todolist.Dados;
  * @author Paulo
  */
 //teste
-public class Notas extends JPanel{
+public class Notas extends JPanel implements Observer{
     Dados dados;
     public Notas(Dados dados) {
         
@@ -30,11 +32,15 @@ public class Notas extends JPanel{
         super.addMouseListener(new AcaoNota());
     }
     
+   
+
     @Override
-    public void paint(Graphics g){
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g); //To change body of generated methods, choose Tools | Templates.
         desenhaNotas(g);
         setBackground(Color.white);
     }
+    
     
     protected void desenhaNotas(Graphics g){
         int x = 10, y = 10;
@@ -51,6 +57,11 @@ public class Notas extends JPanel{
             y+=100;
         }
         setPreferredSize(new Dimension(0, (i*100)));
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        repaint();
     }
 
     class AcaoNota extends MouseAdapter {
