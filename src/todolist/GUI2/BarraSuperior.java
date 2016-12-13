@@ -103,23 +103,29 @@ public class BarraSuperior extends JPanel implements Observer{
         hora_estudo = new JButton("Hora Estudo");
         hora_estudo.setIcon(IcoMais);
         hora_estudo.setEnabled(true);
+        hora_estudo.setVisible(false);
         
         nova_tarefa = new JButton("Nova Tarefa");
         nova_tarefa.setIcon(IcoMais);
         nova_tarefa.setEnabled(true);
+        nova_tarefa.setVisible(false);
         
         nova_nota = new JButton("Nova Nota");
         nova_nota.setIcon(IcoMais); 
         nova_nota.setEnabled(true);
+        nova_nota.setVisible(false);
         
         botaoDica = new JButton("Dicas");    
         botaoDica.setEnabled(true);
+        botaoDica.setVisible(false);
         
         tarefas = new JButton("Tarefas");
         tarefas.setEnabled(true);
+        tarefas.setVisible(false);
         
         notas = new JButton("Notas");
         notas.setEnabled(true);
+        notas.setVisible(false);
         
         label = new JLabel();
         label.setForeground(Color.WHITE);
@@ -139,11 +145,12 @@ public class BarraSuperior extends JPanel implements Observer{
         box.add(Box.createRigidArea(new Dimension(3,0)));
         box.add(hora_estudo);
         box.add(Box.createRigidArea(new Dimension(3,0))); 
+        box.add(botaoDica);
+        box.add(Box.createRigidArea(new Dimension(3,0))); 
         box.add(nova_tarefa);
         box.add(Box.createRigidArea(new Dimension(3,0))); 
         box.add(nova_nota);
-        box.add(Box.createRigidArea(new Dimension(3,0))); 
-        box.add(botaoDica);
+        
         
         frame.add(box);
         
@@ -208,6 +215,60 @@ public class BarraSuperior extends JPanel implements Observer{
         if(dados.getEstado()==1){
             label.setText("");
         }
+        
+        System.out.println("Estado " + dados.getEstado());
+        switch(dados.getEstado()){
+            case 1:
+                hora_estudo.setVisible(true);
+                tarefas.setVisible(false);
+                notas.setVisible(false);
+                nova_tarefa.setVisible(false);
+                nova_nota.setVisible(false);
+                botaoDica.setVisible(false);
+                break;
+            case 2:
+                hora_estudo.setVisible(false);
+                tarefas.setVisible(false);
+                notas.setVisible(true);
+                nova_tarefa.setVisible(true);
+                nova_nota.setVisible(false);
+                botaoDica.setVisible(true);
+                break;
+            case 3:
+                hora_estudo.setVisible(false);
+                tarefas.setVisible(true);
+                notas.setVisible(true);
+                nova_tarefa.setVisible(false);
+                nova_nota.setVisible(false);
+                botaoDica.setVisible(false);
+                break;
+            case 4:
+                hora_estudo.setVisible(false);
+                tarefas.setVisible(true);
+                notas.setVisible(false);
+                nova_tarefa.setVisible(false);
+                nova_nota.setVisible(true);
+                botaoDica.setVisible(true);
+                break;
+        
+            case 5:
+                hora_estudo.setVisible(false);
+                tarefas.setVisible(false);
+                notas.setVisible(false);
+                nova_tarefa.setVisible(false);
+                nova_nota.setVisible(false);
+                botaoDica.setVisible(false);
+                
+            case 6:
+                hora_estudo.setVisible(false);
+                tarefas.setVisible(true);
+                notas.setVisible(true);
+                nova_tarefa.setVisible(false);
+                nova_nota.setVisible(false);
+                botaoDica.setVisible(false);
+        }
+        
+        
         
         repaint();
     }
