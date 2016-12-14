@@ -406,6 +406,10 @@ public class Dados extends Observable{
         return calendario.getHoras();
     }
 
+    public ArrayList<ArrayList<HoraAula>> getAulas() {
+        return aulasExistentes.getAulas();
+    }
+    
     public String [] getHorasAulasT(String nomeUC) {
         return aulasExistentes.getHorasAulasT(nomeUC);
     }

@@ -77,7 +77,6 @@ public class EscolherHoras extends JDialog{
         String [] combos;
         String [] firstOpt = new String[1];
         String [] combosFinal;
-        ArrayList<String> turmas = null;
         GridBagConstraints gbConstraints = new GridBagConstraints();
 
         setLayout(new GridBagLayout());
@@ -93,12 +92,15 @@ public class EscolherHoras extends JDialog{
         gbConstraints.gridwidth = 1;
         add(TEORICA,gbConstraints);
         combos = dados.getHorasAulasT(dados.getCadeiras().get(nCadeiraActual).getNome());
+        //System.out.println(dados.getAulas());     debug: ver como as turmas foram inicializadas;
         if (combos == null || combos.length == 0) {
+            System.out.println("Não foram encontradas turmas.");
             combos = new String[1];
             combos[0] = "Escolha uma turma teórica";
             dropdownT = new JComboBox<>(combos);
             dropdownT.setEnabled(false);
         } else {
+            System.out.println("Recebido: \n" + combos);
             firstOpt[0] = "Escolha uma turma teórica";
             combosFinal = new String[1 + combos.length];
             combosFinal[0] = firstOpt[0];
@@ -117,11 +119,13 @@ public class EscolherHoras extends JDialog{
         add(PRATICA,gbConstraints);
         combos = dados.getHorasAulasP(dados.getCadeiras().get(nCadeiraActual).getNome());
         if (combos == null || combos.length == 0) {
+            System.out.println("Não foram encontradas turmas.");
             combos = new String[1];
             combos[0] = "Escolha uma turma prática";
             dropdownP = new JComboBox<>(combos);
             dropdownP.setEnabled(false);
         } else {
+            System.out.println("Recebido: \n" + combos);
             firstOpt[0] = "Escolha uma turma prática";
             combosFinal = new String[1 + combos.length];
             combosFinal[0] = firstOpt[0];
@@ -140,11 +144,13 @@ public class EscolherHoras extends JDialog{
         add(TPRATICA,gbConstraints);
         combos = dados.getHorasAulasTP(dados.getCadeiras().get(nCadeiraActual).getNome());
         if (combos == null || combos.length == 0) {
+            System.out.println("Não foram encontradas turmas.");
             combos = new String[1];
             combos[0] = "Escolha uma turma teórico-prática";
             dropdownTP = new JComboBox<>(combos);
             dropdownTP.setEnabled(false);
         } else {
+            System.out.println("Recebido: \n" + combos);
             firstOpt[0] = "Escolha uma turma teórico-prática";
             combosFinal = new String[1 + combos.length];
             combosFinal[0] = firstOpt[0];
@@ -198,9 +204,6 @@ public class EscolherHoras extends JDialog{
                 }
             }
             
-            //grava hora na UC em questão
-            //dados.getCadeiras().get(nCadeiraAtual).addAulas(*******)
-            
             if (checkInput) {
                 if(dropdownT.isEnabled()) {
                     dados.addHoraAula(nCadeiraActual,dados.getHoraAula(
@@ -245,9 +248,7 @@ public class EscolherHoras extends JDialog{
                 }
             }
             
-            //grava hora na UC em questão
-            //dados.getCadeiras().get(nCadeiraAtual).addAulas(*******)
-            
+
             if (checkInput) {
                 if(dropdownT.isEnabled()) {
                     dados.addHoraAula(nCadeiraActual,dados.getHoraAula(

@@ -18,7 +18,7 @@ public class AulasExistentes implements Serializable {
 
     public AulasExistentes() {
         preparaNomes();
-        for(String s: nomeUCs) {
+        for(int i = 0; i < nomeUCs.size(); i++) {
             aulas.add(new ArrayList<HoraAula>());
         }
     }
@@ -83,49 +83,80 @@ public class AulasExistentes implements Serializable {
         nomeUCs.add("Ética e Deontologia");
     }
     
+    public ArrayList<ArrayList<HoraAula>> getAulas() {
+        return aulas;
+    }
     public String [] getHorasAulasT(String nomeUC) {
         ArrayList<String> horas = new ArrayList<>();
+        String [] turmas;
         if(nomeUC == null || nomeUC.length() > 1)
             return null;
         int i = nomeUCs.indexOf(nomeUC);
-        if(i >= 0)
-            for(HoraAula h: aulas.get(i)) {
+        System.out.println("UC encontrada - i = " + i);
+        if(i >= 0) {
+            ArrayList<HoraAula> arr = aulas.get(i);
+            for(HoraAula h: arr) {
                 if(h.getTipo() == 0)
-                    horas.add("T " + h.getTurma() + " " + h.getSala());
+                    horas.add("T " + h.getTurma());
             }
+        }
+        else return null;
         if(horas.size() == 0)
             return null;
-        return (String[]) horas.toArray();
+        turmas = new String[horas.size()];
+        for(int j = 0; i < horas.size(); i++)
+            turmas[j] = horas.get(j);
+        
+        return turmas;
+        //return (String []) horas.toArray();
     }
     
     public String [] getHorasAulasP(String nomeUC) {
         ArrayList<String> horas = new ArrayList<>();
+        String [] turmas;
         if(nomeUC == null || nomeUC.length() > 1)
             return null;
         int i = nomeUCs.indexOf(nomeUC);
-        if(i >= 0)
-            for(HoraAula h: aulas.get(i)) {
-                if(h.getTipo() == 1)
-                    horas.add("P " + h.getTurma() + " " + h.getSala());
+        if(i >= 0) {
+            ArrayList<HoraAula> arr = aulas.get(i);
+            for(HoraAula h: arr) {
+                if(h.getTipo() == 0)
+                    horas.add("P " + h.getTurma());
             }
+        }
+        else return null;
         if(horas.size() == 0)
             return null;
-        return (String []) horas.toArray();
+        turmas = new String[horas.size()];
+        for(int j = 0; i < horas.size(); i++)
+            turmas[j] = horas.get(j);
+        
+        return turmas;
+        //return (String []) horas.toArray();
     }
     
     public String [] getHorasAulasTP(String nomeUC) {
         ArrayList<String> horas = new ArrayList<>();
+        String [] turmas;
         if(nomeUC == null || nomeUC.length() > 1)
             return null;
         int i = nomeUCs.indexOf(nomeUC);
-        if(i >= 0)
-            for(HoraAula h: aulas.get(i)) {
-                if(h.getTipo() == 2)
-                    horas.add("TP " + h.getTurma() + " " + h.getSala());
+        if(i >= 0) {
+            ArrayList<HoraAula> arr = aulas.get(i);
+            for(HoraAula h: arr) {
+                if(h.getTipo() == 0)
+                    horas.add("TP " + h.getTurma());
             }
+        }
+        else return null;
         if(horas.size() == 0)
             return null;
-        return (String []) horas.toArray();
+        turmas = new String[horas.size()];
+        for(int j = 0; i < horas.size(); i++)
+            turmas[j] = horas.get(j);
+        
+        return turmas;
+        //return (String []) horas.toArray();
     }
     
     public HoraAula getHoraAula(String desc, String nomeUC) {
