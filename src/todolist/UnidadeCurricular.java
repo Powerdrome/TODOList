@@ -152,8 +152,8 @@ public class UnidadeCurricular extends Observable implements Serializable {
                     - o2.getInicio().get(Calendar.DATE);
         } else if (o1.getInicio().get(Calendar.HOUR_OF_DAY) 
                 != o2.getInicio().get(Calendar.HOUR_OF_DAY)) {
-            return o1.getInicio().get(Calendar.HOUR) 
-                    - o2.getInicio().get(Calendar.HOUR);  
+            return o1.getInicio().get(Calendar.HOUR_OF_DAY) 
+                    - o2.getInicio().get(Calendar.HOUR_OF_DAY);  
         }
         return o1.getInicio().get(Calendar.MINUTE) 
                 - o2.getInicio().get(Calendar.MINUTE);
