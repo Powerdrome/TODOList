@@ -11,9 +11,11 @@ public class Tarefa implements Serializable {
     String nome;
     GregorianCalendar inicio;
     GregorianCalendar fim;
+    boolean concluido;
 
     public Tarefa(String nome) {
         this.nome = nome;
+        concluido = false;
     }
 
     public String getNome() {
@@ -42,6 +44,10 @@ public class Tarefa implements Serializable {
 
     public void setFim(GregorianCalendar fim) {
         this.fim = fim;
+    }
+    
+    public void Concluido(){
+        this.concluido = true;
     }
     
     @Override
