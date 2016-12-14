@@ -86,7 +86,7 @@ public class Dados extends Observable{
                 System.err.println(ex.toString());
             }
         }
-  
+        //criarUC();
         if (calendario == null) {
             calendario = new Calendario();
             estado = 0;
@@ -106,9 +106,9 @@ public class Dados extends Observable{
     
     //para testar apenas
     private void criarUC() {
-        UnidadeCurricular paUC = new UnidadeCurricular("PA", 2, 1);
-        UnidadeCurricular edUC = new UnidadeCurricular("ED", 2, 1);
-        UnidadeCurricular mdUC = new UnidadeCurricular("MD", 2, 1);
+        UnidadeCurricular paUC = new UnidadeCurricular("T1", 2, 1); //teste1
+        //UnidadeCurricular edUC = new UnidadeCurricular("ED", 2, 1);
+        //UnidadeCurricular mdUC = new UnidadeCurricular("MD", 2, 1);
         HoraEstudo mdEstudo = null;
         HoraAula mdAula = null;
         Exame mdExame = null;
@@ -117,8 +117,11 @@ public class Dados extends Observable{
         HoraEstudo paEstudo = null;
         HoraAula paAula = null;
         Tarefa a = new Tarefa("Programar ClassXPTO");
+        a.setInicio(2016, 10, 10, 10, 00);
+        a.setFim(2016, 10, 10, 12, 00);
         Tarefa b = new Tarefa("Fazer exericio 2 Ficha 3");
-        
+        b.setInicio(2016, 10, 10, 10, 00);
+        b.setFim(2016, 10, 10, 12, 00);
         Nota paNota = new Nota("Programação Distribuida Nota",
                 "Isto é uma nota para PA");
         Dica paDica = new Dica("Programação Distribuida Dica",
@@ -146,7 +149,7 @@ public class Dados extends Observable{
         paUC.addExame(paExame);
         paUC.addTarefa(a);
         paUC.addTarefa(b);
-        calendario.addHoraEstudo(paEstudo);
+        //calendario.addHoraEstudo(paEstudo);
         
         mdNota = new Nota("Programação Distribuida Nota",
                 "Isto é uma nota para PA");
@@ -169,15 +172,15 @@ public class Dados extends Observable{
         mdEstudo.setInicio(2017, 01, 13, 17, 30);
         mdEstudo.setFim(2017, 01, 13, 18, 00);
         
-        mdUC.addAulas(mdAula);
-        mdUC.addDica(mdDica);
-        mdUC.addNota(mdNota);
-        mdUC.addExame(mdExame);
-        calendario.addHoraEstudo(mdEstudo);
+        //mdUC.addAulas(mdAula);
+        //mdUC.addDica(mdDica);
+        //mdUC.addNota(mdNota);
+        //mdUC.addExame(mdExame);
+        //calendario.addHoraEstudo(mdEstudo);
         
         calendario.addCadeira(paUC);
-        calendario.addCadeira(edUC);
-        calendario.addCadeira(mdUC);
+        //calendario.addCadeira(edUC);
+        //calendario.addCadeira(mdUC);
     }
     
     //chamar quando janela principal for fechada
