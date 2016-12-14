@@ -1,4 +1,3 @@
-
 package todolist.GUI2;
 
 import java.awt.BorderLayout;
@@ -21,10 +20,11 @@ import todolist.Tarefa;
 
 /**
  *
- * @author jorgetrovisco
+ * @author G21
  */
 public class Tarefas extends JPanel implements Observer{
     Dados dados;
+    
     Tarefas(Dados dados) {
         this.dados = dados;
         setLayout(new BorderLayout());
@@ -40,8 +40,6 @@ public class Tarefas extends JPanel implements Observer{
         setBackground(Color.white);
     }
     
-    
-    
     protected void desenhaTarefas(Graphics g){
         int x = 10;
         int y = 10;
@@ -53,7 +51,6 @@ public class Tarefas extends JPanel implements Observer{
             System.out.println("Tarefas_Verificação: "+ e);
         }
         try{
-            System.out.println("Tarefas GUI");
         for(Tarefa t : dados.getTarefas()) {
             g.setFont(new Font("",0,20));
             g.drawRect(10, y, 700, 75);
@@ -89,8 +86,6 @@ public class Tarefas extends JPanel implements Observer{
     }
     
     class AcaoTarefa extends MouseAdapter{
-    
-    
         @Override
         public void mousePressed(MouseEvent e) {
         

@@ -33,7 +33,7 @@ public class TODOList {
         pa_exame.setInicio(2017,01,14,14,30);
         pa_exame.setFim(2017,01,14,16,30);
         
-        HoraAula pa_horaaula = new HoraAula(1, "L2.1", 1);
+        HoraAula pa_horaaula = new HoraAula(1, "L2.1", 1, "Programação Avançada");
         try {
             pa_horaaula.setInicio("14/01/2016 17:30");
             pa_horaaula.setFim("14/01/2016 18:00");
