@@ -96,7 +96,7 @@ public class Tarefas extends JPanel implements Observer{
                 if(x>xI && x<xI+700 && y>yI && y<yI+85){
                     //System.out.println("Este é o "+i+"º");
                     String titulo = t.getNome();
-                    JDialog mydialog = new TarefasAcao(dados, t, x, y);
+                    JDialog mydialog = new TarefasAcao(dados, t);
                 }
                 yI+=100;
             } 
