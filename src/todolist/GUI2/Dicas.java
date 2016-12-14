@@ -32,15 +32,20 @@ public class Dicas extends JPanel implements Observer {
         setLayout(new BorderLayout());
         
         super.addMouseListener(new UCSListener());
+        update(dados,null);
     }
-    
+
     @Override
-    public void paint(Graphics g) {
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g); //To change body of generated methods, choose Tools | Templates.
         desenhaDicas(g);
         
         
         setBackground(Color.white);
     }
+    
+    
+    
     
     protected void desenhaDicas(Graphics g){
         g.setFont(new Font("",0,20));
