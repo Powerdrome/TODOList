@@ -55,6 +55,8 @@ public class TarefasAcao extends JDialog {
             @Override
             public void actionPerformed(ActionEvent e) {
                 t.Concluido();
+                setVisible(false);
+                dados.actualiza();
             }
         });
         
@@ -62,6 +64,8 @@ public class TarefasAcao extends JDialog {
             @Override
             public void actionPerformed(ActionEvent e) {
                 t.Concluido();
+                setVisible(false);
+                dados.actualiza();
             }
         });
     }
