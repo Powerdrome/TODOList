@@ -61,7 +61,12 @@ public class UnidadeCurricular extends Observable implements Serializable {
     }
     
     public void addTarefa(Tarefa tarefa){
-        tarefas.add(tarefa);
+        try{
+            tarefas.add(tarefa);
+        }catch(Exception e){
+            System.out.println("UC_AddTarefa: "+ e);
+        }
+        
     }
 
     public String getNome() {
