@@ -21,12 +21,12 @@ public class TarefasAcao extends JDialog {
     JButton eliminar;
     JButton concluir;
     Tarefa t;
-    public TarefasAcao(Dados dados, Tarefa tr, int x, int y) {
+    public TarefasAcao(Dados dados, Tarefa tr) {
         this.dados=dados;
         this.t = tr;
         setLayout(new BorderLayout());
         setSize(new Dimension(400, 70));
-        setLocation(x,y);
+        setLocation(200, 200);
         setTitle(tr.getNome());
         createAndDisplay();
         setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
