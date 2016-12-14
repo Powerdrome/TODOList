@@ -46,9 +46,15 @@ public class Tarefa implements Serializable {
         this.fim = fim;
     }
     
+    public boolean getConcluido(){
+        return concluido;
+    }
+    
     public void Concluido(){
         this.concluido = true;
     }
+    
+    
     
     @Override
     public String toString() {

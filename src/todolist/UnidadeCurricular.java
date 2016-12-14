@@ -7,6 +7,9 @@ package todolist;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Objects;
 import java.util.Observable;
 
@@ -98,7 +101,12 @@ public class UnidadeCurricular extends Observable implements Serializable {
     }
     
     public ArrayList<Tarefa> getTarefas(){
-        return tarefas;
+        ArrayList<Tarefa> tar = new ArrayList<>();
+        for(Tarefa t: tarefas)
+            if(!t.getConcluido())
+                tar.add(t);
+        Collections.sort(tar, new UnidadeCurricular.ComparadorTarefas());
+        return tar;
     }
 
     @Override
@@ -124,5 +132,32 @@ public class UnidadeCurricular extends Observable implements Serializable {
             return false;
         }
         return true;
+    }
+    
+    private class ComparadorTarefas implements Comparator<Tarefa>{
+
+    @Override
+    public int compare(Tarefa o1, Tarefa o2) {
+        if (o1.getInicio().get(Calendar.YEAR) 
+                != o2.getInicio().get(Calendar.YEAR)) {
+            return o1.getInicio().get(Calendar.YEAR) 
+                    - o2.getInicio().get(Calendar.YEAR);
+        } else if (o1.getInicio().get(Calendar.MONTH) 
+                != o2.getInicio().get(Calendar.MONTH)) {
+            return o1.getInicio().get(Calendar.DATE) 
+                    - o2.getInicio().get(Calendar.DATE);
+        } else if (o1.getInicio().get(Calendar.DATE)
+                != o2.getInicio().get(Calendar.DATE)) {
+            return o1.getInicio().get(Calendar.DATE) 
+                    - o2.getInicio().get(Calendar.DATE);
+        } else if (o1.getInicio().get(Calendar.HOUR_OF_DAY) 
+                != o2.getInicio().get(Calendar.HOUR_OF_DAY)) {
+            return o1.getInicio().get(Calendar.HOUR) 
+                    - o2.getInicio().get(Calendar.HOUR);  
+        }
+        return o1.getInicio().get(Calendar.MINUTE) 
+                - o2.getInicio().get(Calendar.MINUTE);
+    }
+    
     }
 }
