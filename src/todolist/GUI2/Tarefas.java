@@ -8,11 +8,16 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.Observable;
 import java.util.Observer;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import todolist.Dados;
+import todolist.Tarefa;
 
 /**
  *
@@ -41,20 +46,39 @@ public class Tarefas extends JPanel implements Observer{
         int x = 10;
         int y = 10;
         int i = 0;
-        for(; i<3; i++){
-        g.setFont(new Font("",0,20));
-        g.drawRect(10, y, 700, 75);
-        String string = "Tarefa " + i;
-        g.drawString(string, (35), (y+40));
-        g.setFont(new Font("",0,15));
-        g.drawLine(550, y, 550, y+75);
-        g.drawString("24/11/2017", 600, y+25);
-        g.drawString("18h00 - 20h30", 590, y+50);
-        y+= 100;
+        try{
+        if(dados.getTarefas().isEmpty() || dados.getTarefas() == null)
+            return;
+        }catch(Exception e){
+            System.out.println("erro: "+ e);
+        }
+        try{
+        for(Tarefa t : dados.getTarefas()) {
+            g.setFont(new Font("",0,20));
+            g.drawRect(10, y, 700, 75);
+            String string = t.getNome();
+            g.drawString(string, (35), (y+40));
+            g.setFont(new Font("",0,15));
+            g.drawLine(550, y, 550, y+75);
+            String data = getFormated(t.getInicio(), "dd/MM/yyyy");
+            g.drawString(data, 600, y+25);
+            String horaI = getFormated(t.getInicio(), "hh:mm");
+            String horaF = getFormated(t.getFim(), "hh:mm");
+            g.drawString(horaI + " - " + horaF, 590, y+50);
+            y+= 100;
         }
         setPreferredSize(new Dimension(0, (i*100)));
+        }catch(Exception e){
+            System.out.println("erro: "+ e);
+        }
         
-        
+    }
+    
+    private String getFormated(GregorianCalendar gC, String formato){     
+        DateFormat oDateFormat = new SimpleDateFormat(formato);
+        Date newDate = gC.getTime();
+        String formated = oDateFormat.format(gC.getTime());
+        return formated;
     }
 
     @Override

@@ -18,6 +18,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import todolist.Tarefa;
 
 /**
  *
@@ -32,7 +33,6 @@ public class TarefasAdicionar extends JPanel implements Observer{
     JTextField inicio;
     JTextField fim;
     public TarefasAdicionar(todolist.Dados dados) {
-        this.dados = dados;
         this.dados = dados;
         this.dados.addObserver(this);
         
@@ -118,12 +118,23 @@ public class TarefasAdicionar extends JPanel implements Observer{
                 a += "Fim: " + fim.getText();
                 System.out.println(a);
                 
-//                String vI = verificaInsercao();
-//                if(vI.isEmpty())
-//                    System.out.println("Tudo ok... Vamos proseguir");
-//                else
-//                    System.out.println(vI);
-//                //System.out.println(a);
+                String vI = verificaInsercao();
+                if(vI.isEmpty()){
+                    System.out.println("Tudo ok... Vamos proseguir");
+                    System.out.println(a);
+                    try {
+                        Tarefa novaTarefa = new Tarefa(tarefa.getText());
+                        novaTarefa.setInicio(ano, mes, dia, 10, 00);
+                        novaTarefa.setInicio(ano, mes, dia, 12, 00);
+                        System.out.println(dados.getUc().getNome());//
+                        dados.addTarefa(novaTarefa);
+                    }catch(Exception b){
+                        System.out.println("Tarefas Adicionar: "+ b);
+                    }
+                }else{
+                    System.out.println(vI);
+                }
+                
             }
         });
         
