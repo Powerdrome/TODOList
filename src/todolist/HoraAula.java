@@ -1,7 +1,6 @@
 /*
     class HoraAula
     Versão 1.0 30/11/16
-    
 */
 package todolist;
 
@@ -16,25 +15,36 @@ public class HoraAula implements Serializable {
     private static final long serialVersionUID = 1L;
     private int tipo; //0 - teórica, 1 - prática, 2 - tprática
     private String sala;
+    private String uc;
     private int turma;
     private GregorianCalendar inicio;
     private GregorianCalendar fim;
     private DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm");
  
-    public HoraAula(int tipo, String sala, int turma) {
+    public HoraAula(int tipo, String sala, int turma, String uc) {
         this.tipo = tipo;
         this.sala = sala;
         this.turma = turma;
+        this.uc = uc;
     }
-    
+    public HoraAula(String uc, String turma, String sala) {
+        this.uc = uc;
+        this.turma = Integer.parseInt(turma);
+        this.sala = sala;
+    }
     public HoraAula(int tipo, String sala, GregorianCalendar inicio,
-            GregorianCalendar fim) {
+            GregorianCalendar fim, String uc) {
         this.tipo = tipo;
         this.sala = sala;
         this.inicio = inicio;
         this.fim = fim;
+        this.uc = uc;
     }
 
+    public String getUc() {
+        return uc;
+    }
+    
     public void setTipo(int tipo) {
         this.tipo = tipo;
     }
@@ -71,6 +81,14 @@ public class HoraAula implements Serializable {
         }
     }
 
+    public void setInicio(int ano, int mes, int dia, int hora, int minuto) {
+        inicio = new GregorianCalendar(ano, mes, dia, hora, minuto);
+    }
+
+    public void setFim(int ano, int mes, int dia, int hora, int minuto) {
+        fim = new GregorianCalendar(ano, mes, dia, hora, minuto);
+    }
+    
     public int getTurma() {
         return turma;
     }

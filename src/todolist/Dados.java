@@ -1,10 +1,8 @@
 package todolist;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -12,7 +10,6 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.Observable;
-import java.util.StringTokenizer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -41,8 +38,6 @@ import java.util.logging.Logger;
 
 */
 
-
-
 public class Dados extends Observable{
     private Calendario calendario = null;
     private AulasExistentes aulasExistentes = null;
@@ -51,6 +46,7 @@ public class Dados extends Observable{
     private final String NOME_FICHEIRO_HORARIOS = "HORARIOS";
     private int estado = -1;
     private UnidadeCurricular uc;
+    
     public Dados() {
         File saveFile = new File(NOME_FICHEIRO_USER);
         File horarios = new File(NOME_FICHEIRO_HORARIOS);
@@ -131,7 +127,7 @@ public class Dados extends Observable{
         paExame.setInicio(2017, 01, 14, 14, 30);
         paExame.setFim(2017, 01, 14, 16, 30);
         
-        paAula = new HoraAula(1, "L2.1", 1);
+        paAula = new HoraAula(1, "L2.1", 1, "Programação Avançada");
         try {
             paAula.setInicio("14/01/2016 17:30");
             paAula.setFim("14/01/2016 18:00");
@@ -160,7 +156,7 @@ public class Dados extends Observable{
         mdExame.setInicio(2017, 01, 14, 14, 30);
         mdExame.setFim(2017, 01, 14, 16, 30);
         
-        mdAula = new HoraAula(1, "L2.1", 1);
+        mdAula = new HoraAula(1, "L2.1", 1, "Modelação e Design");
         try {
             mdAula.setInicio("14/01/2016 17:30");
             mdAula.setFim("14/01/2016 18:00");
@@ -413,7 +409,7 @@ public class Dados extends Observable{
         return calendario.getHoras();
     }
     
-    public ArrayList<ArrayList<HoraAula>> getAulas() {
+    public ArrayList<HoraAula> getAulasExistentes() {
         return aulasExistentes.getAulas();
     }
     
