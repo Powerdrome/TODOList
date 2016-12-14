@@ -13,11 +13,15 @@ import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Observable;
 import java.util.Observer;
 import javax.swing.JPanel;
+import todolist.HoraAula;
+import todolist.UnidadeCurricular;
 /**
  *
  * @author jorgetrovisco
@@ -101,21 +105,56 @@ public class Calendario extends JPanel  implements Observer{
     }
     public void DesenhaLista(Graphics g){
         g.setFont(new Font("",0,10));
+        int x, y, horas, minutos, tam;
+        GregorianCalendar inicio, fim;
+        String nome;
+        for(UnidadeCurricular uc : dados.getCadeiras())
+            for(HoraAula ha : uc.getAulas()){
+                nome = uc.getNome();
+                inicio = ha.getInicio();
+                fim = ha.getFim();
+            
         
-        GregorianCalendar inicio = new GregorianCalendar(2016, 11, 1, 10, 30);
-        GregorianCalendar fim = new GregorianCalendar(2016, 11, 1, 12, 0);
+                //inicio = new GregorianCalendar(2016, 11, 1, 10, 30);
+                //fim = new GregorianCalendar(2016, 11, 1, 12, 0);
         
-        int x = (((inicio.get(Calendar.DAY_OF_WEEK)-2)*100)+50);
-        int y = ((((inicio.get(Calendar.HOUR_OF_DAY)-9)*30)+((inicio.get(Calendar.MINUTE))/2))+35);
-        int horas =  fim.get(Calendar.HOUR_OF_DAY) - inicio.get(Calendar.HOUR_OF_DAY);
-        int minutos = fim.get(Calendar.MINUTE) - inicio.get(Calendar.MINUTE);
-        int tam = ((horas*30)+(minutos/2));
+                x = (((inicio.get(Calendar.DAY_OF_WEEK)-2)*100)+50);
+                y = ((((inicio.get(Calendar.HOUR_OF_DAY)-9)*30)
+                        +((inicio.get(Calendar.MINUTE))/2))+35);
+                
+                horas =  fim.get(Calendar.HOUR_OF_DAY) 
+                        - inicio.get(Calendar.HOUR_OF_DAY);
+                
+                minutos = fim.get(Calendar.MINUTE) 
+                        - inicio.get(Calendar.MINUTE);
+                if(minutos<0){
+                    horas--;
+                    minutos += 60;
+                }
+                
+                
+                tam = ((horas*30)+(minutos/2));
+                
+                System.out.println("Inicio " + getFormated(inicio, "HH:mm"));
+                System.out.println("Fim " + getFormated(fim, "HH:mm"));
+                
+                System.out.println("Cadeira: "+ nome + " x: " + x + " y: " + y + "\nhoras: " + horas
+                    + " minutos: " + minutos + " tam: " + tam);
+                
+                g.setColor(Color.blue);
+                g.fillRect(x, y, 100, tam);
+                g.setColor(Color.white);
+                g.drawString(nome, x+5, y+10);
         
-        g.setColor(Color.blue);
-        g.fillRect(x, y, 100, tam);
-        g.setColor(Color.white);
-        g.drawString("Aula PA", x+5, y+10);
+        }
         
+    }
+    
+    private String getFormated(GregorianCalendar gC, String formato){     
+        DateFormat oDateFormat = new SimpleDateFormat(formato);
+        Date newDate = gC.getTime();
+        String formated = oDateFormat.format(gC.getTime());
+        return formated;
     }
 
     @Override
