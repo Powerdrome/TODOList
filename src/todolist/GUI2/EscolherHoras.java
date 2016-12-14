@@ -75,7 +75,7 @@ public class EscolherHoras extends JDialog{
         int x = 940;
         int y = 575;
         String [] combos;
-        String [] firstOpt = new String[1];
+        String [] firstOpt = new String [3];
         String [] combosFinal;
         GridBagConstraints gbConstraints = new GridBagConstraints();
 
@@ -107,7 +107,7 @@ public class EscolherHoras extends JDialog{
             for(int i = 1; i < combosFinal.length; i++) {
                 combosFinal[i] = combos[i-1];
             }
-            dropdownT = new JComboBox<>(combos);    
+            dropdownT = new JComboBox<>(combosFinal);    
         }
         gbConstraints.gridx = 1;
         gbConstraints.gridwidth = 2;
@@ -126,9 +126,9 @@ public class EscolherHoras extends JDialog{
             dropdownP.setEnabled(false);
         } else {
             System.out.println("Recebido: \n" + combos);
-            firstOpt[0] = "Escolha uma turma prática";
+            firstOpt[1] = "Escolha uma turma prática";
             combosFinal = new String[1 + combos.length];
-            combosFinal[0] = firstOpt[0];
+            combosFinal[0] = firstOpt[1];
             for(int i = 1; i < combosFinal.length; i++) {
                 combosFinal[i] = combos[i-1];
             }
@@ -151,9 +151,9 @@ public class EscolherHoras extends JDialog{
             dropdownTP.setEnabled(false);
         } else {
             System.out.println("Recebido: \n" + combos);
-            firstOpt[0] = "Escolha uma turma teórico-prática";
+            firstOpt[2] = "Escolha uma turma teórico-prática";
             combosFinal = new String[1 + combos.length];
-            combosFinal[0] = firstOpt[0];
+            combosFinal[0] = firstOpt[2];
             for(int i = 1; i < combosFinal.length; i++) {
                 combosFinal[i] = combos[i-1];
             }
@@ -169,7 +169,7 @@ public class EscolherHoras extends JDialog{
         
         gbConstraints.gridx = 2;
         gbConstraints.gridwidth = 1;
-        if (nCadeiraActual < nCadeiras) {
+        if (nCadeiraActual < nCadeiras - 1) {
             button = new JButton("Próximo");
             button.addActionListener(new ProximoActionListener());
         } else {

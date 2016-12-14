@@ -110,7 +110,7 @@ public class CalendarioTest {
         he.setInicio(2016, 12, 10, 10, 0);
         he.setFim(2016, 12, 10, 15, 0);
         UnidadeCurricular cadeira = new UnidadeCurricular("Teste", 1, 2);
-        HoraAula ha = new HoraAula(1, "L1.2", 1);
+        HoraAula ha = new HoraAula(1, "L1.2", 1, "");
         try {
             ha.setInicio("10/12/2016 10:00");
             ha.setFim("10/12/2016 13:00");

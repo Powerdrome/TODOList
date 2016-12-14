@@ -37,6 +37,7 @@ public class ScrollTarefas extends JPanel implements Observer{
     
     @Override
     public void update(Observable o, Object arg) {
+        System.out.println("Chama o Update da Scroll");
         if(dados.getEstado() == 3){ //3
             add(addTarefa, BorderLayout.SOUTH);
         }else{
