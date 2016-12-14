@@ -68,7 +68,6 @@ public class AulasExistentes implements Serializable{
         StringTokenizer token = new StringTokenizer(desc," ");
         String tipoS = token.nextToken();
         int turma;
-                Integer.parseInt(token.nextToken());
         int tipo;
         
         try {
