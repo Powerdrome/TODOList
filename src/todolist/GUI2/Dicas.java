@@ -2,12 +2,18 @@ package todolist.GUI2;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
+import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Observable;
 import java.util.Observer;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -26,15 +32,20 @@ public class Dicas extends JPanel implements Observer {
         setLayout(new BorderLayout());
         
         super.addMouseListener(new UCSListener());
+        update(dados,null);
     }
-    
+
     @Override
-    public void paint(Graphics g) {
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g); //To change body of generated methods, choose Tools | Templates.
         desenhaDicas(g);
         
         
         setBackground(Color.white);
     }
+    
+    
+    
     
     protected void desenhaDicas(Graphics g){
         g.setFont(new Font("",0,20));

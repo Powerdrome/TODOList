@@ -9,6 +9,8 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -25,7 +27,7 @@ import todolist.Dados;
  */
 public class NotasAdicionar extends JPanel implements Observer{
     todolist.Dados dados;
-    JButton btnCancelar;
+    JButton btnCancelar, btnAdicionar;
 
     public NotasAdicionar(Dados dados) {
         this.dados = dados;
@@ -36,25 +38,70 @@ public class NotasAdicionar extends JPanel implements Observer{
         this.setPreferredSize(new Dimension(100, 100));
         createAndDisplay();
         registarListeners();
+        update(dados,null);
     }
     
         protected void createAndDisplay(){
-        JPanel frame = new JPanel(new GridLayout(0,2));
-        //JLabel 
-        JTextField tarefa = new JTextField("Nota");        
-        JTextField nota = new JTextField("escreva nota");
+//        JPanel frame = new JPanel(new GridLayout(0,2));
+//        //JLabel 
+//        JTextField titulo = new JTextField("Titulo");        
+//        JTextField nota = new JTextField("Nota");
+//        
+//        JButton btnAdicionar = new JButton("Adicionar");
+//        btnCancelar = new JButton("Cancelar");
+//        frame.add(titulo);
+//        frame.add(nota);        
+//        frame.add(btnCancelar);
+//        frame.add(btnAdicionar);
+//        add(frame);
+
+        JTextField titulo = new JTextField("Titulo para a nota");
+        JTextField nota = new JTextField("Introduza a nota"); //Talvez Usar TextArea
         
-        JButton btnAdicionar = new JButton("Adicionar");
+        btnAdicionar = new JButton("Adicionar");
         btnCancelar = new JButton("Cancelar");
-        frame.add(tarefa);
-        frame.add(nota);        
-        frame.add(btnCancelar);
-        frame.add(btnAdicionar);
+
+
+        JPanel frame = new JPanel(new GridBagLayout());
+        GridBagConstraints gc = new GridBagConstraints();
+        
+        gc.fill = GridBagConstraints.BOTH;
+        
+        //Primeira Coluna
+        gc.weightx = 0.5;
+        gc.weighty = 0.5;
+        
+        
+        gc.gridwidth = 2;
+        gc.gridx = 0;
+        gc.gridy = 0;
+        frame.add(titulo, gc);
+        
+        //Segunda Coluna
+        gc.weightx = 1;
+        gc.weighty = 1;
+        gc.gridx = 0;
+        gc.gridy = 1;
+        frame.add(nota, gc);
+        
+        //Terceira Coluna
+        gc.weightx = 0.5;
+        gc.weighty = 0.5;
+        gc.gridwidth = 1;
+        gc.gridx = 0;
+        gc.gridy = 3;
+        frame.add(btnCancelar, gc);
+        gc.gridx = 1;
+        gc.gridy = 3;
+        frame.add(btnAdicionar, gc);
+
         add(frame);
+
     }
     
     @Override
     public void paintComponent(Graphics g) {
+        super.paintComponent(g);
         desenhaNotas(g);
         //setBackground(Color.white);
     }
@@ -67,7 +114,7 @@ public class NotasAdicionar extends JPanel implements Observer{
     protected void registarListeners(){
         btnCancelar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                dados.setEstado(4); //mudar??
+                dados.setEstado(4);
          }          
       });
     }

@@ -17,12 +17,12 @@ import todolist.Dados;
  */
 public class TarefasAcao extends JDialog {
     Dados dados;
-    public TarefasAcao(Dados dados) {
+    public TarefasAcao(Dados dados, String nome) {
         this.dados=dados;
         setLayout(new BorderLayout());
         setSize(new Dimension(400, 70));
         setLocation(200,200);
-        setTitle("Selecionar ação");
+        setTitle(nome);
         createAndDisplay();
         setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
         setVisible(true);

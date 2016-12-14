@@ -7,8 +7,15 @@ package todolist.GUI2;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.util.Observable;
+import java.util.Observer;
+import javax.swing.JDialog;
 import javax.swing.JPanel;
 import todolist.Dados;
 
@@ -17,26 +24,52 @@ import todolist.Dados;
  * @author Paulo
  */
 //teste
-public class Notas extends JPanel{
-
+public class Notas extends JPanel implements Observer{
+    Dados dados;
     public Notas(Dados dados) {
+        
         setLayout(new BorderLayout());
+        super.addMouseListener(new AcaoNota());
     }
     
+   
+
     @Override
-    public void paint(Graphics g){
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g); //To change body of generated methods, choose Tools | Templates.
         desenhaNotas(g);
         setBackground(Color.white);
     }
     
+    
     protected void desenhaNotas(Graphics g){
-        g.setFont(new Font("",0,20));
-        g.drawRect(10, 10, 700, 75);
-        g.drawString("Nota x", (20+15), (20+30));
-        g.setFont(new Font("",0,15));
-        g.drawLine(550, 10, 550, 85);
-        g.drawString("12/12/2017", 600, 35);
-        g.drawString("18h00 - 20h30", 590, 60);
+        int x = 10, y = 10;
+        int i;
+        for(i = 0; i < 3; i++){
+            g.setFont(new Font("",0,20));
+            g.drawRect(10, y, 700, 75);
+            
+            g.drawString("Nota " + i, (35), (y+40));
+            g.setFont(new Font("",0,15));
+            g.drawLine(550, y, 550, y+75);
+            g.drawString("12/12/2017", 600, y+25);
+            g.drawString("18h00 - 20h30", 590, y+50);
+            y+=100;
+        }
+        setPreferredSize(new Dimension(0, (i*100)));
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        repaint();
+    }
+
+    class AcaoNota extends MouseAdapter {
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+            JDialog mydialog = new NotasAcao(dados);
+        }
     }
     
 }
