@@ -5,7 +5,10 @@
  */
 package todolist;
 
+import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -107,9 +110,13 @@ public class CalendarioTest {
         he.setInicio(2016, 12, 10, 10, 0);
         he.setFim(2016, 12, 10, 15, 0);
         UnidadeCurricular cadeira = new UnidadeCurricular("Teste", 1, 2);
-        HoraAula ha = new HoraAula(1, "L1.2");
-        ha.setInicio(2016, 12, 10, 10, 0);
-        ha.setFim(2016, 12, 10, 13, 0);
+        HoraAula ha = new HoraAula(1, "L1.2", 1);
+        try {
+            ha.setInicio("10/12/2016 10:00");
+            ha.setFim("10/12/2016 13:00");
+        } catch (ParseException ex) {
+            Logger.getLogger(CalendarioTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
         cadeira.addAulas(ha);
         
         
