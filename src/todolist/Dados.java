@@ -1,10 +1,8 @@
 package todolist;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -12,7 +10,6 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.Observable;
-import java.util.StringTokenizer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -621,6 +618,71 @@ public class Dados extends Observable{
     public UnidadeCurricular getUc() {
         return uc;
     }
+    
+    public void addTarefa(Tarefa tarefa){
+        try{
+            uc.addTarefa(tarefa);
+        }catch(Exception e){
+            System.out.println("Dados_AddTarefa: " + e);
+        }
+        setChanged();
+        notifyObservers();   
+    }
+    
+    public ArrayList<Tarefa> getTarefas(){
+        try{
+            return uc.getTarefas();
+        }catch(Exception e){
+            System.out.println("Dados_GetTarefas: " + e);
+        }
+        
+        return null;
+    }
+    
+     public void addNota(Nota nota){
+        try{
+            uc.addNota(nota);
+        }catch(Exception e){
+            System.out.println("Dados_AddNotas: " + e);
+        }
+        setChanged();
+        notifyObservers();
+    }
+    
+    public ArrayList<Nota> getNotas(){
+        try{
+            return uc.getNotas();
+        }catch(Exception e){
+            System.out.println("Dados_GetNotas: " + e);
+        }
+        return null;
+    }
+    
+    public Nota getNotaById(int id){
+        return uc.getNotas().get(id);
+    }
+    
+    public void setNotas(Nota nova, int id){
+        try{
+            //Implementação da edição
+            Nota antiga = getNotaById(id);
+            antiga = nova;
+            //confirmar, mas acho que chega
+        }catch(Exception e){
+            System.out.println("Dados_SetNotas: " + e);
+        }
+    }
+    
+    public ArrayList<Dica> getDicas(){
+        try{
+            return uc.getDicas();
+        }catch(Exception e){
+            System.out.println("Dados_GetDicas: " + e);
+        }
+        return null;
+    }
+    
+    
     
     
 }
