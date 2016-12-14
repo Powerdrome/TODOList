@@ -18,6 +18,7 @@ import java.util.Observable;
 import java.util.Observer;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import todolist.Dados;
 
@@ -28,6 +29,8 @@ import todolist.Dados;
 public class NotasAdicionar extends JPanel implements Observer{
     todolist.Dados dados;
     JButton btnCancelar, btnAdicionar;
+    JTextField titulo;
+    JTextArea nota;
 
     public NotasAdicionar(Dados dados) {
         this.dados = dados;
@@ -38,9 +41,9 @@ public class NotasAdicionar extends JPanel implements Observer{
         this.setPreferredSize(new Dimension(100, 100));
         createAndDisplay();
         registarListeners();
-        update(dados,null);
+        //update(dados,null);
     }
-    
+        
         protected void createAndDisplay(){
 //        JPanel frame = new JPanel(new GridLayout(0,2));
 //        //JLabel 
@@ -55,8 +58,8 @@ public class NotasAdicionar extends JPanel implements Observer{
 //        frame.add(btnAdicionar);
 //        add(frame);
 
-        JTextField titulo = new JTextField("Titulo para a nota");
-        JTextField nota = new JTextField("Introduza a nota"); //Talvez Usar TextArea
+        titulo = new JTextField("Titulo para a nota");
+        nota = new JTextArea("Introduza a nota"); //Talvez Usar TextArea
         
         btnAdicionar = new JButton("Adicionar");
         btnCancelar = new JButton("Cancelar");
@@ -115,13 +118,27 @@ public class NotasAdicionar extends JPanel implements Observer{
         btnCancelar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 dados.setEstado(4);
+                System.out.println("Cancela nota!!");
+                titulo.setText("Titulo para a nota");
+                nota.setText("Introduza a nota");
          }          
       });
+        
+        btnAdicionar.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                dados.setEstado(4);
+                System.out.println("Adiciona nota!!");
+                System.out.println("Titulo da Nota: " + titulo.getText());
+                System.out.println("Nota: "+ nota.getText());
+            }
+        });
+        
     }
 
     @Override
     public void update(Observable o, Object arg) {
         //update
     }
-    
+
+   
 }
