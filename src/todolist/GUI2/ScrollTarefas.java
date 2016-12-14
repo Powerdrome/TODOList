@@ -42,6 +42,7 @@ public class ScrollTarefas extends JPanel implements Observer{
         }else{
             remove(addTarefa);
         }
+        //repaint();
     
     }
 }

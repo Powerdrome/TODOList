@@ -50,9 +50,10 @@ public class Tarefas extends JPanel implements Observer{
         if(dados.getTarefas().isEmpty() || dados.getTarefas() == null)
             return;
         }catch(Exception e){
-            System.out.println("erro: "+ e);
+            System.out.println("Tarefas_Verificação: "+ e);
         }
         try{
+            System.out.println("Tarefas GUI");
         for(Tarefa t : dados.getTarefas()) {
             g.setFont(new Font("",0,20));
             g.drawRect(10, y, 700, 75);
@@ -62,14 +63,15 @@ public class Tarefas extends JPanel implements Observer{
             g.drawLine(550, y, 550, y+75);
             String data = getFormated(t.getInicio(), "dd/MM/yyyy");
             g.drawString(data, 600, y+25);
-            String horaI = getFormated(t.getInicio(), "hh:mm");
-            String horaF = getFormated(t.getFim(), "hh:mm");
+            String horaI = getFormated(t.getInicio(), "HH:mm");
+            String horaF = getFormated(t.getFim(), "HH:mm");
             g.drawString(horaI + " - " + horaF, 590, y+50);
             y+= 100;
+            i++;
         }
         setPreferredSize(new Dimension(0, (i*100)));
         }catch(Exception e){
-            System.out.println("erro: "+ e);
+            System.out.println("Tarefas_desenhaTarefas: "+ e);
         }
         
     }
@@ -95,11 +97,11 @@ public class Tarefas extends JPanel implements Observer{
             int x = e.getX(), y = e.getY();
             int xI = 10, yI = 10;
             
-            for(int i=0; i<3; i++){
+            for(Tarefa t : dados.getTarefas()){
                 if(x>xI && x<xI+700 && y>yI && y<yI+85){
                     //System.out.println("Este é o "+i+"º");
-                    String titulo = "Titulo "+ i;
-                    JDialog mydialog = new TarefasAcao(dados, titulo);
+                    String titulo = t.getNome();
+                    JDialog mydialog = new TarefasAcao(dados, t);
                 }
                 yI+=100;
             } 

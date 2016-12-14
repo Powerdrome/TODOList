@@ -106,28 +106,26 @@ public class TarefasAdicionar extends JPanel implements Observer{
         
         btnAdicionar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                String a = "";
-                a += "Tarefa: " + tarefa.getText() + "\n";
-                a += "Data: " + data.getData() + "\n";
                 String strData = data.getData();
                 int dia = Integer.parseInt(strData.substring(0, 2));
                 int mes = Integer.parseInt(strData.substring(3, 5));
                 int ano = Integer.parseInt(strData.substring(6, 10));
-                System.out.println(dia + " " + mes + " " + ano);
-                a += "Inicio: " + inicio.getText() + "\n";
-                a += "Fim: " + fim.getText();
-                System.out.println(a);
                 
+                int horaI = Integer.parseInt(inicio.getText().substring(0,2));
+                int horaF = Integer.parseInt(fim.getText().substring(0,2));
+                
+                int minI = Integer.parseInt(inicio.getText().substring(3,5));
+                int minF = Integer.parseInt(fim.getText().substring(3,5));
+               
                 String vI = verificaInsercao();
                 if(vI.isEmpty()){
                     System.out.println("Tudo ok... Vamos proseguir");
-                    System.out.println(a);
                     try {
                         Tarefa novaTarefa = new Tarefa(tarefa.getText());
-                        novaTarefa.setInicio(ano, mes, dia, 10, 00);
-                        novaTarefa.setInicio(ano, mes, dia, 12, 00);
-                        System.out.println(dados.getUc().getNome());//
+                        novaTarefa.setInicio(ano, (mes-1), dia, horaI, minI);
+                        novaTarefa.setFim(ano, (mes-1), dia, horaF, minF);
                         dados.addTarefa(novaTarefa);
+                        dados.setEstado(2);
                     }catch(Exception b){
                         System.out.println("Tarefas Adicionar: "+ b);
                     }
@@ -148,11 +146,11 @@ public class TarefasAdicionar extends JPanel implements Observer{
     private String verificaInsercao(){
         String a = "";
         if(tarefa.getText().equalsIgnoreCase("Tarefa") || tarefa.getText().isEmpty())
-            a += "Deve inserir o nome da tarefa";
+            a += "Deve inserir o nome da tarefa\n";
         if(inicio.getText().equalsIgnoreCase("hh:mm") || inicio.getText().isEmpty())
-            a+= "Deve inserir uma data correcta";
+            a+= "Deve inserir uma data correcta\n";
         if(fim.getText().equalsIgnoreCase("hh:mm") || fim.getText().isEmpty())
-            a+= "Deve inserir uma data correcta";
+            a+= "Deve inserir uma data correcta\n";
         return a;
     }
 }
