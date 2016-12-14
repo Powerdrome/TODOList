@@ -684,7 +684,10 @@ public class Dados extends Observable{
         return null;
     }
     
-    
+    public void actualiza(){
+        setChanged();
+        notifyObservers();
+    }
     
     
 }
