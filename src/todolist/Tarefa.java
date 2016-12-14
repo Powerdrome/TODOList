@@ -8,7 +8,7 @@ import java.util.Observable;
 
 public class Tarefa implements Serializable {
     private static final long serialVersionUID = 1L;
-        String nome;
+    String nome;
     GregorianCalendar inicio;
     GregorianCalendar fim;
 

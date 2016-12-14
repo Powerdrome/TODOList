@@ -27,9 +27,10 @@ import todolist.Dados;
 public class Notas extends JPanel implements Observer{
     Dados dados;
     public Notas(Dados dados) {
-        
+        this.dados = dados;
         setLayout(new BorderLayout());
         super.addMouseListener(new AcaoNota());
+        update(dados,null);
     }
     
    
@@ -53,7 +54,7 @@ public class Notas extends JPanel implements Observer{
             g.setFont(new Font("",0,15));
             g.drawLine(550, y, 550, y+75);
             g.drawString("12/12/2017", 600, y+25);
-            g.drawString("18h00 - 20h30", 590, y+50);
+            //g.drawString("", 590, y+50);
             y+=100;
         }
         setPreferredSize(new Dimension(0, (i*100)));
@@ -68,7 +69,17 @@ public class Notas extends JPanel implements Observer{
 
         @Override
         public void mousePressed(MouseEvent e) {
-            JDialog mydialog = new NotasAcao(dados);
+            int x = e.getX(), y = e.getY();
+            int xI = 10, yI = 10;
+            
+            for(int i=0; i<3; i++){
+                if(x>xI && x<xI+700 && y>yI && y<yI+85){
+                    //System.out.println("Este é o "+i+"º");
+                    //String titulo = "Titulo "+ i;
+                    JDialog mydialog = new NotasAcao(dados, i);
+                }
+                yI+=100;
+            }
         }
     }
     

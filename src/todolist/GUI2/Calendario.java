@@ -110,6 +110,7 @@ public class Calendario extends JPanel  implements Observer{
         int horas =  fim.get(Calendar.HOUR_OF_DAY) - inicio.get(Calendar.HOUR_OF_DAY);
         int minutos = fim.get(Calendar.MINUTE) - inicio.get(Calendar.MINUTE);
         int tam = ((horas*30)+(minutos/2));
+        
         g.setColor(Color.blue);
         g.fillRect(x, y, 100, tam);
         g.setColor(Color.white);

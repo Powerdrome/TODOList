@@ -7,22 +7,21 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import javax.swing.JButton;
 import javax.swing.JDialog;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 import todolist.Dados;
+import todolist.Tarefa;
 /**
  *
  * @author G21
  */
 public class TarefasAcao extends JDialog {
     Dados dados;
-    public TarefasAcao(Dados dados, String nome) {
+    public TarefasAcao(Dados dados, Tarefa tr) {
         this.dados=dados;
         setLayout(new BorderLayout());
         setSize(new Dimension(400, 70));
         setLocation(200,200);
-        setTitle(nome);
+        setTitle(tr.getNome());
         createAndDisplay();
         setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
         setVisible(true);
