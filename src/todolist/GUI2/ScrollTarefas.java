@@ -41,6 +41,7 @@ public class ScrollTarefas extends JPanel implements Observer{
             add(addTarefa, BorderLayout.SOUTH);
         }else{
             remove(addTarefa);
+            addTarefa = new TarefasAdicionar(dados);
         }
         //repaint();
     
