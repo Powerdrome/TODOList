@@ -561,7 +561,7 @@ public class Dados extends Observable{
         
         for (HoraEstudo he: calendario.getHorasEstudo()) {
             if (he.getTitulo().equals(titulo)) {
-               calendario.getHoras().remove(he);
+                calendario.getHoras().remove(he);
             }
         }
         setChanged();
@@ -610,6 +610,7 @@ public class Dados extends Observable{
             return;
         }
         estado = x;
+        this.actualiza();
     }
     
     public int getEstado(){
@@ -657,8 +658,16 @@ public class Dados extends Observable{
     }
     
     public ArrayList<Nota> getNotas(){
+        ArrayList<Nota> notas = new ArrayList<>();
         try{
-            return uc.getNotas();
+            for(Nota nt : uc.getNotas()){
+                if(nt.isExiste()){
+                    notas.add(nt);
+                }else{
+                    notas.remove(nt);
+                }
+            }
+            return notas;
         }catch(Exception e){
             System.out.println("Dados_GetNotas: " + e);
         }
@@ -694,7 +703,6 @@ public class Dados extends Observable{
         notifyObservers();
     }
     
-    //added by Paulo
     public void eliminaNota(Nota eleNota){
         try{
             uc.eliminaNota(eleNota);
@@ -703,5 +711,13 @@ public class Dados extends Observable{
         }
         setChanged();
         notifyObservers();
+    }
+    
+    public void addHoraEstudo(HoraEstudo he){
+        try{
+            calendario.addHoraEstudo(he);
+        }catch(Exception e){
+            System.out.println("Dados_addHoraEstudo: " + e);
+        }
     }
 }
