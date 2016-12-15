@@ -11,9 +11,9 @@ import java.awt.Dimension;
 import java.awt.Frame;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
@@ -79,7 +79,8 @@ public class EscolherHoras extends JDialog{
         String [] combosFinal;
         GridBagConstraints gbConstraints = new GridBagConstraints();
 
-        setLayout(new GridBagLayout());
+       setLayout(new GridBagLayout());
+        //setLayout(new GridLayout(6,3));
         
         text = new JLabel(dados.getCadeiras().get(nCadeiraActual).getNome());
         gbConstraints.gridheight = 1;
@@ -87,7 +88,7 @@ public class EscolherHoras extends JDialog{
         gbConstraints.gridx = 0;
         gbConstraints.gridy = 0;
         add(text,gbConstraints);
-        
+        //add(new JLabel());
         gbConstraints.gridy = 1;
         gbConstraints.gridwidth = 1;
         add(TEORICA,gbConstraints);
@@ -209,6 +210,7 @@ public class EscolherHoras extends JDialog{
                     dados.addHoraAula(nCadeiraActual,dados.getHoraAula(
                             (String)dropdownT.getSelectedItem(),
                             dados.getCadeiras().get(nCadeiraActual).getNome()));
+                    System.out.println(dados.getCadeiras().get(nCadeiraActual).getAulas());
                 }
                 if(dropdownP.isEnabled()) {
                     dados.addHoraAula(nCadeiraActual,dados.getHoraAula(

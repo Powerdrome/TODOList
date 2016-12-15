@@ -62,7 +62,7 @@ public class NotasAcao extends JDialog {
             //@Override
             public void actionPerformed(ActionEvent e) {                
                 System.out.println("Eliminar Nota "+nt.getTitulo());
-                dados.eliminaNota(nt);
+                nt.setExiste(false);
                 
                 dados.actualiza();
                 dispose();

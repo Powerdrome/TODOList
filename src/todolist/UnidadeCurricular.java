@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.Iterator;
 import java.util.Objects;
 import java.util.Observable;
 
@@ -61,7 +60,11 @@ public class UnidadeCurricular extends Observable implements Serializable {
     }
     
     public void addDica(Dica dica){
+        try{
         dicas.add(dica);
+        } catch(Exception e) {
+            System.out.println("UC_AddDica: "+e);
+        }
     }
     
     public void addTarefa(Tarefa tarefa){
@@ -110,26 +113,18 @@ public class UnidadeCurricular extends Observable implements Serializable {
         return tar;
     }
     
-    //adicionado Paulo
     public void eliminaNota(Nota nota){
-//        Iterator<Nota> it  = notas.iterator();
-//        while (it.hasNext()) {
-//            if (it.next().equals(nota)) {
-//                it.remove();
-//                break;
-//            }
-//        }
-
-
-//        notas.remove(nota);
-
-//        for(Nota n: notas){
-//            if(n.equals(nota)){
-//                notas.remove(n);
-//            }
-//        }
-
-
+        int i = 0;
+        boolean existe = false;
+        for(Nota n: notas){
+            i++;
+            if(n.equals(nota)){
+                existe = true;
+                notas.remove(n);
+                break;
+            }
+        }
+        if(existe) notas.remove(i);
     }
 
     @Override
