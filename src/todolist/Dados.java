@@ -718,6 +718,16 @@ public class Dados extends Observable{
         }
     }
     
+    //Paulo adicionei
+    public void setNotas_v2(Nota nova, Nota antiga){
+        try{
+            antiga.setTitulo(nova.getTitulo());
+            antiga.setNota(nova.getNota());
+        }catch(Exception e){
+            System.out.println("Dados_SetNotas: " + e);
+        }
+    }
+    
     public ArrayList<Dica> getDicas(){
         try{
             return uc.getDicas();
