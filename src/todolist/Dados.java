@@ -106,6 +106,9 @@ public class Dados extends Observable{
     //para testar apenas
     private void criarUC() {
         UnidadeCurricular paUC = new UnidadeCurricular("T1", 2, 1); //teste1
+        
+   
+        
         //UnidadeCurricular edUC = new UnidadeCurricular("ED", 2, 1);
         //UnidadeCurricular mdUC = new UnidadeCurricular("MD", 2, 1);
         HoraEstudo mdEstudo = null;
@@ -125,6 +128,10 @@ public class Dados extends Observable{
                 "Isto é uma nota para PA");
         Dica paDica = new Dica("Programação Distribuida Dica",
                 "Isto é uma dica pra PA");
+        
+        
+
+        
         Exame paExame = new Exame("Normal");
         
         paExame.setInicio(2017, 01, 14, 14, 30);

@@ -10,6 +10,7 @@ import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 import javax.swing.BoxLayout;
@@ -26,11 +27,16 @@ import todolist.UnidadeCurricular;
 public class Dicas extends JPanel implements Observer {
     
     todolist.Dados dados;
-    
+    ArrayList<Dica> dicas;
     
     Dicas(Dados dados) {
         this.dados = dados;
         this.dados.addObserver(this);
+        
+        dicas = new ArrayList<>();
+        dicas.add(new Dica("Dica Teste", "sdasdas"));
+        dicas.add(new Dica("Dica 123", "sdadadsaaaaaaa"));
+        
         setLayout(new BorderLayout());
         
         super.addMouseListener(new UCSListener());
@@ -54,19 +60,18 @@ public class Dicas extends JPanel implements Observer {
         int y = 10;
         int i = 0;
         try{
-        if(dados.getDicas().isEmpty() || dados.getDicas() == null)
+        if(dicas.isEmpty() || dicas == null)
             return;
         }catch(Exception e){
             System.out.println("Dicas_Verificação: "+ e);
         }
         try{
-        for(Dica t : dados.getDicas()) {
+        for(Dica t : dicas) {
             g.setFont(new Font("",0,20));
             g.drawRect(10, y, 700, 75);
             String string = t.getTitulo();
             g.drawString(string, (35), (y+40));
             g.setFont(new Font("",0,15));
-            g.drawLine(550, y, 550, y+75);
             
             y+= 100;
             i++;
@@ -106,11 +111,11 @@ public class Dicas extends JPanel implements Observer {
             int x = e.getX(), y = e.getY();
             int xI = 10, yI = 10;
             
-            for(Dica t : dados.getDicas()){
+            for(Dica t : dicas){
                 if(x>xI && x<xI+700 && y>yI && y<yI+85){
                     //System.out.println("Este é o "+i+"º");
                     String titulo = t.getTitulo();
-                JDialog mydialog = new DicasAcao(dados);
+                JDialog mydialog = new DicasAcao(t.getTitulo(), t.getDica());
                 }
                  yI+=100;
             } 
