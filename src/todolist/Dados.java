@@ -106,6 +106,9 @@ public class Dados extends Observable{
     //para testar apenas
     private void criarUC() {
         UnidadeCurricular paUC = new UnidadeCurricular("T1", 2, 1); //teste1
+        
+   
+        
         //UnidadeCurricular edUC = new UnidadeCurricular("ED", 2, 1);
         //UnidadeCurricular mdUC = new UnidadeCurricular("MD", 2, 1);
         HoraEstudo mdEstudo = null;
@@ -125,6 +128,10 @@ public class Dados extends Observable{
                 "Isto é uma nota para PA");
         Dica paDica = new Dica("Programação Distribuida Dica",
                 "Isto é uma dica pra PA");
+        
+        
+
+        
         Exame paExame = new Exame("Normal");
         
         paExame.setInicio(2017, 01, 14, 14, 30);
@@ -554,7 +561,7 @@ public class Dados extends Observable{
         
         for (HoraEstudo he: calendario.getHorasEstudo()) {
             if (he.getTitulo().equals(titulo)) {
-               calendario.getHoras().remove(he);
+                calendario.getHoras().remove(he);
             }
         }
         setChanged();
@@ -603,6 +610,7 @@ public class Dados extends Observable{
             return;
         }
         estado = x;
+        this.actualiza();
     }
     
     public int getEstado(){
@@ -650,8 +658,16 @@ public class Dados extends Observable{
     }
     
     public ArrayList<Nota> getNotas(){
+        ArrayList<Nota> notas = new ArrayList<>();
         try{
-            return uc.getNotas();
+            for(Nota nt : uc.getNotas()){
+                if(nt.isExiste()){
+                    notas.add(nt);
+                }else{
+                    notas.remove(nt);
+                }
+            }
+            return notas;
         }catch(Exception e){
             System.out.println("Dados_GetNotas: " + e);
         }
@@ -687,7 +703,6 @@ public class Dados extends Observable{
         notifyObservers();
     }
     
-    //added by Paulo
     public void eliminaNota(Nota eleNota){
         try{
             uc.eliminaNota(eleNota);
@@ -696,5 +711,13 @@ public class Dados extends Observable{
         }
         setChanged();
         notifyObservers();
+    }
+    
+    public void addHoraEstudo(HoraEstudo he){
+        try{
+            calendario.addHoraEstudo(he);
+        }catch(Exception e){
+            System.out.println("Dados_addHoraEstudo: " + e);
+        }
     }
 }

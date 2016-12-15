@@ -9,14 +9,11 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dialog;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Observable;
 import java.util.Observer;
 import javax.swing.Box;
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
@@ -43,7 +40,6 @@ public class AdicionarHora  extends JDialog implements Observer{
     JLabel hora_fim ;
     JTextField minuto_fim_field ;
     JTextField fieldNome;
-    HoraEstudo novaHora;
     
     public AdicionarHora(todolist.Dados dados) {
         this.dados = dados;
@@ -54,13 +50,9 @@ public class AdicionarHora  extends JDialog implements Observer{
         setLocation(200,200);
         setTitle("Adicionar Hora");
         createAndDisplay();
+        registarListeners();
         setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
         setVisible(true);
-
-        
-        
-        
-        
     }
     protected void createAndDisplay(){
         
@@ -94,56 +86,11 @@ public class AdicionarHora  extends JDialog implements Observer{
         
         
         botao = new JButton("Inserir");
-        botao.setBounds(100,100,10,10);
-        botao.addActionListener(new ActionListener() {
-             @Override
-             public void actionPerformed(ActionEvent e) {
-                String dat_inicio = data_inicio.getData();
-                int dia_inicio = Integer.parseInt(dat_inicio.substring(0, 2));
-                int mes_inicio = Integer.parseInt(dat_inicio.substring(3, 5));
-                int ano_inicio = Integer.parseInt(dat_inicio.substring(6, 10));
-                
-                String dat_fim = data_fim.getData();
-                int dia_fim = Integer.parseInt(dat_fim.substring(0, 2));
-                int mes_fim = Integer.parseInt(dat_fim.substring(3, 5));
-                int ano_fim = Integer.parseInt(dat_fim.substring(6, 10));
-                
-                int hora_inicio,hora_fim;
-                int minuto_inicio,minuto_fim;
-                String aula = fieldNome.getText();
-                
-                hora_inicio = Integer.parseInt(hora_inicio_field.getText());
-                hora_fim = Integer.parseInt(hora_fim_field.getText());
-                
-                minuto_inicio = Integer.parseInt(minuto_inicio_field.getText());
-                minuto_fim = Integer.parseInt(minuto_fim_field.getText());
-                
-                
-                
-                System.out.println(aula);
-                System.out.println(dia_inicio+":"+mes_inicio+":"+ano_inicio);
-                System.out.println(dia_fim+":"+mes_fim+":"+ano_fim);
-                System.out.println(hora_inicio+":"+minuto_inicio);
-                System.out.println(hora_fim+":"+minuto_inicio); 
-                
-                novaHora = new HoraEstudo(aula);
-                novaHora.setInicio(ano_inicio, mes_inicio, dia_inicio, hora_inicio, minuto_inicio);
-                novaHora.setInicio(ano_fim, mes_fim, dia_fim, hora_fim, hora_fim);   
-                
-                 
-                
-                
-             }
-         });
-        
-        
-        
-        
-        
+        //botao.setBounds(100,100,10,10);
+
         box_horizontal.add(nome); 
         box_horizontal.add(fieldNome);
-  
-        
+
         box_horizonta2.add(inicio);
         box_horizonta2.add(data_inicio);
         box_horizonta2.add(hora_inicio);
@@ -186,5 +133,54 @@ public class AdicionarHora  extends JDialog implements Observer{
     @Override
     public void update(Observable o, Object arg) {
         repaint();
+    }
+    
+    protected void registarListeners(){
+    botao.addActionListener(new ActionListener() {
+             @Override
+             public void actionPerformed(ActionEvent e) {
+                
+                String dat_inicio = data_inicio.getData();
+                int dia_inicio = Integer.parseInt(dat_inicio.substring(0, 2));
+                int mes_inicio = Integer.parseInt(dat_inicio.substring(3, 5));
+                int ano_inicio = Integer.parseInt(dat_inicio.substring(6, 10));
+                
+                /** Deixa de existir **/
+                String dat_fim = data_fim.getData();
+                int dia_fim = Integer.parseInt(dat_fim.substring(0, 2));
+                int mes_fim = Integer.parseInt(dat_fim.substring(3, 5));
+                int ano_fim = Integer.parseInt(dat_fim.substring(6, 10));
+                /** Fim Deixa de existir **/
+                
+                int hora_inicio, hora_fim;
+                int minuto_inicio, minuto_fim;
+                String aula = fieldNome.getText();
+                
+                hora_inicio = Integer.parseInt(hora_inicio_field.getText());
+                hora_fim = Integer.parseInt(hora_fim_field.getText());
+                
+                minuto_inicio = Integer.parseInt(minuto_inicio_field.getText());
+                minuto_fim = Integer.parseInt(minuto_fim_field.getText());
+                
+                
+                
+                System.out.println(aula);
+                System.out.println(dia_inicio+":"+mes_inicio+":"+ano_inicio);
+                System.out.println(dia_fim+":"+mes_fim+":"+ano_fim);
+                System.out.println(hora_inicio+":"+minuto_inicio);
+                System.out.println(hora_fim+":"+minuto_fim); 
+                
+                HoraEstudo novaHora = new HoraEstudo(aula);
+                novaHora.setInicio(ano_inicio, (mes_inicio-1), dia_inicio, hora_inicio, minuto_inicio); 
+                novaHora.setFim(ano_inicio, (mes_inicio-1), dia_inicio, hora_fim, minuto_fim);
+                dados.addHoraEstudo(novaHora);
+                dados.actualiza();
+                setVisible(false);
+                //System.out.println("Nova Hora: " + novaHora);
+                
+                
+                
+             }
+         });
     }
 }

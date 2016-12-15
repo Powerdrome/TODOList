@@ -11,10 +11,12 @@ public class Nota implements Serializable {
     private static final long serialVersionUID = 1L;
     private String Titulo;
     private String Nota;
+    boolean existe;
 
     public Nota(String Titulo, String Nota){
         this.Titulo = Titulo;
         this.Nota = Nota;
+        existe = true;
     }
 
     public String getNota() {
@@ -32,6 +34,15 @@ public class Nota implements Serializable {
     public void setTitulo(String Titulo) {
         this.Titulo = Titulo;
     }
+
+    public void setExiste(boolean existe) {
+        this.existe = existe;
+    }
+
+    public boolean isExiste() {
+        return existe;
+    }
+    
     
     @Override
     public String toString() {
