@@ -44,6 +44,7 @@ public class AdicionarHora  extends JDialog implements Observer{
     JTextField minuto_fim_field ;
     JTextField fieldNome;
     HoraEstudo novaHora;
+    
     public AdicionarHora(todolist.Dados dados) {
         this.dados = dados;
         this.dados.addObserver(this);
@@ -69,11 +70,6 @@ public class AdicionarHora  extends JDialog implements Observer{
         Box box_vertical = Box.createVerticalBox();
         
         JPanel frame = new JPanel(new SpringLayout());
-        
-        
-        
-        
-        
         
         JLabel nome = new JLabel("Hora de Estudo");
         fieldNome = new JTextField(3);
