@@ -37,14 +37,6 @@ public class Calendario extends JPanel  implements Observer{
         update(dados,null);
     }
     public void paint(Graphics g) {
-//        g.setFont(new Font("",0,15));
-//        FontMetrics fm = getFontMetrics(new Font("",0,15));
-//        String s = "message";
-//        int x = 5, y = 5;
-//        int w = getWidth(s, fm);
-//        int h = fm.getHeight();
-//        g.drawRect(x, y, w, h);
-//        g.drawString(s + h, x, y + h);
         if(show){
             DesenhaHoras(g);
             DesenhaDias(g);
@@ -136,11 +128,11 @@ public class Calendario extends JPanel  implements Observer{
                 
                 tam = ((horas*30)+(minutos/2));
                 
-                System.out.println("Inicio " + getFormated(inicio, "HH:mm"));
-                System.out.println("Fim " + getFormated(fim, "HH:mm"));
+                //System.out.println("Inicio " + getFormated(inicio, "HH:mm"));
+                //System.out.println("Fim " + getFormated(fim, "HH:mm"));
                 
-                System.out.println("Cadeira: "+ nome + " x: " + x + " y: " + y + "\nhoras: " + horas
-                    + " minutos: " + minutos + " tam: " + tam);
+                //System.out.println("Cadeira: "+ nome + " x: " + x + " y: " + y + "\nhoras: " + horas
+                   // + " minutos: " + minutos + " tam: " + tam);
                 
                 g.setColor(Color.blue);
                 g.fillRect(x, y, 100, tam);
@@ -193,11 +185,11 @@ public class Calendario extends JPanel  implements Observer{
                 
                 tam = ((horas*30)+(minutos/2));
                 
-                System.out.println("Inicio " + getFormated(inicio, "HH:mm"));
-                System.out.println("Fim " + getFormated(fim, "HH:mm"));
+                //System.out.println("Inicio " + getFormated(inicio, "HH:mm"));
+                //System.out.println("Fim " + getFormated(fim, "HH:mm"));
                 
-                System.out.println("Cadeira: "+ nome + " x: " + x + " y: " + y + "\nhoras: " + horas
-                    + " minutos: " + minutos + " tam: " + tam);
+                //System.out.println("Cadeira: "+ nome + " x: " + x + " y: " + y + "\nhoras: " + horas
+                    //+ " minutos: " + minutos + " tam: " + tam);
                 
                 g.setColor(new Color(124, 19, 21));
                 g.fillRect(x, y, 100, tam);
