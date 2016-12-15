@@ -545,11 +545,15 @@ public class Dados extends Observable{
         }
     }
     
+    public void addHoraAula(int aulaIndex, HoraAula h) {
         if(aulaIndex > getNCadeiras())
             return;
+        getCadeiras().get(aulaIndex).addAula(h);
     }
     
     public void addHoraAulas(int aulaIndex, ArrayList<HoraAula> h) {
+        if(aulaIndex > getNCadeiras() || h == null || h.size() == 0)
+            return;
         getCadeiras().get(aulaIndex).addAulas(h);
     } 
     
