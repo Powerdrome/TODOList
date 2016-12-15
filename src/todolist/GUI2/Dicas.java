@@ -18,6 +18,8 @@ import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import todolist.Dados;
+import todolist.Dica;
+import todolist.Tarefa;
 import todolist.UnidadeCurricular;
 
 
@@ -48,10 +50,31 @@ public class Dicas extends JPanel implements Observer {
     
     
     protected void desenhaDicas(Graphics g){
-        g.setFont(new Font("",0,20));
-        g.drawRect(10, 10, 700, 75);
-        g.drawString("Dica x", (20+15), (20+30));
-        g.setFont(new Font("",0,15));
+        int x = 10;
+        int y = 10;
+        int i = 0;
+        try{
+        if(dados.getDicas().isEmpty() || dados.getDicas() == null)
+            return;
+        }catch(Exception e){
+            System.out.println("Dicas_Verificação: "+ e);
+        }
+        try{
+        for(Dica t : dados.getDicas()) {
+            g.setFont(new Font("",0,20));
+            g.drawRect(10, y, 700, 75);
+            String string = t.getTitulo();
+            g.drawString(string, (35), (y+40));
+            g.setFont(new Font("",0,15));
+            g.drawLine(550, y, 550, y+75);
+            
+            y+= 100;
+            i++;
+        }
+        setPreferredSize(new Dimension(0, (i*100)));
+        }catch(Exception e){
+            System.out.println("Dicas_desenhaDicas: "+ e);
+        }
         
         
     }
@@ -59,6 +82,7 @@ public class Dicas extends JPanel implements Observer {
     @Override
     public void update(Observable o, Object arg) {
         System.out.println("UPDATE - DICAS");
+        repaint();
     }
     
     class UCSListener extends MouseAdapter{
@@ -79,16 +103,17 @@ public class Dicas extends JPanel implements Observer {
         @Override
         public void mousePressed(MouseEvent e) {
         
-            int x = e.getX();
-            int y = e.getY();
+            int x = e.getX(), y = e.getY();
+            int xI = 10, yI = 10;
             
-            int y0=5;
-            int yM=30;
-            
-            if(this.mouseOvering) {
+            for(Dica t : dados.getDicas()){
+                if(x>xI && x<xI+700 && y>yI && y<yI+85){
+                    //System.out.println("Este é o "+i+"º");
+                    String titulo = t.getTitulo();
                 JDialog mydialog = new DicasAcao(dados);
-                
-                
+                }
+                 yI+=100;
+            } 
             }
             
         
@@ -96,4 +121,4 @@ public class Dicas extends JPanel implements Observer {
     }
     
     
-}
+
