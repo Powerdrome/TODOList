@@ -61,7 +61,11 @@ public class UnidadeCurricular extends Observable implements Serializable {
     }
     
     public void addDica(Dica dica){
+        try{
         dicas.add(dica);
+        } catch(Exception e) {
+            System.out.println("UC_AddDica: "+e);
+        }
     }
     
     public void addTarefa(Tarefa tarefa){
