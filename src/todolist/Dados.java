@@ -689,5 +689,14 @@ public class Dados extends Observable{
         notifyObservers();
     }
     
-    
+    //added by Paulo
+    public void eliminaNota(Nota eleNota){
+        try{
+            uc.eliminaNota(eleNota);
+        }catch(Exception e){
+            System.out.println("Dados_EliminaNota: " + e);
+        }
+        setChanged();
+        notifyObservers();
+    }
 }

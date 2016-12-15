@@ -18,6 +18,7 @@ import java.util.Observer;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import todolist.Dados;
+import todolist.Nota;
 
 /**
  *
@@ -45,19 +46,63 @@ public class Notas extends JPanel implements Observer{
     
     protected void desenhaNotas(Graphics g){
         int x = 10, y = 10;
-        int i;
+        int i = 0;
+        
+        try{
+            if(dados.getNotas().isEmpty() || dados.getNotas() == null){
+                return;
+            }
+        }catch(Exception e){
+            System.out.println("Notas_Verificação: "+ e);
+        }
+        
+        try{
+            for(Nota n : dados.getNotas()){
+                //titulo
+                g.setFont(new Font("",0,20));
+                g.drawRect(10, y, 700, 75);
+                String tituloNota = n.getTitulo();
+                g.drawString(tituloNota, (20), (y+18));
+                
+                //nota
+                g.setFont(new Font("",0,10));
+                String textoNota = n.getNota();
+                g.drawString(textoNota, (15), (y+32));
+                y+=100;
+                i++;
+            }
+            setPreferredSize(new Dimension(0,(i*100)));
+        }catch(Exception e){
+            System.out.println("Notas_desenhaNotas: "+ e);
+        }
+        
+        
+/*
+        //teste
         for(i = 0; i < 3; i++){
             g.setFont(new Font("",0,20));
             g.drawRect(10, y, 700, 75);
             
-            g.drawString("Nota " + i, (35), (y+40));
-            g.setFont(new Font("",0,15));
-            g.drawLine(550, y, 550, y+75);
-            g.drawString("12/12/2017", 600, y+25);
+            //g.drawString("Nota " + i, (35), (y+40));
+            g.drawString("Nota " + i, (20), (y+18));
+            
+            g.setFont(new Font("",0,10));
+            //String notasss = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+            //dividir em linhas com 110 elementos
+            
+            g.drawString("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", 15, (y+32)); //limite 110 por linha
+            g.drawString("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", 15, (y+42));
+            g.drawString("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", 15, (y+52));
+            g.drawString("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", 15, (y+62));
+            
+            
+            //g.drawLine(550, y, 550, y+75);
+            //g.drawString("12/12/2017", 600, y+25);
             //g.drawString("", 590, y+50);
             y+=100;
         }
         setPreferredSize(new Dimension(0, (i*100)));
+*/
     }
 
     @Override
@@ -72,11 +117,11 @@ public class Notas extends JPanel implements Observer{
             int x = e.getX(), y = e.getY();
             int xI = 10, yI = 10;
             
-            for(int i=0; i<3; i++){
+            for(Nota n : dados.getNotas()){
                 if(x>xI && x<xI+700 && y>yI && y<yI+85){
                     //System.out.println("Este é o "+i+"º");
-                    //String titulo = "Titulo "+ i;
-                    JDialog mydialog = new NotasAcao(dados, i);
+                    String titulo = n.getTitulo();
+                    JDialog mydialog = new NotasAcao(dados, n);
                 }
                 yI+=100;
             }
