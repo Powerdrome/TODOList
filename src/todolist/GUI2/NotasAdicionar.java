@@ -21,6 +21,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import todolist.Dados;
+import todolist.Nota;
 
 /**
  *
@@ -120,16 +121,32 @@ public class NotasAdicionar extends JPanel implements Observer{
                 dados.setEstado(4);
                 System.out.println("Cancela nota!!");
                 titulo.setText("Titulo para a nota");
-                nota.setText("Introduza a nota");
+                nota.setText("Introduza a nota");                          
+                
          }          
       });
         
         btnAdicionar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                dados.setEstado(4);
+                
                 System.out.println("Adiciona nota!!");
                 System.out.println("Titulo da Nota: " + titulo.getText());
                 System.out.println("Nota: "+ nota.getText());
+                
+                String novoTitulo, novaNotaTexto;
+                
+                novoTitulo = titulo.getText();
+                if(novoTitulo.isEmpty()){
+                    novoTitulo = "Erro -> Nota x";
+                }
+                novaNotaTexto = nota.getText();
+                if(novaNotaTexto.isEmpty()){
+                    novaNotaTexto = "Erro -> texto";
+                }
+                
+                Nota novaNota = new Nota(novoTitulo,novaNotaTexto);
+                dados.addNota(novaNota);
+                dados.setEstado(4);
             }
         });
         
