@@ -603,8 +603,6 @@ public class Dados extends Observable{
             return;
         }
         estado = x;
-        setChanged();
-        notifyObservers();
     }
     
     public int getEstado(){
