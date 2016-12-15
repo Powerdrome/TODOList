@@ -8,12 +8,14 @@ import java.util.Observable;
 
 public class Tarefa implements Serializable {
     private static final long serialVersionUID = 1L;
-        String nome;
+    String nome;
     GregorianCalendar inicio;
     GregorianCalendar fim;
+    boolean concluido;
 
     public Tarefa(String nome) {
         this.nome = nome;
+        concluido = false;
     }
 
     public String getNome() {
@@ -43,6 +45,16 @@ public class Tarefa implements Serializable {
     public void setFim(GregorianCalendar fim) {
         this.fim = fim;
     }
+    
+    public boolean getConcluido(){
+        return concluido;
+    }
+    
+    public void Concluido(){
+        this.concluido = true;
+    }
+    
+    
     
     @Override
     public String toString() {

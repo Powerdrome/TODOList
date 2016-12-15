@@ -21,6 +21,7 @@ public class DicasAcao extends JDialog {
         setLayout(new BorderLayout());
         getContentPane().setBackground(Color.BLUE);
         setSize(new Dimension(400, 70));
+        
         setLocation(200,200);
         setTitle("Selecionar ação");
         createAndDisplay();

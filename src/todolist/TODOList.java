@@ -6,8 +6,11 @@
 package todolist;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -30,9 +33,13 @@ public class TODOList {
         pa_exame.setInicio(2017,01,14,14,30);
         pa_exame.setFim(2017,01,14,16,30);
         
-        HoraAula pa_horaaula = new HoraAula(1, "L2.1");
-        pa_horaaula.setInicio(2016,01,14,17,30);
-        pa_horaaula.setFim(2016,01,14,18,00);
+        HoraAula pa_horaaula = new HoraAula(1, "L2.1", 1, "Programação Avançada");
+        try {
+            pa_horaaula.setInicio("14/01/2016 17:30");
+            pa_horaaula.setFim("14/01/2016 18:00");
+        } catch (ParseException ex) {
+            Logger.getLogger(TODOList.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         HoraEstudo pa_horaestudo = new HoraEstudo("Hora de Estudo de PA");
         pa_horaestudo.setInicio(2017,01,13,17,30);
@@ -47,16 +54,6 @@ public class TODOList {
         calendario.addCadeira(pa_uc);
         System.out.println("todolist.TODO List.main()");
         
-
-
-        calendario.addCadeira(pa_uc); 
-
-
-
-
-        calendario.addCadeira(pa_uc);
-        
-
         for(Hora hr: calendario.getHoras()){
             System.out.println(hr.getNome());
         }

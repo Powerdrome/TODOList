@@ -185,7 +185,7 @@ public class BarraSuperior extends JPanel implements Observer{
         
         hora_estudo.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                JDialog mydialog = new AdicionarHora();
+                JDialog mydialog = new AdicionarHora(dados);
 
          }          
       });
