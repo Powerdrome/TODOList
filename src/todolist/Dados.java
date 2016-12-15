@@ -149,7 +149,9 @@ public class Dados extends Observable{
         paEstudo.setInicio(2017, 01, 13, 17, 30);
         paEstudo.setFim(2017, 01, 13, 18, 00);
         
-        paUC.addAulas(paAula);
+        ArrayList<HoraAula> arr = new ArrayList<>();
+        arr.add(paAula);
+        paUC.addAulas(arr);
         paUC.addDica(paDica);
         paUC.addNota(paNota);
         paUC.addExame(paExame);
@@ -462,6 +464,27 @@ public class Dados extends Observable{
         return null;
     }
 
+    public void carregaDicas() {
+        ArrayList<DicaBase> dicas = aulasExistentes.getDicas();
+        ArrayList<UnidadeCurricular> ucs = calendario.getCadeiras();
+        
+        if(dicas == null || ucs == null) {
+            return;
+        }
+        
+        if ( dicas.size() == 0 || ucs.size() == 0) {
+            return;
+        }
+        
+        for (UnidadeCurricular u: ucs) {
+            for (DicaBase d: dicas) {
+                if (d.getNomeUC() == u.getNome()) {
+                    u.addDica(new Dica(d.getTitulo(), d.getDica()));
+                }
+            }
+        }
+    }
+    
     public void addCadeira(String nome) {
         if ((nome == null) || (nome.length() == 0)) {
             return;
@@ -522,19 +545,21 @@ public class Dados extends Observable{
         }
     }
     
-        public void addHoraAula(int aulaIndex, HoraAula h) {
         if(aulaIndex > getNCadeiras())
             return;
+    }
+    
+    public void addHoraAulas(int aulaIndex, ArrayList<HoraAula> h) {
         getCadeiras().get(aulaIndex).addAulas(h);
     } 
     
-    public HoraAula getHoraAula(String desc, String nomeUC) {
+    public ArrayList<HoraAula> getHoraAulas(String desc, String nomeUC) {
         if(desc == null || desc.length() == 0)
             return null;
         if(nomeUC == null || nomeUC.length() == 0)
             return null;
         
-        return aulasExistentes.getHoraAula(desc, nomeUC);
+        return aulasExistentes.getHoraAulas(desc, nomeUC);
     }
     
     public void addHoraEstudo(String titulo, GregorianCalendar dataInicio,
@@ -719,5 +744,5 @@ public class Dados extends Observable{
         }catch(Exception e){
             System.out.println("Dados_addHoraEstudo: " + e);
         }
-    }
+    }    
 }

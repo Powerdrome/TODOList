@@ -117,7 +117,7 @@ public class CalendarioTest {
         } catch (ParseException ex) {
             Logger.getLogger(CalendarioTest.class.getName()).log(Level.SEVERE, null, ex);
         }
-        cadeira.addAulas(ha);
+        cadeira.addAula(ha);
         
         
         System.out.println("getHoras");
