@@ -168,8 +168,8 @@ public class Dados extends Observable{
         }
         
         mdEstudo = new HoraEstudo("Hora d e Estudo de PA");
-        mdEstudo.setInicio(2017, 01, 13, 17, 30);
-        mdEstudo.setFim(2017, 01, 13, 18, 00);
+        mdEstudo.setInicio(2016, 12, 15, 17, 30);
+        mdEstudo.setFim(2016, 12, 15, 18, 30);
         
         //mdUC.addAulas(mdAula);
         //mdUC.addDica(mdDica);
@@ -687,5 +687,14 @@ public class Dados extends Observable{
         notifyObservers();
     }
     
-    
+    //added by Paulo
+    public void eliminaNota(Nota eleNota){
+        try{
+            uc.eliminaNota(eleNota);
+        }catch(Exception e){
+            System.out.println("Dados_EliminaNota: " + e);
+        }
+        setChanged();
+        notifyObservers();
+    }
 }
