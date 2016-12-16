@@ -15,6 +15,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.Observable;
 import java.util.Observer;
 import javax.swing.JButton;
@@ -36,6 +40,7 @@ public class TarefasAdicionar extends JPanel implements Observer{
     DatePickerExample data;
     JTextField inicio;
     JTextField fim;
+    Tarefa tr = null;
     public TarefasAdicionar(todolist.Dados dados) {
         this.dados = dados;
         this.dados.addObserver(this);
@@ -45,6 +50,7 @@ public class TarefasAdicionar extends JPanel implements Observer{
         createAndDisplay();
         registarListeners();
         placeholder();
+        verificaExistenciaTarefa();
     }
     
     protected void createAndDisplay(){
@@ -104,6 +110,7 @@ public class TarefasAdicionar extends JPanel implements Observer{
     protected void registarListeners(){
         btnCancelar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                dados.setTarefaActual(null);
                 dados.setEstado(2);
             }     
         });
@@ -113,7 +120,7 @@ public class TarefasAdicionar extends JPanel implements Observer{
                 String vI = verificaInsercao();
                 System.out.println(vI);
                 if(vI.isEmpty()){
-                    System.out.println("Tudo ok... Vamos proseguir");
+                    //System.out.println("Tudo ok... Vamos proseguir");
                     try {
                         String strData = data.getData();
                         int dia = Integer.parseInt(strData.substring(0, 2));
@@ -129,7 +136,17 @@ public class TarefasAdicionar extends JPanel implements Observer{
                         Tarefa novaTarefa = new Tarefa(tarefa.getText());
                         novaTarefa.setInicio(ano, (mes-1), dia, horaI, minI);
                         novaTarefa.setFim(ano, (mes-1), dia, horaF, minF);
-                        dados.addTarefa(novaTarefa);
+                        
+                        if(dados.getTarefaActual() != null){
+                            tr.setInicio(ano, (mes-1), dia, horaI, minI);
+                            tr.setFim(ano, (mes-1), dia, horaF, minF);
+                            tr.setNome(tarefa.getText());
+                            //tr = novaTarefa;
+                        }else{
+                            dados.addTarefa(novaTarefa);
+                        }
+                        
+                        
                         dados.setEstado(2);
                     }catch(NumberFormatException b){
                         JOptionPane.showMessageDialog(null, "As horas não estão num formato correcto\n",
@@ -152,6 +169,9 @@ public class TarefasAdicionar extends JPanel implements Observer{
     @Override
     public void update(Observable o, Object arg) {
         //update
+        System.out.println("Update");
+        tr = null;
+        verificaExistenciaTarefa();
     }
     
     private String verificaInsercao(){
@@ -232,5 +252,27 @@ public class TarefasAdicionar extends JPanel implements Observer{
         }  
         });
         
+    }
+    
+    public void verificaExistenciaTarefa(){
+        System.out.println("----Verifica Existencia---");
+        if(dados.getTarefaActual() != null){
+            System.out.println("Inseri dados");
+            tr = dados.getTarefaActual();
+            String hI = getFormated(tr.getInicio(), "HH:mm");
+            String hF = getFormated(tr.getFim(), "HH:mm");
+            tarefa.setText(tr.getNome());
+            fim.setText(hF);
+            inicio.setText(hI);
+        }else{
+            tr = null;
+            //System.out.println("Problemas");
+        }
+    }
+    
+    private String getFormated(GregorianCalendar gC, String formato){     
+        DateFormat oDateFormat = new SimpleDateFormat(formato);
+        String formated = oDateFormat.format(gC.getTime());
+        return formated;
     }
 }
