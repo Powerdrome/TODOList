@@ -6,6 +6,7 @@
 package todolist.GUI2;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dialog;
 import java.awt.Dimension;
 import java.awt.Frame;
@@ -78,7 +79,7 @@ public class EscolherHoras extends JDialog{
         String [] combosFinal;
         GridBagConstraints gbConstraints = new GridBagConstraints();
 
-       setLayout(new GridBagLayout());
+        setLayout(new GridBagLayout());
         //setLayout(new GridLayout(6,3));
         
         text = new JLabel(dados.getCadeiras().get(nCadeiraActual).getNome());
@@ -272,6 +273,14 @@ public class EscolherHoras extends JDialog{
                             dados.getCadeiras().get(nCadeiraActual).getNome()));
                 }
                 nCadeiraActual++;
+                remove(text);
+                remove(TEORICA);
+                remove(dropdownT);
+                remove(PRATICA);
+                remove(dropdownP);
+                remove(TPRATICA);
+                remove(dropdownTP);
+                remove(button);
                 preparaJanela();
             }
         }
