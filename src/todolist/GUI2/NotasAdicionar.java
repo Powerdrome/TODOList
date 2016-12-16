@@ -46,18 +46,6 @@ public class NotasAdicionar extends JPanel implements Observer{
     }
         
         protected void createAndDisplay(){
-//        JPanel frame = new JPanel(new GridLayout(0,2));
-//        //JLabel 
-//        JTextField titulo = new JTextField("Titulo");        
-//        JTextField nota = new JTextField("Nota");
-//        
-//        JButton btnAdicionar = new JButton("Adicionar");
-//        btnCancelar = new JButton("Cancelar");
-//        frame.add(titulo);
-//        frame.add(nota);        
-//        frame.add(btnCancelar);
-//        frame.add(btnAdicionar);
-//        add(frame);
 
         titulo = new JTextField("Titulo para a nota");
         nota = new JTextArea("Introduza a nota"); //Talvez Usar TextArea

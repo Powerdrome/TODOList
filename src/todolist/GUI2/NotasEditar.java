@@ -51,7 +51,7 @@ public class NotasEditar extends JDialog {
         
     protected void createAndDisplay(){
         titulo = new JTextField(notaEdit.getTitulo());
-        nota = new JTextArea(notaEdit.getNota()); //Talvez Usar TextArea
+        nota = new JTextArea(notaEdit.getNota());
         
         btnEditar = new JButton("Editar");
         btnCancelar = new JButton("Cancelar");
@@ -94,23 +94,11 @@ public class NotasEditar extends JDialog {
 
     }
     
-//    @Override
-//    public void paintComponent(Graphics g) {
-//        super.paintComponent(g);
-//        desenhaNotas(g);
-//        //setBackground(Color.white);
-//    }
-//    
-//    protected void desenhaNotas(Graphics g){
-//        g.setFont(new Font("",0,20));
-//        g.drawRect(10, 10, 700, 75);
-//    }
     
     protected void registarListeners(){
         btnCancelar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                //dados.setEstado(4);
-                
+                                
                 System.out.println("Cancela Edição da nota!!");
                 titulo.setText("Titulo para a nota");
                 nota.setText("Introduza a nota");
@@ -139,8 +127,7 @@ public class NotasEditar extends JDialog {
                 
                 Nota novaNotaEdit = new Nota(novoTitulo,novaNotaTexto);
                 dados.setNotas_v2(novaNotaEdit, notaEdit);
-                //dados.setEstado(4); //arranjar forma de o JPanel desaparecer
-                
+                                
                 titulo.setText("Titulo para a nota");
                 nota.setText("Introduza a nota");
                 dados.actualiza();
@@ -150,10 +137,6 @@ public class NotasEditar extends JDialog {
         
     }
 
-//    @Override
-//    public void update(Observable o, Object arg) {
-//        //update
-//    }
 
    
 }

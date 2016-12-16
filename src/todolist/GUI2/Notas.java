@@ -13,6 +13,7 @@ import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.Arrays;
 import java.util.Observable;
 import java.util.Observer;
 import javax.swing.JDialog;
@@ -67,7 +68,53 @@ public class Notas extends JPanel implements Observer{
                 //nota
                 g.setFont(new Font("",0,10));
                 String textoNota = n.getNota();
-                g.drawString(textoNota, (15), (y+32));
+                //g.drawString(textoNota, (15), (y+32));
+                
+                String aux;
+                if(textoNota.length()<110){
+                    aux = textoNota.substring(0, textoNota.length());                
+                    g.drawString(aux, (15), (y+32));
+                }else{
+                    aux = textoNota.substring(0, 109);
+                    g.drawString(aux,(15),(y+32));
+                }
+                if(textoNota.length()>110){
+                    if(textoNota.length()>219){
+                        aux = textoNota.substring(109, 219);
+                        g.drawString(aux, (15), (y+42));
+                    }else{
+                        aux = textoNota.substring(109, textoNota.length());
+                        g.drawString(aux, (15), (y+42));
+                    }
+                }
+                if(textoNota.length()>220){
+                    if(textoNota.length()>329){
+                        aux = textoNota.substring(219, 329);
+                        g.drawString(aux, (15), (y+52));
+                    }else{
+                        aux = textoNota.substring(219, textoNota.length());
+                        g.drawString(aux, (15), (y+52));                        
+                    }
+                }
+                if(textoNota.length()>330){
+                    if(textoNota.length()>438){
+                        aux = textoNota.substring(329, 439);
+                        g.drawString(aux, (15), (y+62));
+                    }else{
+                        aux = textoNota.substring(329, textoNota.length());
+                        g.drawString(aux, (15), (y+62));
+                    }
+                }
+                if(textoNota.length()>440){
+                    if(textoNota.length()>548){
+                        aux = textoNota.substring(439, 549);
+                        g.drawString(aux, (15), (y+72));
+                    }else{
+                        aux = textoNota.substring(439, textoNota.length());
+                        g.drawString(aux, (15), (y+72));
+                    }
+                }
+
                 y+=100;
                 i++;
             }
@@ -75,34 +122,8 @@ public class Notas extends JPanel implements Observer{
         }catch(Exception e){
             System.out.println("Notas_desenhaNotas: "+ e);
         }
-        
-        
-/*
-        //teste
-        for(i = 0; i < 3; i++){
-            g.setFont(new Font("",0,20));
-            g.drawRect(10, y, 700, 75);
-            
-            //g.drawString("Nota " + i, (35), (y+40));
-            g.drawString("Nota " + i, (20), (y+18));
-            
-            g.setFont(new Font("",0,10));
-            //String notasss = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
-            //dividir em linhas com 110 elementos
-            
-            g.drawString("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", 15, (y+32)); //limite 110 por linha
-            g.drawString("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", 15, (y+42));
-            g.drawString("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", 15, (y+52));
-            g.drawString("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", 15, (y+62));
-            
-            
-            //g.drawLine(550, y, 550, y+75);
-            //g.drawString("12/12/2017", 600, y+25);
-            //g.drawString("", 590, y+50);
-            y+=100;
-        }
-        setPreferredSize(new Dimension(0, (i*100)));
-*/
+               
+
     }
 
     @Override
@@ -119,7 +140,7 @@ public class Notas extends JPanel implements Observer{
             
             for(Nota n : dados.getNotas()){
                 if(x>xI && x<xI+700 && y>yI && y<yI+85){
-                    //System.out.println("Este é o "+i+"º");
+                   
                     String titulo = n.getTitulo();
                     JDialog mydialog = new NotasAcao(dados, n);
                 }
