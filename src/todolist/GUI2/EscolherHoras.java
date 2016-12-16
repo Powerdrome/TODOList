@@ -80,7 +80,6 @@ public class EscolherHoras extends JDialog{
         GridBagConstraints gbConstraints = new GridBagConstraints();
 
         setLayout(new GridBagLayout());
-        //setLayout(new GridLayout(6,3));
         
         text = new JLabel(dados.getCadeiras().get(nCadeiraActual).getNome());
         gbConstraints.gridheight = 1;
@@ -88,7 +87,6 @@ public class EscolherHoras extends JDialog{
         gbConstraints.gridx = 0;
         gbConstraints.gridy = 0;
         add(text,gbConstraints);
-        //add(new JLabel());
         gbConstraints.gridy = 1;
         gbConstraints.gridwidth = 1;
         add(TEORICA,gbConstraints);
