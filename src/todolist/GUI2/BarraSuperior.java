@@ -180,6 +180,7 @@ public class BarraSuperior extends JPanel implements Observer{
             @Override
             public void actionPerformed(ActionEvent e) {
                 dados.setEstado(3);
+                dados.setTarefaActual(null);
             }
         });
         
