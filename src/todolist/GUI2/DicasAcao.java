@@ -5,11 +5,10 @@ import java.awt.Color;
 import java.awt.Dialog;
 import java.awt.Dimension;
 import java.awt.GridLayout;
-import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
+import javax.swing.JTextArea;
 import todolist.Dados;
 
 
@@ -20,9 +19,10 @@ public class DicasAcao extends JDialog {
         
         setLayout(new BorderLayout());
         getContentPane().setBackground(Color.BLUE);
-        setSize(new Dimension(400, 70));
+        setSize(new Dimension(400, 200));
         
         setLocation(200,200);
+        setResizable(false);
         setTitle(titulo);
         createAndDisplay(dica);
         setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
@@ -33,11 +33,13 @@ public class DicasAcao extends JDialog {
 //        botaoPassar.setVisible(false);
     }
     protected void createAndDisplay(String dica){
-        JPanel frame = new JPanel(new GridLayout(0, 2));
+        JPanel frame = new JPanel(new GridLayout(0, 1));
         
+        JTextArea txtArea = new JTextArea("Hello, World\n", 400, 200);
+        txtArea.setEditable(false);
+        //JLabel label1 = new JLabel(dica, JLabel.CENTER);
         
-        JLabel label1 = new JLabel(dica,JLabel.CENTER);
-        frame.add(label1);
+        frame.add(txtArea);
         frame.setBackground(Color.gray);
         add(frame, BorderLayout.CENTER);
     }
