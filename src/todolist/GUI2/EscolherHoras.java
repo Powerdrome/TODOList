@@ -6,7 +6,6 @@
 package todolist.GUI2;
 
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dialog;
 import java.awt.Dimension;
 import java.awt.Frame;
@@ -41,8 +40,8 @@ public class EscolherHoras extends JDialog{
     public EscolherHoras(Frame owner, Dados dados) {
         super(owner);
         
-        int x = 940;
-        int y = 575;
+        int x = 350;
+        int y = 225;
         int startx = -1;
         int starty = -1;
         this.dados = dados;
@@ -73,8 +72,8 @@ public class EscolherHoras extends JDialog{
     }
     
     public void preparaJanela() {
-        int x = 940;
-        int y = 575;
+        int x = 350;
+        int y = 225;
         String [] combos;
         String [] firstOpt = new String [3];
         String [] combosFinal;
