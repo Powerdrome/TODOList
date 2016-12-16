@@ -53,6 +53,11 @@ public class Tarefa implements Serializable {
     public void Concluido(){
         this.concluido = true;
     }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+    
     
     
     
