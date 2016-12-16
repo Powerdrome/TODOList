@@ -11,8 +11,10 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
+import static java.lang.Character.isUpperCase;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -101,7 +103,12 @@ public class Calendario extends JPanel  implements Observer{
         int x, y, horas, minutos, tam;
         GregorianCalendar inicio, fim;
         String nome;
-        for(UnidadeCurricular uc : dados.getCadeiras())
+        ArrayList<Color> cores = new ArrayList<>();
+        cores.add(Color.red);
+        cores.add(new Color(124, 19, 21));
+        int i = 0;
+        for(UnidadeCurricular uc : dados.getCadeiras()){
+            Color cor = cores.get(i++);
             for(HoraAula ha : uc.getAulas()){
                 nome = uc.getNome();
                 inicio = ha.getInicio();
@@ -136,11 +143,12 @@ public class Calendario extends JPanel  implements Observer{
                 System.out.println("Fim " + getFormated(fim, "dd/MM/yyyy HH:mm"));
                 System.out.println("<------------------>");
                 
-                g.setColor(Color.blue);
+                g.setColor(cor);
                 g.fillRect(x, y, 100, tam);
                 g.setColor(Color.white);
-                g.drawString(nome, x+5, y+10);
+                g.drawString(getIniciais(nome), x+5, y+10);
         
+            }
         }
         
     }
@@ -208,7 +216,18 @@ public class Calendario extends JPanel  implements Observer{
         String formated = oDateFormat.format(gC.getTime());
         return formated;
     }
-
+    
+    public String getIniciais(String uc){
+        String initials = "";
+        for (int i = 0; i < uc.length(); i++) {
+            char letter = uc.charAt(i);
+            if (isUpperCase(letter)) {
+                initials += uc.charAt(i);
+            }
+        }
+        return initials;
+    }
+    
     @Override
     public void update(Observable o, Object arg) {
         if(dados.getEstado() == 1){
