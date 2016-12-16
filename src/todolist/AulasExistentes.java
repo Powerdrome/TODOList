@@ -32,25 +32,34 @@ public class AulasExistentes implements Serializable{
     
     public String [] getHorasAulasT(String nomeUC) {
         ArrayList<String> arr = new ArrayList<>();
-        String [] arrT;
-        for(HoraAula h: aulas) {
-            if(h.getUc().equals(nomeUC) && h.getTipo() == 0)
-                arr.add("T " + h.getTurma());
+        String [] arrT = null;
+        String string = null;
+        for (HoraAula h: aulas) {
+            if (h.getUc().equals(nomeUC) && h.getTipo() == 0) {
+                string = "T " + h.getTurma();
+                if (!arr.contains(string)) {
+                    arr.add(string);
+                }
+            }
         }
         arrT = new String [arr.size()];
-        for(int i = 0; i < arr.size(); i++)
+        for (int i = 0; i < arr.size(); i++) {
             arrT[i] = arr.get(i);
-        
+        }
         return arrT;
     }
     
     public String [] getHorasAulasP(String nomeUC) {
         ArrayList<String> arr = new ArrayList<>();
         String [] arrP;
-        
+        String string;
         for(HoraAula h: aulas) {
-            if(h.getUc().equals(nomeUC) && h.getTipo() == 1)
-                arr.add("P " + h.getTurma());
+            if(h.getUc().equals(nomeUC) && h.getTipo() == 1) {
+                string = "P " + h.getTurma();
+                if (!arr.contains(string)) {
+                    arr.add(string);
+                }
+            }
         }
         arrP = new String [arr.size()];
         for(int i = 0; i < arr.size(); i++)
@@ -62,10 +71,15 @@ public class AulasExistentes implements Serializable{
     public String [] getHorasAulasTP(String nomeUC) {
         ArrayList<String> arr = new ArrayList<>();
         String [] arrTP;
+        String string;
         
         for(HoraAula h: aulas) {
-            if(h.getUc().equals(nomeUC) && h.getTipo() == 2)
-                arr.add("TP " + h.getTurma());
+            if(h.getUc().equals(nomeUC) && h.getTipo() == 2) {
+                string = "TP " + h.getTurma();
+                if (!arr.contains(string)) {
+                    arr.add(string);
+                }
+            }
         }
         arrTP = new String [arr.size()];
         for(int i = 0; i < arr.size(); i++)
