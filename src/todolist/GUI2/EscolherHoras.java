@@ -272,7 +272,7 @@ public class EscolherHoras extends JDialog{
                             dados.getCadeiras().get(nCadeiraActual).getNome()));
                 }
                 nCadeiraActual++;
-                //preparaJanela();
+                preparaJanela();
             }
         }
     }
