@@ -11,7 +11,7 @@ public class AulasExistentes implements Serializable{
 
     public AulasExistentes() {
         this.aulas = new ArrayList<>();
-        this.dicas = null;
+        this.dicas = new ArrayList<>();
     }
 
     public ArrayList<HoraAula> getAulas() {
