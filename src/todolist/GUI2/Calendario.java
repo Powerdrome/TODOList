@@ -102,15 +102,24 @@ public class Calendario extends JPanel  implements Observer{
         g.setFont(new Font("",0,10));
         int x, y, horas, minutos, tam;
         GregorianCalendar inicio, fim;
-        String nome;
+        String nome, sala;
         ArrayList<Color> cores = new ArrayList<>();
-        cores.add(Color.red);
-        cores.add(new Color(124, 19, 21));
+        //cores.add(Color.red);
+        //cores.add(new Color(124, 19, 21));
+        cores.add(new Color(252, 233, 218));    //0
+        cores.add(new Color(219, 238, 243));    //1
+        cores.add(new Color(228, 223, 236));    //2
+        cores.add(new Color(235, 241, 223));    //3
+        cores.add(new Color(241, 220, 219));    //4
+        cores.add(new Color(249, 191, 146));    //5
+        cores.add(new Color(148, 205, 219));    //6
+        cores.add(new Color(177, 161, 198));    //7
         int i = 0;
         for(UnidadeCurricular uc : dados.getCadeiras()){
             Color cor = cores.get(i++);
             for(HoraAula ha : uc.getAulas()){
                 nome = uc.getNome();
+                sala = ha.getSala();
                 inicio = ha.getInicio();
                 fim = ha.getFim();
             
@@ -145,9 +154,9 @@ public class Calendario extends JPanel  implements Observer{
                 
                 g.setColor(cor);
                 g.fillRect(x, y, 100, tam);
-                g.setColor(Color.white);
-                g.drawString(getIniciais(nome), x+5, y+10);
-        
+                g.setColor(Color.BLACK);
+                g.drawString(getIniciais(nome) + " " + sala, x+5, y+10);
+                if(i > 7) i = 0; //Caso haja mais de 8 cadeiras repete a cor
             }
         }
         
