@@ -7,13 +7,23 @@ import java.util.StringTokenizer;
 public class AulasExistentes implements Serializable{
     private static final long serialVersionUID = 1L;
     private ArrayList<HoraAula> aulas;
+    private ArrayList<DicaBase> dicas;
 
     public AulasExistentes() {
         this.aulas = new ArrayList<>();
+        this.dicas = null;
     }
 
     public ArrayList<HoraAula> getAulas() {
         return aulas;
+    }
+    
+    public ArrayList<DicaBase> getDicas() {
+        return dicas;
+    }
+    
+    public void addDica(String uc, String nome, String dica) {
+        dicas.add(new DicaBase(uc, nome, dica));
     }
     
     public void addHora(HoraAula hora){
@@ -64,9 +74,10 @@ public class AulasExistentes implements Serializable{
         return arrTP;
     }
     
-    public HoraAula getHoraAula(String desc, String nomeUC) {
+    public ArrayList<HoraAula> getHoraAulas(String desc, String nomeUC) {
         StringTokenizer token = new StringTokenizer(desc," ");
         String tipoS = token.nextToken();
+        ArrayList<HoraAula> arrAulas = new ArrayList<>();
         int turma;
         int tipo;
         
@@ -87,16 +98,22 @@ public class AulasExistentes implements Serializable{
                 tipo = 2;
                 break;
             default:
+                System.err.println("Tipo de aula errado.");
                 tipo = -1;
                 break;
         }
-        
-        if(tipo >= 0 && turma >= 0)
+        System.err.println("A procurar turmas: tipo=" + tipo + " , turma=" + turma);
+        if(tipo > -1 && turma > -1)
             for(HoraAula h: aulas) {
-                if(h.getTurma() == turma && h.getTipo() == tipo)
-                    return h;
+                if(h.getTurma() == turma && h.getTipo() == tipo && h.getUc().equals(nomeUC)) {
+                    arrAulas.add(h);
+                }
             }
         
-        return null;
+        if(aulas.size() == 0) {
+            System.err.println("Nao ha aulas para esta UC.");
+            return null;
+        }
+        return arrAulas;
     }
 }

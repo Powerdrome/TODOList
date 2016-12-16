@@ -51,8 +51,15 @@ public class UnidadeCurricular extends Observable implements Serializable {
         notas.add(nota);
     }
     
-    public void addAulas(HoraAula aula){
-        aulas.add(aula);
+    public void addAula(HoraAula aula){
+            aulas.add(aula);
+    } 
+    
+    public void addAulas(ArrayList<HoraAula> arrAulas){
+        if(arrAulas == null)
+            return;
+        for(HoraAula h: arrAulas)
+            aulas.add(h);
     } 
     
     public void addExame(Exame exame){
