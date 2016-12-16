@@ -15,8 +15,6 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
 import todolist.Dados;
 import todolist.Nota;
 
@@ -35,7 +33,7 @@ public class NotasAcao extends JDialog {
         setLayout(new BorderLayout());
         setSize(new Dimension(400, 70));
         setLocation(200, 200);
-        setTitle("Que operação pretende realizar para a Nota "+ nt.getTitulo() + "?");
+        setTitle("Que operação pretende realizar para a Nota ?");
         createAndDisplay();
         setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
         registarListeners();
@@ -46,11 +44,11 @@ public class NotasAcao extends JDialog {
     protected void createAndDisplay() {
         JPanel frame = new JPanel(new GridLayout(0, 2));
         
-        btnEliminar = new JButton("Eliminar " + nt.getTitulo());
-        //btnEliminar.setBounds(100,100,10,10);
+        btnEliminar = new JButton("Eliminar");
+        btnEliminar.setBounds(100,100,10,10);
 
-        btnEditar = new JButton("Editar " + nt.getTitulo());
-        //btnEditar.setBounds(100,100,10,10);
+        btnEditar = new JButton("Editar");
+        btnEditar.setBounds(100,100,10,10);
 
         frame.add(btnEliminar);
         frame.add(btnEditar);
@@ -63,7 +61,7 @@ public class NotasAcao extends JDialog {
         btnEliminar.addActionListener(new ActionListener() {
             //@Override
             public void actionPerformed(ActionEvent e) {                
-                System.out.println("Eliminar Nota "+nt.getTitulo());
+                System.out.println("Eliminar Nota");
                 nt.setExiste(false);
                 
                 dados.actualiza();
@@ -75,9 +73,7 @@ public class NotasAcao extends JDialog {
         btnEditar.addActionListener(new ActionListener() {
             //@Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Editar Nota "+nt.getTitulo());
-                //chamar NotasEditar()
-                //JPanel editaNota = new NotasEditar(dados, nt);
+                System.out.println("Editar Nota");
                 JDialog mydialogEdit = new NotasEditar(dados, nt);
                 dispose();
             }
