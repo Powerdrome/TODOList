@@ -214,6 +214,10 @@ public class BarraSuperior extends JPanel implements Observer{
             texto = "Notas > "+ dados.getUc().getNome();
             label.setText(texto);
         }
+        if(dados.getEstado()==6){
+            texto = "Dicas > "+ dados.getUc().getNome();
+            label.setText(texto);
+        }
         if(dados.getEstado()==1){
             label.setText("");
         }

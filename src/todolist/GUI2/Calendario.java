@@ -128,11 +128,13 @@ public class Calendario extends JPanel  implements Observer{
                 
                 tam = ((horas*30)+(minutos/2));
                 
-                //System.out.println("Inicio " + getFormated(inicio, "HH:mm"));
-                //System.out.println("Fim " + getFormated(fim, "HH:mm"));
+                System.out.println("<------------------>");
+                System.out.println("Cadeira: "+ nome + " x: " + x + " y: " + y + "\nhoras: " + horas
+                    + " minutos: " + minutos + " tam: " + tam);
                 
-                //System.out.println("Cadeira: "+ nome + " x: " + x + " y: " + y + "\nhoras: " + horas
-                   // + " minutos: " + minutos + " tam: " + tam);
+                System.out.println("Inicio " + getFormated(inicio, "dd/MM/yyyy HH:mm"));
+                System.out.println("Fim " + getFormated(fim, "dd/MM/yyyy HH:mm"));
+                System.out.println("<------------------>");
                 
                 g.setColor(Color.blue);
                 g.fillRect(x, y, 100, tam);
