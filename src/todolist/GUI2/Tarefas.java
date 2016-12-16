@@ -45,8 +45,14 @@ public class Tarefas extends JPanel implements Observer{
         int y = 10;
         int i = 0;
         try{
-        if(dados.getTarefas().isEmpty() || dados.getTarefas() == null)
-            return;
+            if(dados.getTarefas().isEmpty() || dados.getTarefas() == null){
+                g.setFont(new Font("",0,20));
+                //g.drawRect(10, y, 700, 75);
+                g.setColor(new Color(150,150,140));
+                g.drawString("Não existem tarefas associadas a esta unidade curricular", (20), (y+18));
+                g.drawString("Carregue no botão '+' para introduzir uma tarefa", (20), (y+48));
+                return;
+            }
         }catch(Exception e){
             System.out.println("Tarefas_Verificação: "+ e);
         }

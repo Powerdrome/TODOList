@@ -6,6 +6,7 @@
 package todolist.GUI2;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -14,6 +15,8 @@ import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.util.Observable;
 import java.util.Observer;
 import javax.swing.JButton;
@@ -42,6 +45,7 @@ public class NotasAdicionar extends JPanel implements Observer{
         this.setPreferredSize(new Dimension(100, 100));
         createAndDisplay();
         registarListeners();
+        placeholder();
         //update(dados,null);
     }
         
@@ -145,6 +149,50 @@ public class NotasAdicionar extends JPanel implements Observer{
     @Override
     public void update(Observable o, Object arg) {
         //update
+    }
+
+    private void placeholder() {
+        //titulo
+        titulo.setText("Titulo para a nota");
+        titulo.setForeground(new Color(150,150,140));
+        titulo.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if(titulo.getText().equalsIgnoreCase("Titulo para a nota")){
+                    titulo.setText("");
+                    titulo.setForeground(new Color(50,50,50));
+                }
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                if(titulo.getText().length()==0){
+                    titulo.setText("Titulo para a nota");
+                    titulo.setForeground(new Color(150,150,150));
+                }
+            }
+        });
+        
+        //nota
+        nota.setText("Introduza a nota");
+        nota.setForeground(new Color(150,150,140));
+        nota.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if(nota.getText().equalsIgnoreCase("Introduza a nota")){
+                    nota.setText("");
+                    nota.setForeground(new Color(50,50,50));
+                }
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                if(nota.getText().length()==0){
+                    nota.setText("Introduza a nota");
+                    nota.setForeground(new Color(150,150,150));
+                }
+            }
+        });
     }
 
    

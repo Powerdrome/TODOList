@@ -6,16 +6,20 @@
 package todolist.GUI2;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.util.Observable;
 import java.util.Observer;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import todolist.Tarefa;
@@ -40,6 +44,7 @@ public class TarefasAdicionar extends JPanel implements Observer{
         this.setPreferredSize(new Dimension(100, 100));
         createAndDisplay();
         registarListeners();
+        placeholder();
     }
     
     protected void createAndDisplay(){
@@ -54,7 +59,6 @@ public class TarefasAdicionar extends JPanel implements Observer{
         fim = new JTextField("hh:mm");
         btnAdicionar = new JButton("Adicionar");
         btnCancelar = new JButton("Cancelar");
-        
         
         JPanel linha2 = new JPanel(new GridLayout(0,2));
         JPanel col1 = new JPanel(new GridLayout(0,2));
@@ -106,30 +110,37 @@ public class TarefasAdicionar extends JPanel implements Observer{
         
         btnAdicionar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                String strData = data.getData();
-                int dia = Integer.parseInt(strData.substring(0, 2));
-                int mes = Integer.parseInt(strData.substring(3, 5));
-                int ano = Integer.parseInt(strData.substring(6, 10));
-                
-                int horaI = Integer.parseInt(inicio.getText().substring(0,2));
-                int horaF = Integer.parseInt(fim.getText().substring(0,2));
-                
-                int minI = Integer.parseInt(inicio.getText().substring(3,5));
-                int minF = Integer.parseInt(fim.getText().substring(3,5));
-               
                 String vI = verificaInsercao();
+                System.out.println(vI);
                 if(vI.isEmpty()){
                     System.out.println("Tudo ok... Vamos proseguir");
                     try {
+                        String strData = data.getData();
+                        int dia = Integer.parseInt(strData.substring(0, 2));
+                        int mes = Integer.parseInt(strData.substring(3, 5));
+                        int ano = Integer.parseInt(strData.substring(6, 10));
+                
+                        int horaI = Integer.parseInt(inicio.getText().substring(0,2));
+                        int horaF = Integer.parseInt(fim.getText().substring(0,2));
+                
+                        int minI = Integer.parseInt(inicio.getText().substring(3,5));
+                        int minF = Integer.parseInt(fim.getText().substring(3,5));
+                        
                         Tarefa novaTarefa = new Tarefa(tarefa.getText());
                         novaTarefa.setInicio(ano, (mes-1), dia, horaI, minI);
                         novaTarefa.setFim(ano, (mes-1), dia, horaF, minF);
                         dados.addTarefa(novaTarefa);
                         dados.setEstado(2);
+                    }catch(NumberFormatException b){
+                        JOptionPane.showMessageDialog(null, "As horas não estão num formato correcto\n",
+                        "Erro!", JOptionPane.ERROR_MESSAGE);
                     }catch(Exception b){
-                        System.out.println("Tarefas Adicionar: "+ b);
+                        JOptionPane.showMessageDialog(null, "Alguma coisa correu mal",
+                        "Erro!", JOptionPane.ERROR_MESSAGE);
                     }
                 }else{
+                    JOptionPane.showMessageDialog(null, vI,
+                        "Aviso!", JOptionPane.WARNING_MESSAGE);
                     System.out.println(vI);
                 }
                 
@@ -147,10 +158,79 @@ public class TarefasAdicionar extends JPanel implements Observer{
         String a = "";
         if(tarefa.getText().equalsIgnoreCase("Tarefa") || tarefa.getText().isEmpty())
             a += "Deve inserir o nome da tarefa\n";
-        if(inicio.getText().equalsIgnoreCase("hh:mm") || inicio.getText().isEmpty())
-            a+= "Deve inserir uma data correcta\n";
-        if(fim.getText().equalsIgnoreCase("hh:mm") || fim.getText().isEmpty())
-            a+= "Deve inserir uma data correcta\n";
+        if(inicio.getText().equalsIgnoreCase("HH:mm") || inicio.getText().isEmpty())
+            a+= "Deve inserir uma hora correcta de inicio\n";
+        if(fim.getText().equalsIgnoreCase("HH:mm") || fim.getText().isEmpty())
+            a+= "Deve inserir uma hora correcta de fim\n";
         return a;
+    }
+    
+    protected void placeholder(){
+        inicio.setText("HH:mm");
+        inicio.setForeground(new Color(150, 150, 150));
+        
+        inicio.addFocusListener(new FocusListener() {  
+
+        @Override  
+        public void focusGained(FocusEvent e) {
+            if(inicio.getText().equalsIgnoreCase("HH:mm")){
+                inicio.setText("");
+                inicio.setForeground(new Color(50, 50, 50)); 
+            }
+        }
+
+        @Override  
+        public void focusLost(FocusEvent e) { 
+            if (inicio.getText().length() == 0) {  
+                inicio.setText("HH:mm");  
+                inicio.setForeground(new Color(150, 150, 150));  
+            }  
+        }  
+        });
+        
+        fim.setText("HH:mm");
+        fim.setForeground(new Color(150, 150, 150));
+        
+        fim.addFocusListener(new FocusListener() {  
+
+        @Override  
+        public void focusGained(FocusEvent e) {
+            if(fim.getText().equalsIgnoreCase("HH:mm")){
+                fim.setText("");
+                fim.setForeground(new Color(50, 50, 50));  
+            }
+        }
+
+        @Override  
+        public void focusLost(FocusEvent e) { 
+            if (fim.getText().length() == 0) {  
+                fim.setText("HH:mm");  
+                fim.setForeground(new Color(150, 150, 150));  
+            }  
+        }  
+        });
+        
+        tarefa.setText("Tarefa");
+        tarefa.setForeground(new Color(150, 150, 150));
+        
+        tarefa.addFocusListener(new FocusListener() {  
+
+        @Override  
+        public void focusGained(FocusEvent e) {
+            if(tarefa.getText().equalsIgnoreCase("Tarefa")){
+                tarefa.setText("");
+                tarefa.setForeground(new Color(50, 50, 50));  
+            }
+        }
+
+        @Override  
+        public void focusLost(FocusEvent e) { 
+            if (tarefa.getText().length() == 0) {  
+                tarefa.setText("Tarefa");  
+                tarefa.setForeground(new Color(150, 150, 150));  
+            }  
+        }  
+        });
+        
     }
 }
