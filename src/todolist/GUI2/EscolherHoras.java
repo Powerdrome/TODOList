@@ -28,7 +28,8 @@ public class EscolherHoras extends JDialog{
     private Dados dados = null;
     private int nCadeiras = -1;
     private int nCadeiraActual = 0;
-    private JButton button = null;
+    private JButton buttonNext = null;
+    private JButton buttonPrev = null;
     private JLabel text = null;
     private JLabel TEORICA = new JLabel("Teórica");
     private JLabel TPRATICA = new JLabel("Teórico-Prática");
@@ -174,16 +175,25 @@ public class EscolherHoras extends JDialog{
         gbConstraints.gridy = 4;
         add(new JLabel(),gbConstraints);
         
+        buttonPrev = new JButton("Anterior");
+        gbConstraints.gridx = 1;
+        gbConstraints.gridwidth = 1;
+        buttonPrev.addActionListener(new AnteriorActionListener());
+        add(buttonPrev, gbConstraints);
+        if(nCadeiraActual == 0) {
+            buttonPrev.setEnabled(false);
+        }
+        
         gbConstraints.gridx = 2;
         gbConstraints.gridwidth = 1;
         if (nCadeiraActual < nCadeiras - 1) {
-            button = new JButton("Próximo");
-            button.addActionListener(new ProximoActionListener());
+            buttonNext = new JButton("Próximo");
+            buttonNext.addActionListener(new ProximoActionListener());
         } else {
-            button = new JButton("Concluir");
-            button.addActionListener(new ConcluirActionListener());
+            buttonNext = new JButton("Concluir");
+            buttonNext.addActionListener(new ConcluirActionListener());
         }
-        add(button,gbConstraints);
+        add(buttonNext,gbConstraints);
         
         pack();
         setSize(x,y);
@@ -280,9 +290,27 @@ public class EscolherHoras extends JDialog{
                 remove(dropdownP);
                 remove(TPRATICA);
                 remove(dropdownTP);
-                remove(button);
+                remove(buttonPrev);
+                remove(buttonNext);
                 preparaJanela();
             }
+        }
+    }
+    private class AnteriorActionListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            dados.limpaAulas(nCadeiraActual);
+            nCadeiraActual--;
+            remove(text);
+            remove(TEORICA);
+            remove(dropdownT);
+            remove(PRATICA);
+            remove(dropdownP);
+            remove(TPRATICA);
+            remove(dropdownTP);
+            remove(buttonPrev);
+            remove(buttonNext);
+            preparaJanela();
         }
     }
 }

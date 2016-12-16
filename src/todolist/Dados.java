@@ -583,6 +583,10 @@ public class Dados extends Observable{
         notifyObservers();
     }
     
+    public void limpaAulas(int index) {
+        calendario.getCadeiras().get(index).limpaHoras();
+    }
+    
     public void removeHoraEstudo(String titulo) {
         if ((titulo == null) || (titulo.length() == 0)) {
             return;
