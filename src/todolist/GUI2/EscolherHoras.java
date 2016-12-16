@@ -102,6 +102,9 @@ public class EscolherHoras extends JDialog{
             dropdownT.setEnabled(false);
         } else {
             System.out.println("Recebido: \n" + combos);
+            for(String s: combos) {
+                System.out.println(s);
+            }
             firstOpt[0] = "Escolha uma turma teórica";
             combosFinal = new String[1 + combos.length];
             combosFinal[0] = firstOpt[0];
@@ -127,6 +130,9 @@ public class EscolherHoras extends JDialog{
             dropdownP.setEnabled(false);
         } else {
             System.out.println("Recebido: \n" + combos);
+            for(String s: combos) {
+                System.out.println(s);
+            }
             firstOpt[1] = "Escolha uma turma prática";
             combosFinal = new String[1 + combos.length];
             combosFinal[0] = firstOpt[1];
@@ -207,18 +213,17 @@ public class EscolherHoras extends JDialog{
             
             if (checkInput) {
                 if(dropdownT.isEnabled()) {
-                    dados.addHoraAula(nCadeiraActual,dados.getHoraAula(
+                    dados.addHoraAulas(nCadeiraActual,dados.getHoraAulas(
                             (String)dropdownT.getSelectedItem(),
                             dados.getCadeiras().get(nCadeiraActual).getNome()));
-                    System.out.println(dados.getCadeiras().get(nCadeiraActual).getAulas());
                 }
                 if(dropdownP.isEnabled()) {
-                    dados.addHoraAula(nCadeiraActual,dados.getHoraAula(
+                    dados.addHoraAulas(nCadeiraActual,dados.getHoraAulas(
                             (String)dropdownP.getSelectedItem(),
                             dados.getCadeiras().get(nCadeiraActual).getNome()));
                 }
                 if(dropdownTP.isEnabled()) {
-                    dados.addHoraAula(nCadeiraActual,dados.getHoraAula(
+                    dados.addHoraAulas(nCadeiraActual,dados.getHoraAulas(
                             (String)dropdownTP.getSelectedItem(),
                             dados.getCadeiras().get(nCadeiraActual).getNome()));
                 }
@@ -253,17 +258,17 @@ public class EscolherHoras extends JDialog{
 
             if (checkInput) {
                 if(dropdownT.isEnabled()) {
-                    dados.addHoraAula(nCadeiraActual,dados.getHoraAula(
+                    dados.addHoraAulas(nCadeiraActual,dados.getHoraAulas(
                             (String)dropdownT.getSelectedItem(),
                             dados.getCadeiras().get(nCadeiraActual).getNome()));
                 }
                 if(dropdownP.isEnabled()) {
-                    dados.addHoraAula(nCadeiraActual,dados.getHoraAula(
+                    dados.addHoraAulas(nCadeiraActual,dados.getHoraAulas(
                             (String)dropdownP.getSelectedItem(),
                             dados.getCadeiras().get(nCadeiraActual).getNome()));
                 }
                 if(dropdownTP.isEnabled()) {
-                    dados.addHoraAula(nCadeiraActual,dados.getHoraAula(
+                    dados.addHoraAulas(nCadeiraActual,dados.getHoraAulas(
                             (String)dropdownTP.getSelectedItem(),
                             dados.getCadeiras().get(nCadeiraActual).getNome()));
                 }

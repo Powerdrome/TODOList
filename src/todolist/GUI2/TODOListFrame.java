@@ -27,7 +27,7 @@ class TODOListFrame extends JFrame implements Observer{
     //private Tarefas tar;
     private ScrollTarefas tar;
     private ScrollNotas sNotas;
-    ///private ScrollDicas sDicas;
+    private ScrollDicas sDicas;
     
     public TODOListFrame(Dados dados) {
         super("TODOList");
@@ -38,13 +38,14 @@ class TODOListFrame extends JFrame implements Observer{
         if (dados.getEstado() == 0) {
             new EscolherCadeiras(this, dados);
             new EscolherHoras(this, dados);
+            dados.carregaDicas();
         }
 
         cal = new Calendario(dados);
         cal.setBackground(Color.gray);
         tar = new ScrollTarefas(dados);
         sNotas = new ScrollNotas(dados);
-        //sDicas = new ScrollDicas(dados);
+        sDicas = new ScrollDicas(dados);
         
         dados.setEstado(1);
         //tar = new Tarefas(dados);
@@ -92,7 +93,7 @@ class TODOListFrame extends JFrame implements Observer{
         remove(cal);
         remove(tar);
         remove(sNotas);
-        //remove(sDicas);
+        remove(sDicas);
         if(dados.getEstado() == 1){
             add(cal, BorderLayout.CENTER);
         }else if(dados.getEstado() == 2 || dados.getEstado() == 3){
@@ -102,7 +103,7 @@ class TODOListFrame extends JFrame implements Observer{
             add(sNotas, BorderLayout.CENTER);
             System.out.println("Notas - Devia aparecer outra coisa");
         }else if(dados.getEstado() == 6) {
-            //add(sDicas, BorderLayout.CENTER);
+            add(sDicas, BorderLayout.CENTER);
             System.out.println("Dicas - Para os meninos aprenderem como se faz");
         }
         
