@@ -46,7 +46,7 @@ public class Dados extends Observable{
     private final String NOME_FICHEIRO_HORARIOS = "HORARIOS";
     private int estado = -1;
     private UnidadeCurricular uc;
-    
+    private Tarefa trA = null;
     public Dados() {
         File saveFile = new File(NOME_FICHEIRO_USER);
         File horarios = new File(NOME_FICHEIRO_HORARIOS);
@@ -759,4 +759,21 @@ public class Dados extends Observable{
             System.out.println("Dados_addHoraEstudo: " + e);
         }
     }    
+    
+    public Tarefa getTarefaActual(){
+        try{
+            return trA;
+        }catch(Exception e){
+           return null; 
+        }
+    }
+    
+    public void setTarefaActual(Tarefa tr){
+        try{
+            this.trA = tr;
+        }catch(Exception e){
+            this.trA = null;
+        }
+    }
+    
 }
