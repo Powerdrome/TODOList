@@ -20,6 +20,7 @@ public class TarefasAcao extends JDialog {
     Dados dados;
     JButton eliminar;
     JButton concluir;
+    JButton editar;
     Tarefa t;
     public TarefasAcao(Dados dados, Tarefa tr) {
         this.dados=dados;
@@ -34,7 +35,7 @@ public class TarefasAcao extends JDialog {
         setVisible(true);
     }
     protected void createAndDisplay(){
-        JPanel frame = new JPanel(new GridLayout(0, 2));
+        JPanel frame = new JPanel(new GridLayout(0, 3));
         
         eliminar = new JButton("Eliminar");
         eliminar.setBounds(100,100,10,10);
@@ -42,8 +43,12 @@ public class TarefasAcao extends JDialog {
         concluir = new JButton("Concluir");
         concluir.setBounds(100,100,10,10);
         
+        editar = new JButton("Editar");
+        editar.setBounds(100,100,10,10);
+        
         frame.add(eliminar);
         frame.add(concluir);
+        frame.add(editar);
         
         frame.setBackground(Color.gray);
         add(frame, BorderLayout.CENTER);
@@ -64,6 +69,16 @@ public class TarefasAcao extends JDialog {
             @Override
             public void actionPerformed(ActionEvent e) {
                 t.Concluido();
+                setVisible(false);
+                dados.actualiza();
+            }
+        });
+        
+        editar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dados.setTarefaActual(t);
+                dados.setEstado(3);
                 setVisible(false);
                 dados.actualiza();
             }
