@@ -111,6 +111,12 @@ public class UnidadeCurricular extends Observable implements Serializable {
         return dicas;
     }
     
+    public void limpaHoras() {
+        for(HoraAula h: aulas) {
+            aulas.remove(h);
+        }
+    }
+    
     public ArrayList<Tarefa> getTarefas(){
         ArrayList<Tarefa> tar = new ArrayList<>();
         for(Tarefa t: tarefas)
