@@ -51,6 +51,12 @@ public class Notas extends JPanel implements Observer{
         
         try{
             if(dados.getNotas().isEmpty() || dados.getNotas() == null){
+                g.setFont(new Font("",0,20));
+                //g.drawRect(10, y, 700, 75);
+                g.setColor(new Color(150,150,140));
+                g.drawString("Não existem notas associadas a esta unidade curricular", (20), (y+18));
+                g.drawString("Carregue no botão '+' para introduzir uma nota", (20), (y+48));
+                
                 return;
             }
         }catch(Exception e){
