@@ -8,6 +8,7 @@ package todolist;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -45,7 +46,7 @@ public class TODOList {
         pa_horaestudo.setInicio(2017,01,13,17,30);
         pa_horaestudo.setFim(2017,01,13,18,00);
         
-        pa_uc.addAulas(pa_horaaula);
+        pa_uc.addAula(pa_horaaula);
         pa_uc.addDica(pa_dica);
         pa_uc.addNota(pa_nota);
         pa_uc.addExame(pa_exame);

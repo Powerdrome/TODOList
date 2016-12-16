@@ -15,6 +15,8 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 import todolist.Dados;
 import todolist.Nota;
 
@@ -46,10 +48,10 @@ public class NotasAcao extends JDialog {
         
         btnEliminar = new JButton("Eliminar " + nt.getTitulo());
         //btnEliminar.setBounds(100,100,10,10);
-        
+
         btnEditar = new JButton("Editar " + nt.getTitulo());
         //btnEditar.setBounds(100,100,10,10);
-        
+
         frame.add(btnEliminar);
         frame.add(btnEditar);
         
@@ -75,11 +77,12 @@ public class NotasAcao extends JDialog {
             public void actionPerformed(ActionEvent e) {
                 System.out.println("Editar Nota "+nt.getTitulo());
                 //chamar NotasEditar()
+                //JPanel editaNota = new NotasEditar(dados, nt);
+                JDialog mydialogEdit = new NotasEditar(dados, nt);
                 dispose();
             }
         });        
     }
         
-    
     
 }

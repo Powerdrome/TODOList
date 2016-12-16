@@ -147,6 +147,8 @@ public class NotasAdicionar extends JPanel implements Observer{
                 Nota novaNota = new Nota(novoTitulo,novaNotaTexto);
                 dados.addNota(novaNota);
                 dados.setEstado(4);
+                titulo.setText("Titulo para a nota");
+                nota.setText("Introduza a nota"); 
             }
         });
         
