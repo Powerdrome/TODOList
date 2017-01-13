@@ -477,9 +477,15 @@ public class Dados extends Observable{
         }
         
         for (UnidadeCurricular u: ucs) {
+            System.out.println("UC: "+ u.getNome());
+            if(!dicas.isEmpty() || dicas != null)
+                System.out.println("Existe dicas");
             for (DicaBase d: dicas) {
-                if (d.getNomeUC() == u.getNome()) {
+                if (d.getNomeUC().equalsIgnoreCase(u.getNome())) {
                     u.addDica(new Dica(d.getTitulo(), d.getDica()));
+                    System.out.println("Carregar---->");
+                    System.out.println("UC: " + u.getNome());
+                    System.out.println("Dica :" + d.getDica());
                 }
             }
         }

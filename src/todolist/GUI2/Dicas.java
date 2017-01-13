@@ -49,8 +49,10 @@ public class Dicas extends JPanel implements Observer {
         int i = 0;
         try{
         dicas = dados.getDicas();
-        if(dicas.isEmpty() || dicas == null)
+        if(dicas.isEmpty() || dicas == null){
+            //System.out.println("Dicas: Empty");
             return;
+        }
         }catch(Exception e){
             System.out.println("Dicas_Verificação: "+ e);
         }

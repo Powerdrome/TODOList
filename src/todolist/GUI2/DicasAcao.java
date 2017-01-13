@@ -35,7 +35,7 @@ public class DicasAcao extends JDialog {
     protected void createAndDisplay(String dica){
         JPanel frame = new JPanel(new GridLayout(0, 1));
         
-        JTextArea txtArea = new JTextArea("Hello, World\nOla", 400, 200);
+        JTextArea txtArea = new JTextArea(dica, 400, 200);
         txtArea.setEditable(false);
         //JLabel label1 = new JLabel(dica, JLabel.CENTER);
         
